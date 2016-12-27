@@ -3,7 +3,7 @@ title:       Linlin's Blog
 email:       linlinzhao.c@gmail.com
 author:      Linlin Zhao
 description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
-#baseurl:     ""
+baseurl:     ""
 #url:         "http://pixyll.com"
 #date_format: "%b %-d, %Y"
 
@@ -42,7 +42,7 @@ facebook_appid:
 facebook_comments_number: 10
 
 # Social icons
-github_username:
+github_username: linlinzhao
 bitbucket_username:
 stackoverflow_id:
 twitter_username:

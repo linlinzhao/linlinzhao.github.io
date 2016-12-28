@@ -862,12 +862,12 @@ sup {
 
 .site-header a {
   color: #333;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 300;
   background-image: none; }
 
 .site-header .site-title {
-  font-size: 1.5rem; }
+  font-size: 1.25rem; }
 
 .site-nav {
   margin-top: 1rem; }
@@ -1050,7 +1050,7 @@ blockquote footer {
 
 .post-link .post-title {
   margin-top: 0;
-  font-weight: 600;
+  font-weight: 500;
   color: #333; }
 
 .post-footer {

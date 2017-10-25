@@ -1,118 +1,84 @@
-# Site settings
-title:       Linlin's Blog
-email:       linlinzhao.c@gmail.com
-author:      Linlin Zhao
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
-baseurl:     ""
-#url:         "http://pixyll.com"
-date_format: "%b %-d, %Y"
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
 
-# Google services
-google_verification:
-# Use either direct GA implementation or set up GTM account
-# - using both will skew your data (leave blank to not use at all)
-google_analytics:
-google_tag_manager:
-# Bing services
-bing_verification:
+## Base settings ##
+url: "https://linlinzhao.github.io" #The site's Protocol and Hostname e.g. https://blog.someone.com (!!required!!)
+title: Linlin
+description: > #this means to ignore newlines until "base_path:"
+    Linlin | 赵霖林
 
-# Optional features
-animated:             false
-show_related_posts:   false
-show_post_footers:    false
-show_social_icons:    True 
-ajaxify_contact_form: false
-enable_mathjax: false
-extended_fonts: false
-enable_anchorjs: false
+##* Home base settings ##
+baseurl: "/"
+avata_url: https://wx3.sinaimg.cn/large/73bd9e13ly1fjkqy66hl8j208c08c0td.jpg
 
-# Facebook Page integration
-# (for instant articles and other stuff)
-fb_page: false
-fb_page_id: 
+##* Blog base settings ##
+blog:
+  baseurl: "/blog"
+  title: Linlin's blog
+  description: 恒道恒名，上下求索
+  nav_lists:
+    - title: About
+      url: /blog/about.html
+##* Artsworks base settings ##
+artworks:
+  baseurl: ""
 
-# Disqus post comments
-# (leave blank to disable Disqus)
-disqus_shortname:
+## GitHub repository (if the site is hosted by GitHub) ##
+repository: linlinzhao/linlinzhao.github.io
+repository_tree: master
 
-# Facebook Comments plugin
-# (leave blank to disable Facebook Comments, otherwise set it to true)
-facebook_comments:
-facebook_appid:
-facebook_comments_number: 10
+## Language & timezone ##
+lang: EN # the language of your site
+timezone: Europe/Germany
 
-# Social icons
-github_username: linlinzhao
-bitbucket_username:
-stackoverflow_id:
-twitter_username:
-skype_username:
-steam_nickname:
-google_plus_id:
-linkedin_username:
-angellist_username:
-medium_id:
-bitcoin_url:
-paypal_url:
-flattr_button:
-wechat_id: doubllle
+## Author & social ##
+author:
+  name: "Linlin Zhao"
+  email: linlinzhao.c@gmail.com
+  twitter: 
+  github:  linlinzhao
+  googleplus: 
+  weibo: 
+  douban: 
 
-# Post sharing icons
-show_sharing_icons: false
-# Change to 'true' to enable individual icons
-share_facebook: false
-share_twitter: True
-share_googleplus: True 
-share_linkedin: false
-share_digg: false
-share_tumblr: false
-share_reddit: false
-share_stumbleupon: false
-share_hackernews: false
-share_wechat: True
-text:
-  pagination:
-    newer: 'Newer'
-    older: 'Older'
-  share_buttons:
-    text:         'Share this post!'
-    facebook:     'Share on Facebook'
-    twitter:      'Share on Twitter'
-    googleplus:   'Share on Google+'
-    linkedin:     'Share on LinkedIn'
-    digg:         'Share on Digg'
-    tumblr:       'Share on Tumblr'
-    reddit:       'Share on Reddit'
-    stumbleupon:  'Share on StumbleUpon'
-    hackernews:   'Share on Hacker News'
-  post:
-    updated:        'Updated'
-    minute_read:    'minute read'
-    related_posts:  'Related Posts'
-  index:
-    coming_soon: 'Coming soon...'
-  contact:
-    email:    'Email Address'
-    content:  'What would you like to say?'
-    subject:  'New submission!'
-    submit:   'Say Hello'
-    ajax:
-      sending:  'sending..'
-      sent:     'Message sent!'
-      error:    'Error!'
-  thanks: 'Thanks for contacting us. We will reply as soon as possible.'
-  og_locale: 'en_US'
+## Comment system (Disqus) ##
+disqus:
+  shortname: linlinzhao-github-io
 
-# Build settings
-markdown:     kramdown
-redcarpet:
-  extensions: ['smart', 'tables', 'with_toc_data']
-permalink:    pretty
-paginate:     4
-sass:
-  compressed: true
+## Google Analytics ##
+ga_tracking_id: UA-108614850-1
+
+## Reading quantity (LeanCloud) ##
+## leancloud:
+##  app_id: uAG3OhdcH8H4fxSqXLyBljA7-gzGzoHsz
+##  app_key: Mzf5m9skSwYVWVXhGiYMNyXs
+##  app_class: ThomasBlog
+
+## Paginate ##
+paginate: 7
+paginate_path: /blog/page:num
+
+## Post excerpts ##
+excerpt_separator: <!--more-->
+
+## Build ##
+markdown: kramdown
+highlighter: rouge
+permalink: date
+
+## Plugins ##
 gems:
-  - jekyll-paginate
   - jekyll-sitemap
-# https://github.com/jekyll/jekyll/issues/2938
-exclude: [vendor]
+  - jekyll-feed
+  - jekyll-paginate
+  - jemoji
+
+## Server ##
+server_url: "0.0.0.0"
+
+## Development ##
+isdebug: false

@@ -1,11 +1,15 @@
 ---
-layout: default
+layout: blog-default
 ---
-<div class="post">
-  <header class="post-header">
-    <h1 class="h2">{{ page.title }}</h1>
-  </header>
-  <article class="post-content">
-  {{ content }}
-  </article>
+<div class="m-page">
+    <article class="main">
+        <h1>{{ page.title }}</h1>
+
+        <div class="m-article-content" itemprop="articleBody">
+            {{ content }}
+        </div>
+        {% if page.comment != false %}
+            <section>{% include utils/comment-disqus.html %}</section>
+        {% endif %}
+    </article>
 </div>

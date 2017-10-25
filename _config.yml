@@ -13,7 +13,7 @@ description: > #this means to ignore newlines until "base_path:"
 
 ##* Home base settings ##
 baseurl: "/"
-avata_url: https://wx3.sinaimg.cn/large/73bd9e13ly1fjkqy66hl8j208c08c0td.jpg
+avata_url:
 
 ##* Blog base settings ##
 blog:
@@ -37,13 +37,12 @@ timezone: Europe/Germany
 
 ## Author & social ##
 author:
-  name: "Linlin Zhao"
+  name: "Linlin Zhao | 恒道恒名 上下求索"
   email: linlinzhao.c@gmail.com
-  twitter: 
+  twitter:
   github:  linlinzhao
-  googleplus: 
-  weibo: 
-  douban: 
+  googleplus:
+  weibo:
 
 ## Comment system (Disqus) ##
 disqus:

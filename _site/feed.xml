@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000//feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="EN"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://localhost:4000//feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000//" rel="alternate" type="text/html" hreflang="EN" /><updated>2017-10-25T15:43:28+00:00</updated><id>http://localhost:4000///</id><title type="html">Linlin</title><subtitle>Linlin | 赵霖林
+</subtitle><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><entry><title type="html">关于此博客</title><link href="http://localhost:4000//blog/2015/10/14/about-this-blog.html" rel="alternate" type="text/html" title="关于此博客" /><published>2015-10-14T15:15:00+00:00</published><updated>2015-10-14T15:15:00+00:00</updated><id>http://localhost:4000//blog/2015/10/14/about-this-blog</id><content type="html" xml:base="http://localhost:4000//blog/2015/10/14/about-this-blog.html">&lt;!--more--&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;静态博客&lt;/h2&gt;
+
+&lt;p&gt;搭建在 GitHub Page 上的博客属于&lt;a href=&quot;https://baike.baidu.com/item/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99&quot;&gt;静态网站&lt;/a&gt;，这种网站对服务器的要求低，是一种非常轻量化的网站，不过操作繁琐，每一个页面都要写一个完整的 HTML 网页文件。不过幸运的是，现在已经有很多优秀的静态博客系统，它们可以非常方便的根据你所写的内容来生成相应的网页文件，你所需要做的仅仅是写博文（使用 &lt;a href=&quot;https://zh.wikipedia.org/wiki/Markdown&quot;&gt;Markdown&lt;/a&gt;书写），然后运行博客系统生成网页文件，再将生成好的网页文件上传到服务器上去。简单的说，这些博客工具将静态网站稍微动态化了一些，有点像动态网站的页面缓存机制。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ww4.sinaimg.cn/large/73bd9e13jw1ex6wbkhmgvj20fu04h0sp.jpg&quot; alt=&quot;静态博客系统&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是，即便如此，这种方式仍然是十分繁琐和麻烦的，如果不是特别折腾，特别爱好的话，我还是建议使用传统的动态网站（Wordpress 是个好东西）。&lt;/p&gt;
+
+&lt;p&gt;目前比较流行的静态博客系统有&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/jekyll/&quot;&gt;Jekyll&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/getpelican/pelican&quot;&gt;Pelican&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/imathis/octopress&quot;&gt;Octopress&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/hexojs/hexo/&quot;&gt;Hexo&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;本博客使用到的工具&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/jekyll/&quot;&gt;Jekyll&lt;/a&gt; 静态博客系统&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://pygments.org/&quot;&gt;Pygment&lt;/a&gt; 代码高亮&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://photo.weibo.com/&quot;&gt;微相册&lt;/a&gt; 图床&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/Ranks/emojify.js&quot;&gt;Emojify.js&lt;/a&gt; 显示 Emoji&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://disqus.com/&quot;&gt;DISQUS&lt;/a&gt; 评论系统&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.google.com/analytics/&quot;&gt;Google Analytics&lt;/a&gt; 网站统计分析工具&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="blog" /><category term="blog" /><summary type="html"></summary></entry></feed>

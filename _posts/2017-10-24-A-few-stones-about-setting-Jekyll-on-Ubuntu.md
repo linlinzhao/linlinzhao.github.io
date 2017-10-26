@@ -33,7 +33,7 @@ quick solution. Eventually I made it work with these settings:
   ``<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>``
   in TeXt theme's ``_layouts/page.html``. Be sure to use ``https``, otherwise the rendering online could fail.
-  3. Then I could write equations in LaTex! For inline equations, the expression need to be embrace with double dollar like this: ``$$x$$``.
-  For independent lines, the expression should start from a new line after ``$$``, and the ending ``$$`` should also stay in a new line.
+  3. Then I could write equations in LaTex! For inline equations, the expressions need to be embraced with double dollar sign like this: ``$$x$$``.
+  For independent lines, the expressions should start from a new line after ``$$``, and the ending ``$$`` should also stay in a new line.
 
 Okay, that is it. I hope someone could find this post useful.

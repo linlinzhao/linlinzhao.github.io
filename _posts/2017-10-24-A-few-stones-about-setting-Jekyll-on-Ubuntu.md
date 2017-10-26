@@ -30,9 +30,9 @@ quick solution. Eventually I made it work with these settings:
 
   1. Using [kramdown](https://kramdown.gettalong.org/syntax.html#math-blocks) engine for markdown.
   2. Putting
-  ``<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  ``<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>``
-  in TeXt theme's ``_layouts/page.html``. 
+  in TeXt theme's ``_layouts/page.html``. Be sure to use ``https``, otherwise the rendering online could fail. 
   3. Then I could write equations in LaTex! For inline equations, the expression need to be embrace with double dollar like this: ``$$x$$``.
   For independent lines, the expression should start from a new line after ``$$``, and the ending ``$$`` should also stay in a new line.
 

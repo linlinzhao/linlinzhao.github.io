@@ -7,6 +7,9 @@ category: Tech
 date: 2017-10-21 23:15:00 +08:00
 ---
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 Having heard about the announcement about [Theano](https://github.com/Theano/Theano) from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the ``backward()`` function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I'll assume that you already know the [``autograd``](http://pytorch.org/docs/master/autograd.html) module and what a [``Variable``](http://pytorch.org/docs/0.1.12/_modules/torch/autograd/variable.html) is, but are a little confused by definition of ``backward()``.
 <!--more-->
 First let's recall the gradient computing under mathematical notions. For an independent variable $$x$$ (scalar or vector), the whatever operation on $$x$$ is $$y = f(x)$$. The gradient of $$y$$ w.r.t $$x_i$$s is

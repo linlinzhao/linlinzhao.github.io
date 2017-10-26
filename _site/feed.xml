@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000//feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="EN"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://localhost:4000//feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000//" rel="alternate" type="text/html" hreflang="EN" /><updated>2017-10-26T09:29:28+00:00</updated><id>http://localhost:4000///</id><title type="html">Linlin</title><subtitle>Linlin | 赵霖林
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000//feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="EN"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://localhost:4000//feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000//" rel="alternate" type="text/html" hreflang="EN" /><updated>2017-10-26T09:33:00+00:00</updated><id>http://localhost:4000///</id><title type="html">Linlin</title><subtitle>Linlin | 赵霖林
 </subtitle><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><entry><title type="html">A fews stones about setting Jekyll on my Ubuntu</title><link href="http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html" rel="alternate" type="text/html" title="A fews stones about setting Jekyll on my Ubuntu" /><published>2017-10-24T00:00:00+00:00</published><updated>2017-10-24T00:00:00+00:00</updated><id>http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu</id><content type="html" xml:base="http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html">&lt;p&gt;I did encounter a few stones on my way to adopt &lt;a href=&quot;https://tianqi.name/blog/&quot;&gt;Tian Qi’s TeXt&lt;/a&gt;
 for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about wed design, that is why even a little stone
 could cost me half an hour to move it away.
@@ -21,14 +21,14 @@ refuse to work with the old &lt;code class=&quot;highlighter-rouge&quot;&gt;Node
     &lt;p&gt;The second thing is to make LaTex work in Markdown. &lt;a href=&quot;http://docs.mathjax.org/en/latest/tex.html&quot;&gt;MathJax&lt;/a&gt; is
 the choice but there exists several ways to set up MathJax in &lt;a href=&quot;https://jekyllrb.com/docs/extras/&quot;&gt;Jekyll&lt;/a&gt;, and
 some of them just did not work for me. I did not have the time to dig out the reason but just wanted to find a
-quick solution. Eventually I made it work with this settings:&lt;/p&gt;
+quick solution. Eventually I made it work with these settings:&lt;/p&gt;
 
     &lt;ol&gt;
       &lt;li&gt;Using &lt;a href=&quot;https://kramdown.gettalong.org/syntax.html#math-blocks&quot;&gt;kramdown&lt;/a&gt; engine for markdown.&lt;/li&gt;
       &lt;li&gt;Putting
 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&amp;gt;
 &amp;lt;/script&amp;gt;&lt;/code&gt;
-in TeXt theme’s &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts/page.html&lt;/code&gt;. Again, I was not sure why it worked this way and I did not want to find out…&lt;/li&gt;
+in TeXt theme’s &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts/page.html&lt;/code&gt;.&lt;/li&gt;
       &lt;li&gt;Then I could write equations in LaTex! For inline equations, the expression need to be embrace with double dollar like this: &lt;code class=&quot;highlighter-rouge&quot;&gt;$$x$$&lt;/code&gt;.
 For independent lines, the expression should start from a new line after &lt;code class=&quot;highlighter-rouge&quot;&gt;$$&lt;/code&gt;, and the ending &lt;code class=&quot;highlighter-rouge&quot;&gt;$$&lt;/code&gt; should also stay in a new line.&lt;/li&gt;
     &lt;/ol&gt;

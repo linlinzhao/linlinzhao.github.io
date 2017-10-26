@@ -26,13 +26,13 @@ to install ``Node.js`` and ``npm``, my Ubuntu constantly complained that it coul
 - The second thing is to make LaTex work in Markdown. [MathJax](http://docs.mathjax.org/en/latest/tex.html) is
 the choice but there exists several ways to set up MathJax in [Jekyll](https://jekyllrb.com/docs/extras/), and
 some of them just did not work for me. I did not have the time to dig out the reason but just wanted to find a
-quick solution. Eventually I made it work with this settings:
+quick solution. Eventually I made it work with these settings:
 
   1. Using [kramdown](https://kramdown.gettalong.org/syntax.html#math-blocks) engine for markdown.
   2. Putting
   ``<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>``
-  in TeXt theme's ``_layouts/page.html``. Again, I was not sure why it worked this way and I did not want to find out...
+  in TeXt theme's ``_layouts/page.html``. 
   3. Then I could write equations in LaTex! For inline equations, the expression need to be embrace with double dollar like this: ``$$x$$``.
   For independent lines, the expression should start from a new line after ``$$``, and the ending ``$$`` should also stay in a new line.
 

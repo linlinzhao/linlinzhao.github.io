@@ -52,10 +52,10 @@ disqus:
 ga_tracking_id: UA-108614850-1
 
 ## Reading quantity (LeanCloud) ##
-## leancloud:
-##  app_id: uAG3OhdcH8H4fxSqXLyBljA7-gzGzoHsz
-##  app_key: Mzf5m9skSwYVWVXhGiYMNyXs
-##  app_class: ThomasBlog
+leancloud:
+  app_id: um8kyIpEtaUqAGVt8QDyaaxB-gzGzoHsz
+  app_key: HXR34FRahoMKDU4nQRJTrpiq
+  app_class: linlin-blog
 
 ## Paginate ##
 paginate: 7

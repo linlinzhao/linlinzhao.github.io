@@ -38,6 +38,25 @@
         <style>
             
         </style>
+        <!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Understanding backward() in PyTorch - Linlin</title>
+<meta property="og:title" content="Understanding backward() in PyTorch" />
+<meta name="description" content="Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward()." />
+<meta property="og:description" content="Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward()." />
+<link rel="canonical" href="http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html" />
+<meta property="og:url" content="http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html" />
+<meta property="og:site_name" content="Linlin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-21T15:15:00+00:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Understanding backward() in PyTorch",
+"datePublished": "2017-10-21T15:15:00+00:00",
+"description": "Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward().",
+"url": "http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html"}</script>
+<!-- End Jekyll SEO tag -->
+
         <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
     </head>
     <body>
@@ -73,6 +92,25 @@
     </nav>
 </header>
 
+    <!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Understanding backward() in PyTorch - Linlin</title>
+<meta property="og:title" content="Understanding backward() in PyTorch" />
+<meta name="description" content="Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward()." />
+<meta property="og:description" content="Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward()." />
+<link rel="canonical" href="http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html" />
+<meta property="og:url" content="http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html" />
+<meta property="og:site_name" content="Linlin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-21T15:15:00+00:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Understanding backward() in PyTorch",
+"datePublished": "2017-10-21T15:15:00+00:00",
+"description": "Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward().",
+"url": "http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html"}</script>
+<!-- End Jekyll SEO tag -->
+
     <div class="m-page-main">
         <div class="m-post">
     <div class="main js-main">
@@ -81,6 +119,26 @@
                 <meta itemprop="mainEntityOfPage" itemscope itemType="https://schema.org/WebPage"/>
                 <header class="article-header">
                     <h1 itemprop="headline" itemprop="name headline">Understanding backward() in PyTorch</h1>
+
+                    <!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Understanding backward() in PyTorch - Linlin</title>
+<meta property="og:title" content="Understanding backward() in PyTorch" />
+<meta name="description" content="Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward()." />
+<meta property="og:description" content="Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward()." />
+<link rel="canonical" href="http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html" />
+<meta property="og:url" content="http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html" />
+<meta property="og:site_name" content="Linlin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-21T15:15:00+00:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Understanding backward() in PyTorch",
+"datePublished": "2017-10-21T15:15:00+00:00",
+"description": "Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward().",
+"url": "http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html"}</script>
+<!-- End Jekyll SEO tag -->
+
                     <div class="m-article-data clearfix">
 	
         <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
@@ -119,6 +177,7 @@
         </div>
     </div>
 </div>
+
 
                 </header>
                 <div class="m-article-content js-article-content" itemprop="articleBody">

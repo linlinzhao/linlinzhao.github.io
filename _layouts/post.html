@@ -8,7 +8,10 @@ layout: blog-default
                 <meta itemprop="mainEntityOfPage" itemscope itemType="https://schema.org/WebPage"/>
                 <header class="article-header">
                     <h1 itemprop="headline" itemprop="name headline">{{ page.title }}</h1>
+
+                    {% seo %}
                     {% include blog/article-data.html %}
+
                 </header>
                 <div class="m-article-content js-article-content" itemprop="articleBody">
                     {{ content }}

@@ -80,10 +80,115 @@
             
                 <article>
                     <h1>
-                        <a href="/blog/2015/10/14/about-this-blog.html">关于此博客</a>
+                        <a href="/tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html">A fews stones about setting Jekyll on my Ubuntu</a>
                     </h1>
                     <div class="m-article-content">
-                        
+                        <p>I did encounter a few stones on my way to adopt <a href="https://tianqi.name/blog/">Tian Qi’s TeXt</a>
+for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax.
+2. simple but functional. I know very few about wed design, that is why even a little stone
+could cost me half an hour to move it away.</p>
+
+
+                    </div>
+                    <div class="m-article-data clearfix">
+	
+        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
+            
+                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
+            
+        </meta>
+	
+
+	
+	
+        <ul class="inline-list tag-wrapper">
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=GitHub-Pages">GitHub-Pages
+                </a></li>
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=Jekyll">Jekyll
+                </a></li>
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=LaTex">LaTex
+                </a></li>
+            
+        </ul>
+	
+    <div class="other-wrapper">
+        
+            <div class="view-wrapper">
+                <span class="article-view" id="post-key-10001">0</span> views
+            </div>
+        
+        <div class="date-wrapper">
+            
+                <span class="article-meta">Oct 24, 2017</span>
+            
+        </div>
+    </div>
+</div>
+
+                </article>
+            
+                <article>
+                    <h1>
+                        <a href="/tech/2017/10/21/Understanding-backward()-in-PyTorch.html">Understanding backward() in PyTorch</a>
+                    </h1>
+                    <div class="m-article-content">
+                        <p>Having heard about the announcement about <a href="https://github.com/Theano/Theano">Theano</a> from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the <code class="highlighter-rouge">backward()</code> function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the <a href="http://pytorch.org/docs/master/autograd.html"><code class="highlighter-rouge">autograd</code></a> module and what a <a href="http://pytorch.org/docs/0.1.12/_modules/torch/autograd/variable.html"><code class="highlighter-rouge">Variable</code></a> is, but are a little confused by definition of <code class="highlighter-rouge">backward()</code>.</p>
+
+
+                    </div>
+                    <div class="m-article-data clearfix">
+	
+        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
+            
+                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
+            
+        </meta>
+	
+
+	
+	
+        <ul class="inline-list tag-wrapper">
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=PyTorch">PyTorch
+                </a></li>
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=Deep-learning">Deep-learning
+                </a></li>
+            
+        </ul>
+	
+    <div class="other-wrapper">
+        
+            <div class="view-wrapper">
+                <span class="article-view" id="post-key-10001">0</span> views
+            </div>
+        
+        <div class="date-wrapper">
+            
+                <span class="article-meta">Oct 21, 2017</span>
+            
+        </div>
+    </div>
+</div>
+
+                </article>
+            
+                <article>
+                    <h1>
+                        <a href="/blog/2017/10/14/about-this-blog.html">关于此博客 About this blog</a>
+                    </h1>
+                    <div class="m-article-content">
+                        <h2 id="section">关于此博客</h2>
+<p>借助jekyll, GitHub Pages和田琦的TeXt主题，搭建自己的一个小站，用于不时记录一些随想和经验教训。</p>
+
 
                     </div>
                     <div class="m-article-data clearfix">
@@ -107,9 +212,13 @@
 	
     <div class="other-wrapper">
         
+            <div class="view-wrapper">
+                <span class="article-view" id="post-key-10001">0</span> views
+            </div>
+        
         <div class="date-wrapper">
             
-                <span class="article-meta">Oct 14, 2015</span>
+                <span class="article-meta">Oct 14, 2017</span>
             
         </div>
     </div>
@@ -121,6 +230,30 @@
         
     </div>
 </div>
+
+    <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+    <script>
+        $(function() {
+            AV.init({
+                appId: 'um8kyIpEtaUqAGVt8QDyaaxB-gzGzoHsz',
+                appKey: 'HXR34FRahoMKDU4nQRJTrpiq'
+            });
+            $(".article-view").each(function() {
+                var curId = this.id;
+                var query = new AV.Query('linlin-blog');
+                query.equalTo('key', /(.*)-(.*)/.exec(curId)[2]);
+                query.first().then(function(result) {
+                    if (result) {
+                        $('#' + curId).text(result.attributes.views);
+                    }
+                }, function(error) {
+                    if (error) {
+                        throw error;
+                    }
+                });
+            });
+        });
+    </script>
 
 
     </div>

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000//blog/2015/10/14/about-this-blog.html</loc>
-<lastmod>2015-10-14T15:15:00+00:00</lastmod>
+<loc>http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html</loc>
+<lastmod>2017-10-24T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html</loc>
+<lastmod>2017-10-21T15:15:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000//blog/2017/10/14/about-this-blog.html</loc>
+<lastmod>2017-10-14T15:15:00+00:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000//blog/about.html</loc>

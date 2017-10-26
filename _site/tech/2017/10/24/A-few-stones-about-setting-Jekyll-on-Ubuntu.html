@@ -127,36 +127,40 @@
                 </header>
                 <div class="m-article-content js-article-content" itemprop="articleBody">
                     <p>I did encounter a few stones on my way to adopt <a href="https://tianqi.name/blog/">Tian Qi’s TeXt</a>
-for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax.
-2. simple but functional. I know very few about wed design, that is why even a little stone
+for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about wed design, that is why even a little stone
 could cost me half an hour to move it away.
 <!--more--></p>
 
-<p>-The first thing is about setting up both ruby and node.js environment on my Ubuntu machine.
+<ul>
+  <li>
+    <p>The first thing is about setting up both ruby and node.js environment on my Ubuntu machine.
 Installing Ruby and gem went smoothly, therefore setting up Jekyll is easy. But when I tried
 to install <code class="highlighter-rouge">Node.js</code> and <code class="highlighter-rouge">npm</code>, my Ubuntu constantly complained that it could not install the current
  stable version of Node.js, and it installed <code class="highlighter-rouge">Node 4.2.6</code> instead, which in turn made the latest <code class="highlighter-rouge">npm</code>
-  refuse to work with the old <code class="highlighter-rouge">Node 4.2.6</code>. Many people filed this
-   <a href="https://askubuntu.com/questions/786272/why-does-installing-node-6-x-on-ubuntu-16-04-actually-install-node-4-2-6">problem</a>
-    already, but most of them did not work for me.</p>
+refuse to work with the old <code class="highlighter-rouge">Node 4.2.6</code>. Many people filed this
+ <a href="https://askubuntu.com/questions/786272/why-does-installing-node-6-x-on-ubuntu-16-04-actually-install-node-4-2-6">problem</a>
+  already, but most of them did not work for me.</p>
 
-<p>The problem is caused by a discontinued ppa application, I need to remove it from <code class="highlighter-rouge">/etc/apt/source.list</code> and
-  <code class="highlighter-rouge">/etc/apt/source.list.d</code>. This is the detailed <a href="https://askubuntu.com/questions/65911/how-can-i-fix-a-404-error-when-using-a-ppa-or-updating-my-package-lists">solution</a></p>
-
-<p>-The second thing is to make LaTex work in Markdown. <a href="http://docs.mathjax.org/en/latest/tex.html">MathJax</a> is
+    <p>The problem is caused by a discontinued ppa application, I need to remove it from <code class="highlighter-rouge">/etc/apt/source.list</code> and
+<code class="highlighter-rouge">/etc/apt/source.list.d</code>. This is the detailed <a href="https://askubuntu.com/questions/65911/how-can-i-fix-a-404-error-when-using-a-ppa-or-updating-my-package-lists">solution</a></p>
+  </li>
+  <li>
+    <p>The second thing is to make LaTex work in Markdown. <a href="http://docs.mathjax.org/en/latest/tex.html">MathJax</a> is
 the choice but there exists several ways to set up MathJax in <a href="https://jekyllrb.com/docs/extras/">Jekyll</a>, and
 some of them just did not work for me. I did not have the time to dig out the reason but just wanted to find a
 quick solution. Eventually I made it work with this settings:</p>
 
-<ol>
-  <li>Using <a href="https://kramdown.gettalong.org/syntax.html#math-blocks">kramdown</a> engine for markdown.</li>
-  <li>Putting
-  <code class="highlighter-rouge">&lt;script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
-  &lt;/script&gt;</code>
-  in TeXt theme’s <code class="highlighter-rouge">_layouts/page.html</code>. Again, I was not sure why it worked this way and I did not want to find out…</li>
-  <li>Then I could write equations in LaTex! For inline equations, the expression need to be embrace with double dollar like this: <code class="highlighter-rouge">$$x$$</code>.
-  For independent lines, the expression should start from a new line after <code class="highlighter-rouge">$$</code>, and the ending <code class="highlighter-rouge">$$</code> should also stay in a new line.</li>
-</ol>
+    <ol>
+      <li>Using <a href="https://kramdown.gettalong.org/syntax.html#math-blocks">kramdown</a> engine for markdown.</li>
+      <li>Putting
+<code class="highlighter-rouge">&lt;script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
+&lt;/script&gt;</code>
+in TeXt theme’s <code class="highlighter-rouge">_layouts/page.html</code>. Again, I was not sure why it worked this way and I did not want to find out…</li>
+      <li>Then I could write equations in LaTex! For inline equations, the expression need to be embrace with double dollar like this: <code class="highlighter-rouge">$$x$$</code>.
+For independent lines, the expression should start from a new line after <code class="highlighter-rouge">$$</code>, and the ending <code class="highlighter-rouge">$$</code> should also stay in a new line.</li>
+    </ol>
+  </li>
+</ul>
 
 <p>Okay, that is it. I hope someone could find this post useful.</p>
 

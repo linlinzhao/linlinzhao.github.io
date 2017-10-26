@@ -127,7 +127,7 @@
                 </header>
                 <div class="m-article-content js-article-content" itemprop="articleBody">
                     <p>I did encounter a few stones on my way to adopt <a href="https://tianqi.name/blog/">Tian Qi’s TeXt</a>
-for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about wed design, that is why even a little stone
+for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about web design, that is why even a little stone
 could cost me half an hour to move it away.
 <!--more--></p>
 
@@ -153,9 +153,9 @@ quick solution. Eventually I made it work with these settings:</p>
     <ol>
       <li>Using <a href="https://kramdown.gettalong.org/syntax.html#math-blocks">kramdown</a> engine for markdown.</li>
       <li>Putting
-<code class="highlighter-rouge">&lt;script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
+<code class="highlighter-rouge">&lt;script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
 &lt;/script&gt;</code>
-in TeXt theme’s <code class="highlighter-rouge">_layouts/page.html</code>.</li>
+in TeXt theme’s <code class="highlighter-rouge">_layouts/page.html</code>. Be sure to use <code class="highlighter-rouge">https</code>, otherwise the rendering online could fail.</li>
       <li>Then I could write equations in LaTex! For inline equations, the expression need to be embrace with double dollar like this: <code class="highlighter-rouge">$$x$$</code>.
 For independent lines, the expression should start from a new line after <code class="highlighter-rouge">$$</code>, and the ending <code class="highlighter-rouge">$$</code> should also stay in a new line.</li>
     </ol>

@@ -1,5 +1,237 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000//feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="EN"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://localhost:4000//feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000//" rel="alternate" type="text/html" hreflang="EN" /><updated>2017-10-27T11:17:33+00:00</updated><id>http://localhost:4000///</id><title type="html">Linlin</title><subtitle>Linlin | 赵霖林
-</subtitle><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><entry><title type="html">A fews stones about setting Jekyll on my Ubuntu</title><link href="http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html" rel="alternate" type="text/html" title="A fews stones about setting Jekyll on my Ubuntu" /><published>2017-10-24T00:00:00+00:00</published><updated>2017-10-24T00:00:00+00:00</updated><id>http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu</id><content type="html" xml:base="http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html">&lt;p&gt;I did encounter a few stones on my way to adopt &lt;a href=&quot;https://tianqi.name/blog/&quot;&gt;Tian Qi’s TeXt&lt;/a&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000//feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="EN"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://localhost:4000//feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000//" rel="alternate" type="text/html" hreflang="EN" /><updated>2017-11-17T10:58:26+00:00</updated><id>http://localhost:4000///</id><title type="html">Linlin</title><subtitle>Linlin | 赵霖林
+</subtitle><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><entry><title type="html">PyTorch 中的基本操作</title><link href="http://localhost:4000//tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html" rel="alternate" type="text/html" title="PyTorch 中的基本操作" /><published>2017-11-10T15:15:00+00:00</published><updated>2017-11-10T15:15:00+00:00</updated><id>http://localhost:4000//tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C</id><content type="html" xml:base="http://localhost:4000//tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">&lt;p&gt;Pytorch的设计哲学：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;GPU版的Numpy&lt;/li&gt;
+  &lt;li&gt;高效灵活的深度学习平台&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!--more--&gt;
+&lt;p&gt;numpy中运算，函数，索引的规则和方法可以无缝应用到pytorch的tensor操作。但需要特别注意的一点是，pytorch中in place操作如果有下划线的话，会改变调用该操作的变量。具体参见下面的例子。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;基本函数注意点&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;以下划线为后缀的In-place函数会改变其对象! 如果没有下划线后缀则改变其调用对象，具体见下例。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Pytorch中关于tensor的操作&lt;a href=&quot;http://pytorch.org/docs/master/torch.html&quot;&gt;在这&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#randomly generated tensors&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#transpose of x, note that x has been changed!&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 0.8031  0.0763  0.4798
+ 0.6118  0.6341  0.4783
+ 0.0423  0.9399  0.1805
+ 0.0696  0.5616  0.8898
+[torch.FloatTensor of size 4x3]
+
+
+ 0.8031  0.6118  0.0423  0.0696
+ 0.0763  0.6341  0.9399  0.5616
+ 0.4798  0.4783  0.1805  0.8898
+[torch.FloatTensor of size 3x4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#the x is still the previous modified, which is not mutated by x.t()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 0.8031  0.0763  0.4798
+ 0.6118  0.6341  0.4783
+ 0.0423  0.9399  0.1805
+ 0.0696  0.5616  0.8898
+[torch.FloatTensor of size 4x3]
+
+
+ 0.8031  0.6118  0.0423  0.0696
+ 0.0763  0.6341  0.9399  0.5616
+ 0.4798  0.4783  0.1805  0.8898
+[torch.FloatTensor of size 3x4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Tensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#copy x to z&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 0.8031  0.6118  0.0423  0.0696
+ 0.0763  0.6341  0.9399  0.5616
+ 0.4798  0.4783  0.1805  0.8898
+[torch.FloatTensor of size 3x4]
+
+
+ 0.8031  0.6118  0.0423  0.0696
+ 0.0763  0.6341  0.9399  0.5616
+ 0.4798  0.4783  0.1805  0.8898
+[torch.FloatTensor of size 3x4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#note that z is replaced with the sum, but x stays the same&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 2.4094  1.8353  0.1268  0.2087
+ 0.2290  1.9023  2.8198  1.6848
+ 1.4393  1.4348  0.5415  2.6693
+[torch.FloatTensor of size 3x4]
+
+
+ 0.8031  0.6118  0.0423  0.0696
+ 0.0763  0.6341  0.9399  0.5616
+ 0.4798  0.4783  0.1805  0.8898
+[torch.FloatTensor of size 3x4]
+
+
+ 2.4094  1.8353  0.1268  0.2087
+ 0.2290  1.9023  2.8198  1.6848
+ 1.4393  1.4348  0.5415  2.6693
+[torch.FloatTensor of size 3x4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;## the add() operation is not changing either x or zz&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;zz&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zz&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 1.6063  1.2235  0.0845  0.1391
+ 0.1527  1.2682  1.8798  1.1232
+ 0.9595  0.9565  0.3610  1.7796
+[torch.FloatTensor of size 3x4]
+
+
+ 0.8031  0.6118  0.0423  0.0696
+ 0.0763  0.6341  0.9399  0.5616
+ 0.4798  0.4783  0.1805  0.8898
+[torch.FloatTensor of size 3x4]
+
+
+ 0.8031  0.6118  0.0423  0.0696
+ 0.0763  0.6341  0.9399  0.5616
+ 0.4798  0.4783  0.1805  0.8898
+[torch.FloatTensor of size 3x4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;### note that both x and zzz have been changed&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;zzz&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zzz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zzz&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 1.6063  1.2235  0.0845  0.1391
+ 0.1527  1.2682  1.8798  1.1232
+ 0.9595  0.9565  0.3610  1.7796
+[torch.FloatTensor of size 3x4]
+
+
+ 1.6063  1.2235  0.0845  0.1391
+ 0.1527  1.2682  1.8798  1.1232
+ 0.9595  0.9565  0.3610  1.7796
+[torch.FloatTensor of size 3x4]
+
+
+ 1.6063  1.2235  0.0845  0.1391
+ 0.1527  1.2682  1.8798  1.1232
+ 0.9595  0.9565  0.3610  1.7796
+[torch.FloatTensor of size 3x4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;numpy&quot;&gt;跟Numpy的联接&lt;/h3&gt;
+&lt;p&gt;pytorch跟numpy的衔接还表现在二者之间的轻松转换，Pytorch中tensor支持所有numpy中的索引操作，并包含几乎所有基础操作函数。例如：&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ones&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 1
+ 1
+ 1
+[torch.FloatTensor of size 3]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from_numpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#b is numpy array converted from a&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#a is torch tensor&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#c is torch tensor converted from b&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;type 'numpy.ndarray'&amp;gt; [ 1.  1.  1.]
+&amp;lt;class 'torch.FloatTensor'&amp;gt;
+ 1
+ 1
+ 1
+[torch.FloatTensor of size 3]
+
+&amp;lt;class 'torch.FloatTensor'&amp;gt;
+ 1
+ 1
+ 1
+[torch.FloatTensor of size 3]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;注意上例中a和b共享内存，当对a进行in place操作时，不仅a的值发生了变化，b也跟着变了。&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#Note that both a and b are changed!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 3
+ 3
+ 3
+[torch.FloatTensor of size 3]
+ [ 3.  3.  3.]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;tensors可以很简便地利用 &lt;code class=&quot;highlighter-rouge&quot;&gt;.cuda&lt;/code&gt; 函数移植到GPU上进行运算&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cuda&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_available&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cuda&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cuda&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="Tech" /><category term="PyTorch" /><category term="Numpy" /><summary type="html">Pytorch的设计哲学：
+
+
+  GPU版的Numpy
+  高效灵活的深度学习平台</summary></entry><entry><title type="html">A fews stones about setting Jekyll on my Ubuntu</title><link href="http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html" rel="alternate" type="text/html" title="A fews stones about setting Jekyll on my Ubuntu" /><published>2017-10-24T00:00:00+00:00</published><updated>2017-10-24T00:00:00+00:00</updated><id>http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu</id><content type="html" xml:base="http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html">&lt;p&gt;I did encounter a few stones on my way to adopt &lt;a href=&quot;https://tianqi.name/blog/&quot;&gt;Tian Qi’s TeXt&lt;/a&gt;
 for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about web design, that is why even a little stone
 could cost me half an hour to move it away.
 &lt;!--more--&gt;&lt;/p&gt;

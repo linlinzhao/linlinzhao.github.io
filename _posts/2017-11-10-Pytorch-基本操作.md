@@ -1,0 +1,242 @@
+
+## Pytorch中的基础操作
+
+Pytorch的设计哲学：
+
+1. GPU版的Numpy
+2. 高效灵活的深度学习平台
+
+numpy中运算，函数，索引的规则和方法可以无缝应用到pytorch的tensor操作。但需要特别注意的一点是，pytorch中in place操作如果有下划线的话，会改变调用该操作的变量。具体参见下面的例子。
+
+
+### 基本函数注意点
+1. 以下划线为后缀的In-place函数会改变其对象! 如果没有下划线后缀则改变其调用对象，具体见下例。
+
+2. Pytorch中关于tensor的操作[在这](http://pytorch.org/docs/master/torch.html)
+
+```python
+import torch
+```
+
+
+```python
+x = torch.rand(4, 3) #randomly generated tensors
+print x
+x.t_() #transpose of x, note that x has been changed!
+print x
+```
+
+
+     0.8031  0.0763  0.4798
+     0.6118  0.6341  0.4783
+     0.0423  0.9399  0.1805
+     0.0696  0.5616  0.8898
+    [torch.FloatTensor of size 4x3]
+
+
+     0.8031  0.6118  0.0423  0.0696
+     0.0763  0.6341  0.9399  0.5616
+     0.4798  0.4783  0.1805  0.8898
+    [torch.FloatTensor of size 3x4]
+
+
+
+
+```python
+print x.t()
+print x #the x is still the previous modified, which is not mutated by x.t()
+```
+
+
+     0.8031  0.0763  0.4798
+     0.6118  0.6341  0.4783
+     0.0423  0.9399  0.1805
+     0.0696  0.5616  0.8898
+    [torch.FloatTensor of size 4x3]
+
+
+     0.8031  0.6118  0.0423  0.0696
+     0.0763  0.6341  0.9399  0.5616
+     0.4798  0.4783  0.1805  0.8898
+    [torch.FloatTensor of size 3x4]
+
+
+
+
+```python
+z = torch.Tensor(3, 4)
+z.copy_(x) #copy x to z
+print x
+print z
+```
+
+
+     0.8031  0.6118  0.0423  0.0696
+     0.0763  0.6341  0.9399  0.5616
+     0.4798  0.4783  0.1805  0.8898
+    [torch.FloatTensor of size 3x4]
+
+
+     0.8031  0.6118  0.0423  0.0696
+     0.0763  0.6341  0.9399  0.5616
+     0.4798  0.4783  0.1805  0.8898
+    [torch.FloatTensor of size 3x4]
+
+
+
+
+```python
+print z.add_(x)
+print x
+print z #note that z is replaced with the sum, but x stays the same
+```
+
+
+     2.4094  1.8353  0.1268  0.2087
+     0.2290  1.9023  2.8198  1.6848
+     1.4393  1.4348  0.5415  2.6693
+    [torch.FloatTensor of size 3x4]
+
+
+     0.8031  0.6118  0.0423  0.0696
+     0.0763  0.6341  0.9399  0.5616
+     0.4798  0.4783  0.1805  0.8898
+    [torch.FloatTensor of size 3x4]
+
+
+     2.4094  1.8353  0.1268  0.2087
+     0.2290  1.9023  2.8198  1.6848
+     1.4393  1.4348  0.5415  2.6693
+    [torch.FloatTensor of size 3x4]
+
+
+
+
+```python
+## the add() operation is not changing either x or zz
+zz = x
+print zz.add(x)
+print x
+print zz
+```
+
+
+     1.6063  1.2235  0.0845  0.1391
+     0.1527  1.2682  1.8798  1.1232
+     0.9595  0.9565  0.3610  1.7796
+    [torch.FloatTensor of size 3x4]
+
+
+     0.8031  0.6118  0.0423  0.0696
+     0.0763  0.6341  0.9399  0.5616
+     0.4798  0.4783  0.1805  0.8898
+    [torch.FloatTensor of size 3x4]
+
+
+     0.8031  0.6118  0.0423  0.0696
+     0.0763  0.6341  0.9399  0.5616
+     0.4798  0.4783  0.1805  0.8898
+    [torch.FloatTensor of size 3x4]
+
+
+
+
+```python
+### note that both x and zzz have been changed
+
+zzz = x
+print zzz.add_(x)
+print x
+print zzz
+```
+
+
+     1.6063  1.2235  0.0845  0.1391
+     0.1527  1.2682  1.8798  1.1232
+     0.9595  0.9565  0.3610  1.7796
+    [torch.FloatTensor of size 3x4]
+
+
+     1.6063  1.2235  0.0845  0.1391
+     0.1527  1.2682  1.8798  1.1232
+     0.9595  0.9565  0.3610  1.7796
+    [torch.FloatTensor of size 3x4]
+
+
+     1.6063  1.2235  0.0845  0.1391
+     0.1527  1.2682  1.8798  1.1232
+     0.9595  0.9565  0.3610  1.7796
+    [torch.FloatTensor of size 3x4]
+
+
+
+### 跟Numpy的联接
+pytorch跟numpy的衔接还表现在二者之间的轻松转换，Pytorch中tensor支持所有numpy中的索引操作，并包含几乎所有基础操作函数。例如：
+
+```python
+a= torch.ones(3)
+print a
+```
+
+
+     1
+     1
+     1
+    [torch.FloatTensor of size 3]
+
+
+
+
+```python
+b = a.numpy()
+c = torch.from_numpy(b)
+print type(b), b  #b is numpy array converted from a
+print type(a), a  #a is torch tensor
+print type(c), c  #c is torch tensor converted from b
+```
+
+    <type 'numpy.ndarray'> [ 1.  1.  1.]
+    <class 'torch.FloatTensor'>
+     1
+     1
+     1
+    [torch.FloatTensor of size 3]
+
+    <class 'torch.FloatTensor'>
+     1
+     1
+     1
+    [torch.FloatTensor of size 3]
+
+
+
+注意上例中a和b共享内存，当对a进行in place操作时，不仅a的值发生了变化，b也跟着变了。
+
+
+```python
+a.add_(2)
+print a, b  #Note that both a and b are changed!
+```
+
+
+     3
+     3
+     3
+    [torch.FloatTensor of size 3]
+     [ 3.  3.  3.]
+
+
+tensors可以很简便地利用 ``.cuda`` 函数移植到GPU上进行运算
+
+
+```python
+if torch.cuda.is_available():
+    a = a.cuda()
+    b = b.cuda()
+    c = a + b
+```
+
+
+```python
+
+```

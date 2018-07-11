@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: 关于此博客 About this blog
 key: 10001
 tags: blog

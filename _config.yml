@@ -45,13 +45,20 @@ author:
   weibo:
 
 ## Comment system (Disqus) ##
+commets:
+        provider: disqus
 disqus:
   shortname: linlinzhao-github-io
 
 ## Google Analytics ##
-ga_tracking_id: UA-108614850-1
-
+analytics:
+        provider: google
+        google:
+        ga_tracking_id: UA-108614850-1
+        anonymize: true
 ## Reading quantity (LeanCloud) ##
+pageview:
+        provider: leancloud
 leancloud:
   app_id: um8kyIpEtaUqAGVt8QDyaaxB-gzGzoHsz
   app_key: HXR34FRahoMKDU4nQRJTrpiq
@@ -79,8 +86,3 @@ gems:
 
 plugins_dir:
    - jekyll-seo-tag
-## Server ##
-server_url: "0.0.0.0"
-
-## Development ##
-isdebug: false

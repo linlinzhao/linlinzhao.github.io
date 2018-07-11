@@ -27,7 +27,7 @@
                 });
             });
         </script>
-        {% if ga_tracking_id and site.isdebug == false %}
+        {% if ga_tracking_id %}
             {% include utils/google-analytics.html %}
         {% endif %}
     </body>

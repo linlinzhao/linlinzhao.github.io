@@ -32,5 +32,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-svg2png": "^2.0.2",
     "gulp-to-ico": "^1.0.0"
+  },
+  "dependencies": {
+    "hoek": "^5.0.3"
   }
 }

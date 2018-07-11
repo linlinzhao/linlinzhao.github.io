@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A fews stones about setting Jekyll on my Ubuntu
-key: 10001
+key: 10003
 tags: GitHub-Pages Jekyll LaTex
 category: Tech
 date: 2017-10-24

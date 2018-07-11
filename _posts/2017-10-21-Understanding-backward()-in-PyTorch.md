@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Understanding backward() in PyTorch
-key: 10001
+key: 10002
 tags: PyTorch Deep-learning
 category: Tech
 date: 2017-10-21 23:15:00 +08:00

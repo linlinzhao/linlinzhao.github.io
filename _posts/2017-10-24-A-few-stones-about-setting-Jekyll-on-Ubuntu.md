@@ -1,5 +1,6 @@
 ---
-layout: article
+layout: post
+comment: true
 title: A fews stones about setting Jekyll on my Ubuntu
 key: 10003
 tags: GitHub-Pages Jekyll LaTex

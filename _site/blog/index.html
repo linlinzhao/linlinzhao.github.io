@@ -110,6 +110,48 @@
             
                 <article>
                     <h1>
+                        <a href="/blog/2018/07/12/book-recommedations.html">Books I love the most as a bioinformatician, machine learning enthusiast and father</a>
+                    </h1>
+                    <div class="m-article-content">
+                        <p>Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive.</p>
+
+<p>This post is a growing list of books in different categories</p>
+
+
+                    </div>
+                    <div class="m-article-data clearfix">
+	
+        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
+            
+                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
+            
+        </meta>
+	
+
+	
+	
+        <ul class="inline-list tag-wrapper">
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=blog">blog
+                </a></li>
+            
+        </ul>
+	
+    <div class="other-wrapper">
+        
+        <div class="date-wrapper">
+            
+                <span class="article-meta">Jul 12, 2018</span>
+            
+        </div>
+    </div>
+</div>
+
+                </article>
+            
+                <article>
+                    <h1>
                         <a href="/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">PyTorch 中的基本操作</a>
                     </h1>
                     <div class="m-article-content">
@@ -146,10 +188,6 @@
         </ul>
 	
     <div class="other-wrapper">
-        
-            <div class="view-wrapper">
-                <span class="article-view" id="post-key-10004">0</span> views
-            </div>
         
         <div class="date-wrapper">
             
@@ -201,10 +239,6 @@ could cost me half an hour to move it away.</p>
 	
     <div class="other-wrapper">
         
-            <div class="view-wrapper">
-                <span class="article-view" id="post-key-10003">0</span> views
-            </div>
-        
         <div class="date-wrapper">
             
                 <span class="article-meta">Oct 24, 2017</span>
@@ -252,10 +286,6 @@ could cost me half an hour to move it away.</p>
 	
     <div class="other-wrapper">
         
-            <div class="view-wrapper">
-                <span class="article-view" id="post-key-10002">0</span> views
-            </div>
-        
         <div class="date-wrapper">
             
                 <span class="article-meta">Oct 21, 2017</span>
@@ -266,79 +296,10 @@ could cost me half an hour to move it away.</p>
 
                 </article>
             
-                <article>
-                    <h1>
-                        <a href="/blog/2017/10/14/about-this-blog.html">关于此博客 About this blog</a>
-                    </h1>
-                    <div class="m-article-content">
-                        <h2 id="关于此博客">关于此博客</h2>
-<p>借助jekyll, GitHub Pages和田琦的TeXt主题，搭建自己的一个小站，用于不时记录一些随想和经验教训。</p>
-
-
-                    </div>
-                    <div class="m-article-data clearfix">
-	
-        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
-            
-                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
-            
-        </meta>
-	
-
-	
-	
-        <ul class="inline-list tag-wrapper">
-            
-                <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=blog">blog
-                </a></li>
-            
-        </ul>
-	
-    <div class="other-wrapper">
-        
-            <div class="view-wrapper">
-                <span class="article-view" id="post-key-10001">0</span> views
-            </div>
-        
-        <div class="date-wrapper">
-            
-                <span class="article-meta">Oct 14, 2017</span>
-            
-        </div>
-    </div>
-</div>
-
-                </article>
-            
         </div>
         
     </div>
 </div>
-
-    <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
-    <script>
-        $(function() {
-            AV.init({
-                appId: 'um8kyIpEtaUqAGVt8QDyaaxB-gzGzoHsz',
-                appKey: 'HXR34FRahoMKDU4nQRJTrpiq'
-            });
-            $(".article-view").each(function() {
-                var curId = this.id;
-                var query = new AV.Query('linlin-blog');
-                query.equalTo('key', /(.*)-(.*)/.exec(curId)[2]);
-                query.first().then(function(result) {
-                    if (result) {
-                        $('#' + curId).text(result.attributes.views);
-                    }
-                }, function(error) {
-                    if (error) {
-                        throw error;
-                    }
-                });
-            });
-        });
-    </script>
 
 
     </div>

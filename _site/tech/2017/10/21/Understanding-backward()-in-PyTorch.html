@@ -108,74 +108,14 @@
 <!-- End Jekyll SEO tag -->
 
     <div class="m-page-main">
-        <div class="m-post">
-    <div class="main js-main">
-        <div class="col-1">
-            <article itemscope itemtype="http://schema.org/BlogPosting">
-                <meta itemprop="mainEntityOfPage" itemscope itemType="https://schema.org/WebPage"/>
-                <header class="article-header">
-                    <h1 itemprop="headline" itemprop="name headline">Understanding backward() in PyTorch</h1>
+        <div class="m-page">
+    <article class="main">
+        <h1>Understanding backward() in PyTorch</h1>
 
-                    <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Understanding backward() in PyTorch | Linlin</title>
-<meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Understanding backward() in PyTorch" />
-<meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
-<meta property="og:locale" content="EN" />
-<meta name="description" content="Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward()." />
-<meta property="og:description" content="Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward()." />
-<link rel="canonical" href="http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch.html" />
-<meta property="og:url" content="http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch.html" />
-<meta property="og:site_name" content="Linlin" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2017-10-21T15:15:00+00:00" />
-<script type="application/ld+json">
-{"description":"Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward().","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch.html","headline":"Understanding backward() in PyTorch","dateModified":"2017-10-21T15:15:00+00:00","datePublished":"2017-10-21T15:15:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch.html"},"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
+        <div class="m-article-content" itemprop="articleBody">
+            <div class="layout--article">
 
-                    <div class="m-article-data clearfix">
-	
-        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
-            
-                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
-            
-        </meta>
-	
-
-	
-	
-        <ul class="inline-list tag-wrapper">
-            
-                <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=PyTorch">PyTorch
-                </a></li>
-            
-                <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=Deep-learning">Deep-learning
-                </a></li>
-            
-        </ul>
-	
-    <div class="other-wrapper">
-        
-            <div class="view-wrapper">
-                <span class="article-view" id="post-key-10002">0</span> views
-            </div>
-        
-        <div class="date-wrapper">
-            
-                <time class="article-meta" datetime="2017-10-21T15:15:00+00:00" itemprop="datePublished">
-                    Oct 21, 2017
-                </time>
-            
-        </div>
-    </div>
-</div>
-
-
-                </header>
-                <div class="m-article-content js-article-content" itemprop="articleBody">
-                    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  <div class="article__content" itemprop="articleBody"><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p>Having heard about the announcement about <a href="https://github.com/Theano/Theano">Theano</a> from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the <code class="highlighter-rouge">backward()</code> function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the <a href="http://pytorch.org/docs/master/autograd.html"><code class="highlighter-rouge">autograd</code></a> module and what a <a href="http://pytorch.org/docs/0.1.12/_modules/torch/autograd/variable.html"><code class="highlighter-rouge">Variable</code></a> is, but are a little confused by definition of <code class="highlighter-rouge">backward()</code>.
@@ -526,234 +466,41 @@ RuntimeError: Trying to backward through the graph a second time, but the buffer
 <p><a href="https://discuss.pytorch.org/t/which-is-freed-which-is-not/8636/3">which is freed which is not</a></p>
 
 <p><a href="https://discuss.pytorch.org/t/how-to-use-torch-autograd-backward-when-variables-are-non-scalar/4191">how to use torch autograd backward when variables are non scalar</a></p>
-
-                </div>
-                <footer>
-                    
-                        <meta itemprop="dateModified" content="2017-10-21T15:15:00+00:00">
-                    
-                    <div class="article-license">
-                        <div class="m-license">
-    <div class="clearfix">
-        
-        <a class="octocat" href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2017-10-21-Understanding-backward()-in-PyTorch.md">
-            <img alt="View on Github" src="/statics/images/octocat.jpg" />
-        </a>
-        <p><a href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2017-10-21-Understanding-backward()-in-PyTorch.md">View this POST on Github</a>.</P>
-        
-        <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> license.</p>
-        <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
-            <img alt="Creative Commons License" src="/statics/images/license-cc4.png" />
-        </a>
-        <p>欢迎转载，转载需注明出处：<a class="url" href="http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch.html">
-            http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch.html
-        </a>，且禁止用于商业目的。</p>
-    </div>
 </div>
 
-                    </div>
-                </footer>
-                
-                    <section>
-    <div id="disqus_thread"></div>
-    <script>
+  <footer class="article__footer"><meta itemprop="dateModified" content="2017-10-21T15:15:00+00:00"><!-- this will show at every article content's bottom --></footer><div class="article__previous-next clearfix"><div class="previous"><span></span><a href="/tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html">A fews stones about setting Jekyll on my Ubuntu</a></div><div class="next"><span></span><a href="/blog/2017/10/14/about-this-blog.html">关于此博客 About this blog</a></div></div></div>
 
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
 
-    var disqus_config = function () {
-        this.page.url = 'http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch.html';
-        this.page.identifier = '10002';
-    };
-
-    (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://linlinzhao-github-io.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
-                
-            </article>
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1, h2, h3, h4, h5, h6').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();</script>
         </div>
-        <div class="col-2">
-            <aside class="js-article-aside">
-                <div class="m-toc js-toc"></div>
-            </aside>
-        </div>
-    </div>
+        
+    </article>
 </div>
 
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<script src="//cdn.bootcss.com/toc/0.3.2/toc.min.js"></script>
-<script type="text/javascript">
-    window.throttle = function(func, wait) {
-        var args,
-            result,
-            thisArg,
-            timeoutId,
-            lastCalled = 0;
-
-        function trailingCall() {
-            lastCalled = new Date;
-            timeoutId = null;
-            result = func.apply(thisArg, args);
-        }
-        return function() {
-            var now = new Date,
-                remaining = wait - (now - lastCalled);
-
-            args = arguments;
-            thisArg = this;
-
-            if (remaining <= 0) {
-                clearTimeout(timeoutId);
-                timeoutId = null;
-                lastCalled = now;
-                result = func.apply(thisArg, args);
-            }
-            else if (!timeoutId) {
-                timeoutId = setTimeout(trailingCall, remaining);
-            }
-            return result;
-        };
-    }
-    $(function() {
-        var $window = $(window);
-        var $pageStage = $('.js-page-stage');
-        var $pageMain = $('.js-main');
-        var $pageFooter = $('.js-page-footer');
-        var $articleContent = $('.js-article-content');
-        var $articleAside = $('.js-article-aside');
-        var $toc = $('.js-toc');
-        var hasTitle = $articleContent.find('h1, h2, h3').length > 0;
-
-        function asideSticky() {
-            return $window.outerWidth() > 1150 && $pageStage.hasClass('has-toc');
-        }
-        function setTocClass() {
-            if (hasTitle) {
-                !$pageStage.hasClass('has-toc') && $pageStage.addClass('has-toc');
-            }
-        }
-
-        setTocClass();
-
-        function setAsideTOC() {
-            var asideTop,
-                asideLeft,
-                scrollBottom,
-                asideBottomTop,
-                lastScrollTop;
-
-            function init() {
-                var asideOffset = $articleAside.offset();
-                var footerOffset = $pageFooter.offset();
-                var mainOffset = $pageMain.offset();
-                asideTop = mainOffset.top;
-                asideHeight = $toc.outerHeight() + parseInt($articleAside.css('padding-top'), 10) + parseInt($articleAside.css('padding-bottom'), 10);
-                asideLeft = mainOffset.left + $pageMain.outerWidth() - $articleAside.outerWidth() - parseInt($pageMain.css('padding-right'), 10);
-                scrollBottom = footerOffset.top - asideHeight;
-                asideBottomTop = scrollBottom - mainOffset.top;
-            }
-            function setAside(force) {
-                force !== true && (force = false);
-                var scrollTop = $window.scrollTop();
-                if (scrollTop >= asideTop && scrollTop <= scrollBottom) {
-                    (!force && lastScrollTop >= asideTop && lastScrollTop <= scrollBottom) ||
-                        $articleAside.addClass('fixed').css({
-                            left: asideLeft + 'px',
-                            top: 0
-                        });
-                } else if (scrollTop < asideTop) {
-                    (!force && lastScrollTop < asideTop) ||
-                        $articleAside.removeClass('fixed').css({
-                            left: 0,
-                            top: 0
-                        });
-                } else {
-                    (!force && lastScrollTop > scrollBottom) ||
-                        $articleAside.removeClass('fixed').css({
-                            left: 0,
-                            top: asideBottomTop + 'px'
-                        });
-                }
-                lastScrollTop = scrollTop;
-            }
-            asideSticky() && (init(), setAside());
-            $window.on('scroll', function() {
-                asideSticky() && setAside();
-            });
-            $window.on('resize', throttle(function() {
-                setTocClass();
-                asideSticky() && (init(), setAside(true));
-            }, 100));
-            setTimeout(init, 4000);
-        }
-        setTimeout(setAsideTOC, 1000);
-
-        $toc.toc({
-            'selectors': 'h1,h2,h3',
-            'container': '.js-article-content',
-        });
-    });
-</script>
-
-
-    <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            // 初始化
-            AV.init({
-                appId: 'um8kyIpEtaUqAGVt8QDyaaxB-gzGzoHsz',
-                appKey: 'HXR34FRahoMKDU4nQRJTrpiq'
-            });
-            // 查询
-            var query = new AV.Query('linlin-blog');
-            query.equalTo('key', '10002');
-            query.first().then(function(result) {
-                if (result) {
-                    addOne(result)
-                } else {
-                    //新建
-                    var Blog = AV.Object.extend('linlin-blog');
-                    var blog = new Blog();
-                    blog.set('title', 'Understanding backward() in PyTorch');
-                    blog.set('key', '10002');
-                    blog.set('views', 0);
-                    blog.save().then(function(page) {
-                        addOne(page)
-                    }, function(error) {
-                        if (error) {
-                            throw error;
-                        }
-                    });
-                }
-
-                function addOne(page) {
-                    page.increment('views', 1);
-                    page.fetchWhenSave(true);
-                    page.save().then(function(page) {
-                        $("#post-key-10002").text(page.attributes.views);
-                    }, function(error) {
-                        if (error) {
-                            throw error;
-                        }
-                    });
-                }
-            }, function(error) {
-                if (error) {
-                    throw error;
-                }
-            });
-        });
-    </script>
-
-
     </div>
 </div>
 

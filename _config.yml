@@ -45,10 +45,10 @@ author:
   weibo:
 
 ## Comment system (Disqus) ##
-commets:
+comments:
         provider: disqus
-disqus:
-  shortname: linlinzhao-github-io
+        disqus:
+        shortname: linlinzhao-github-io
 
 ## Google Analytics ##
 analytics:

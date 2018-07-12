@@ -1,6 +1,6 @@
 ---
-layout: article
-comments: true
+layout: post
+comment: true
 title: Books I love the most as a bioinformatician, machine learning enthusiast and father 
 key: 10001
 tags: blog

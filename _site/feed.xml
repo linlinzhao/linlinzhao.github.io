@@ -1,5 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="EN"><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="EN" /><updated>2018-07-12T07:48:06+00:00</updated><id>http://localhost:4000/</id><title type="html">Linlin</title><subtitle>Linlin | 赵霖林
-</subtitle><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><entry><title type="html">PyTorch 中的基本操作</title><link href="http://localhost:4000/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html" rel="alternate" type="text/html" title="PyTorch 中的基本操作" /><published>2017-11-10T15:15:00+00:00</published><updated>2017-11-10T15:15:00+00:00</updated><id>http://localhost:4000/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C</id><content type="html" xml:base="http://localhost:4000/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">&lt;p&gt;Pytorch的设计哲学：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="EN"><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="EN" /><updated>2018-07-12T20:58:30+00:00</updated><id>http://localhost:4000/</id><title type="html">Linlin</title><subtitle>Linlin | 赵霖林
+</subtitle><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><entry><title type="html">Books I love the most as a bioinformatician, machine learning enthusiast and father</title><link href="http://localhost:4000/blog/2018/07/12/book-recommedations.html" rel="alternate" type="text/html" title="Books I love the most as a bioinformatician, machine learning enthusiast and father" /><published>2018-07-12T15:15:00+00:00</published><updated>2018-07-12T15:15:00+00:00</updated><id>http://localhost:4000/blog/2018/07/12/book-recommedations</id><content type="html" xml:base="http://localhost:4000/blog/2018/07/12/book-recommedations.html">&lt;p&gt;Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive.&lt;/p&gt;
+
+&lt;p&gt;This post is a growing list of books in different categories&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;science-and-research&quot;&gt;Science and research&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Probability: the logic of science&lt;/strong&gt; by E.T. Jaynes, 2003&lt;/p&gt;
+
+&lt;p&gt;It is raining then there must be cloud in the sky. There is no cloud then it must not be raining. 
+And this Aristotle logic told us &lt;em&gt;“there is cloud”&lt;/em&gt; cannot deduce &lt;em&gt;“it is raining”&lt;/em&gt;. However, the cloud in the sky makes raining more plausible than a clear sky. 
+From the basic logics, Jaynes built up the whole realm of probability theory in a natural and consistent way. This is fantastic! I love it, especially as a Bayesian statistics fan.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theory of Games and Economic Behavior&lt;/strong&gt; by J. von Neumann and O. Morgenstern, 1953&lt;/p&gt;
+
+&lt;h3 id=&quot;machine-learning&quot;&gt;Machine Learning&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Patter Recognition and Machine Learning&lt;/strong&gt; by C. M. Bishop, 2006&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Information Theory, Inference, and Learning Algorithms&lt;/strong&gt; by D. Mackay&lt;/p&gt;
+
+&lt;p&gt;I’ve built my passion about Bayesian statistics from Dr. MacKay’s doctoral thesis. His writing is always right to the point in a simple and clear way.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Elements of Statistics Learning&lt;/strong&gt; by T. Hastie, R. Tibshirani and J. Friedman, 2008&lt;/p&gt;
+
+&lt;h3 id=&quot;fun-but-more-inspiring&quot;&gt;Fun but more inspiring&lt;/h3&gt;
+&lt;p&gt;This is my favorite list!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Surely you are joking, Mr. Feyman&lt;/strong&gt; by E. Hutchings&lt;/p&gt;
+
+&lt;p&gt;Funny stories from the great physicist Feyman can encourage and inspire you to think and explore more about things surrounding us. The world is wonderful and beautiful.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Naked Economics&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Thinking: Fast and Slow&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;…&lt;/p&gt;
+&lt;h3 id=&quot;chinese-philosophy-and-history&quot;&gt;Chinese philosophy and history&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;庄子 Zhuang zi&lt;/strong&gt; by Zhuang zi, ～300BC&lt;/p&gt;
+
+&lt;p&gt;The Taoism philosopher emphasized the freedom of living without restrains from daily lives. Following his teachings brings strong and positive mentalities.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;传习录 Chuan Xi Lu&lt;/strong&gt; by 王阳明 Wang Yangming ～1500&lt;/p&gt;
+
+&lt;p&gt;“知行合一”&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;资治通鉴&lt;/strong&gt; by 司马光 Sima Guang&lt;/p&gt;
+
+&lt;p&gt;….&lt;/p&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="blog" /><category term="blog" /><summary type="html">Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories</summary></entry><entry><title type="html">PyTorch 中的基本操作</title><link href="http://localhost:4000/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html" rel="alternate" type="text/html" title="PyTorch 中的基本操作" /><published>2017-11-10T15:15:00+00:00</published><updated>2017-11-10T15:15:00+00:00</updated><id>http://localhost:4000/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C</id><content type="html" xml:base="http://localhost:4000/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">&lt;p&gt;Pytorch的设计哲学：&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;GPU版的Numpy&lt;/li&gt;
@@ -592,31 +642,4 @@ RuntimeError: Trying to backward through the graph a second time, but the buffer
 
 &lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/which-is-freed-which-is-not/8636/3&quot;&gt;which is freed which is not&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/how-to-use-torch-autograd-backward-when-variables-are-non-scalar/4191&quot;&gt;how to use torch autograd backward when variables are non scalar&lt;/a&gt;&lt;/p&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="Tech" /><category term="PyTorch" /><category term="Deep-learning" /><summary type="html">Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward().</summary></entry><entry><title type="html">关于此博客 About this blog</title><link href="http://localhost:4000/blog/2017/10/14/about-this-blog.html" rel="alternate" type="text/html" title="关于此博客 About this blog" /><published>2017-10-14T15:15:00+00:00</published><updated>2017-10-14T15:15:00+00:00</updated><id>http://localhost:4000/blog/2017/10/14/about-this-blog</id><content type="html" xml:base="http://localhost:4000/blog/2017/10/14/about-this-blog.html">&lt;h2 id=&quot;关于此博客&quot;&gt;关于此博客&lt;/h2&gt;
-&lt;p&gt;借助jekyll, GitHub Pages和田琦的TeXt主题，搭建自己的一个小站，用于不时记录一些随想和经验教训。
-&lt;!--more--&gt;&lt;/p&gt;
-&lt;h2 id=&quot;本博客使用到的工具&quot;&gt;本博客使用到的工具&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/jekyll/&quot;&gt;Jekyll&lt;/a&gt; 静态博客系统&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://pygments.org/&quot;&gt;Pygment&lt;/a&gt; 代码高亮&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://photo.weibo.com/&quot;&gt;微相册&lt;/a&gt; 图床&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/Ranks/emojify.js&quot;&gt;Emojify.js&lt;/a&gt; 显示 Emoji&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://disqus.com/&quot;&gt;DISQUS&lt;/a&gt; 评论系统&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://www.google.com/analytics/&quot;&gt;Google Analytics&lt;/a&gt; 网站统计分析工具&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="blog" /><category term="blog" /><summary type="html">关于此博客 借助jekyll, GitHub Pages和田琦的TeXt主题，搭建自己的一个小站，用于不时记录一些随想和经验教训。</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/how-to-use-torch-autograd-backward-when-variables-are-non-scalar/4191&quot;&gt;how to use torch autograd backward when variables are non scalar&lt;/a&gt;&lt;/p&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="Tech" /><category term="PyTorch" /><category term="Deep-learning" /><summary type="html">Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward().</summary></entry></feed>

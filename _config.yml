@@ -44,11 +44,12 @@ author:
   googleplus:
   weibo:
 
-## Comment system (Disqus) ##
+# Comment system (Disqus) ##
 comments:
         provider: disqus
         disqus:
-        shortname: linlinzhao-github-io
+        shortname: linlinzhao-github-io-1
+#disqus: linlinzhao-github-io-1
 
 ## Google Analytics ##
 analytics:
@@ -59,10 +60,10 @@ analytics:
 ## Reading quantity (LeanCloud) ##
 pageview:
         provider: leancloud
-leancloud:
-  app_id: um8kyIpEtaUqAGVt8QDyaaxB-gzGzoHsz
-  app_key: HXR34FRahoMKDU4nQRJTrpiq
-  app_class: linlin-blog
+        leancloud:
+        app_id: um8kyIpEtaUqAGVt8QDyaaxB-gzGzoHsz
+        app_key: HXR34FRahoMKDU4nQRJTrpiq
+        app_class: linlin-blog
 
 ## Paginate ##
 paginate: 7
@@ -77,7 +78,7 @@ highlighter: rouge
 permalink: date
 
 ## Plugins ##
-gems:
+plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-paginate

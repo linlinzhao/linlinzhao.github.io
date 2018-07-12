@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: Understanding backward() in PyTorch
 key: 10002
 tags: PyTorch Deep-learning

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 comments: true
 title: 关于此博客 About this blog
 key: 10001

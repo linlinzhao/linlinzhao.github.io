@@ -11,6 +11,13 @@
       {%- include pageview-providers/custom/home.html -%}
   {%- endif -%}
 
+{%- if page.layout == "post" -%}
+    {%- if site.pageview.provider == 'leancloud' -%}
+      {%- include pageview-providers/leancloud/home.html -%}
+    {%- elsif site.pageview.provider == 'custom' -%}
+      {%- include pageview-providers/custom/home.html -%}
+  {%- endif -%}
+
 
 {%- elsif page.layout == "article" -%}
   {%- if _pageview -%}

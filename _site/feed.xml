@@ -283,11 +283,16 @@ From the basic logics, Jaynes built up the whole realm of probability theory in 
       </item>
     
       <item>
-        <title>A fews stones about setting Jekyll on my Ubuntu</title>
-        <description>&lt;p&gt;I did encounter a few stones on my way to adopt &lt;a href=&quot;https://tianqi.name/blog/&quot;&gt;Tian Qi’s TeXt&lt;/a&gt;
+        <title>Setting Jekyll on Ubuntu 16.04 with Latex support</title>
+        <description>&lt;p&gt;&lt;em&gt;Update July 2018&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I did encounter a few stones on my way to adopt &lt;a href=&quot;https://tianqi.name/blog/&quot;&gt;Tian Qi’s TeXt&lt;/a&gt;
 for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about web design, that is why even a little stone
-could cost me half an hour to move it away.
-&lt;!--more--&gt;&lt;/p&gt;
+could cost me half an hour to move it away.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -323,8 +328,8 @@ For independent lines, the expressions should start from a new line after &lt;co
 &lt;p&gt;Okay, that is it. I hope someone could find this post useful.&lt;/p&gt;
 </description>
         <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html</link>
-        <guid isPermaLink="true">http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html</guid>
+        <link>http://localhost:4000//tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html</link>
+        <guid isPermaLink="true">http://localhost:4000//tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html</guid>
       </item>
     
       <item>

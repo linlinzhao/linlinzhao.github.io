@@ -1,5 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="EN"><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="EN" /><updated>2018-07-12T20:58:30+00:00</updated><id>http://localhost:4000/</id><title type="html">Linlin</title><subtitle>Linlin | 赵霖林
-</subtitle><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><entry><title type="html">Books I love the most as a bioinformatician, machine learning enthusiast and father</title><link href="http://localhost:4000/blog/2018/07/12/book-recommedations.html" rel="alternate" type="text/html" title="Books I love the most as a bioinformatician, machine learning enthusiast and father" /><published>2018-07-12T15:15:00+00:00</published><updated>2018-07-12T15:15:00+00:00</updated><id>http://localhost:4000/blog/2018/07/12/book-recommedations</id><content type="html" xml:base="http://localhost:4000/blog/2018/07/12/book-recommedations.html">&lt;p&gt;Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linlin Zhao</title>
+    <description>Linlin | 赵霖林
+</description>
+    <link>http://localhost:4000</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Books I love the most as a bioinformatician, machine learning enthusiast and father</title>
+        <description>&lt;p&gt;Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive.&lt;/p&gt;
 
 &lt;p&gt;This post is a growing list of books in different categories&lt;/p&gt;
 
@@ -49,7 +59,16 @@ From the basic logics, Jaynes built up the whole realm of probability theory in 
 
 &lt;p&gt;&lt;strong&gt;资治通鉴&lt;/strong&gt; by 司马光 Sima Guang&lt;/p&gt;
 
-&lt;p&gt;….&lt;/p&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="blog" /><category term="blog" /><summary type="html">Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories</summary></entry><entry><title type="html">PyTorch 中的基本操作</title><link href="http://localhost:4000/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html" rel="alternate" type="text/html" title="PyTorch 中的基本操作" /><published>2017-11-10T15:15:00+00:00</published><updated>2017-11-10T15:15:00+00:00</updated><id>http://localhost:4000/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C</id><content type="html" xml:base="http://localhost:4000/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">&lt;p&gt;Pytorch的设计哲学：&lt;/p&gt;
+&lt;p&gt;….&lt;/p&gt;
+</description>
+        <pubDate>Thu, 12 Jul 2018 15:15:00 +0000</pubDate>
+        <link>http://localhost:4000//blog/2018/07/12/book-recommedations.html</link>
+        <guid isPermaLink="true">http://localhost:4000//blog/2018/07/12/book-recommedations.html</guid>
+      </item>
+    
+      <item>
+        <title>PyTorch 中的基本操作</title>
+        <description>&lt;p&gt;Pytorch的设计哲学：&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;GPU版的Numpy&lt;/li&gt;
@@ -256,7 +275,16 @@ From the basic logics, Jaynes built up the whole realm of probability theory in 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="Tech" /><category term="PyTorch" /><category term="Numpy" /><summary type="html">Pytorch的设计哲学： GPU版的Numpy 高效灵活的深度学习平台</summary></entry><entry><title type="html">A fews stones about setting Jekyll on my Ubuntu</title><link href="http://localhost:4000/tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html" rel="alternate" type="text/html" title="A fews stones about setting Jekyll on my Ubuntu" /><published>2017-10-24T00:00:00+00:00</published><updated>2017-10-24T00:00:00+00:00</updated><id>http://localhost:4000/tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu</id><content type="html" xml:base="http://localhost:4000/tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html">&lt;p&gt;I did encounter a few stones on my way to adopt &lt;a href=&quot;https://tianqi.name/blog/&quot;&gt;Tian Qi’s TeXt&lt;/a&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Fri, 10 Nov 2017 15:15:00 +0000</pubDate>
+        <link>http://localhost:4000//tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html</link>
+        <guid isPermaLink="true">http://localhost:4000//tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html</guid>
+      </item>
+    
+      <item>
+        <title>A fews stones about setting Jekyll on my Ubuntu</title>
+        <description>&lt;p&gt;I did encounter a few stones on my way to adopt &lt;a href=&quot;https://tianqi.name/blog/&quot;&gt;Tian Qi’s TeXt&lt;/a&gt;
 for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about web design, that is why even a little stone
 could cost me half an hour to move it away.
 &lt;!--more--&gt;&lt;/p&gt;
@@ -292,7 +320,16 @@ For independent lines, the expressions should start from a new line after &lt;co
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Okay, that is it. I hope someone could find this post useful.&lt;/p&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="Tech" /><category term="GitHub-Pages" /><category term="Jekyll" /><category term="LaTex" /><summary type="html">I did encounter a few stones on my way to adopt Tian Qi’s TeXt for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about web design, that is why even a little stone could cost me half an hour to move it away.</summary></entry><entry><title type="html">Understanding backward() in PyTorch</title><link href="http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch.html" rel="alternate" type="text/html" title="Understanding backward() in PyTorch" /><published>2017-10-21T15:15:00+00:00</published><updated>2017-10-21T15:15:00+00:00</updated><id>http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch</id><content type="html" xml:base="http://localhost:4000/tech/2017/10/21/Understanding-backward()-in-PyTorch.html">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;p&gt;Okay, that is it. I hope someone could find this post useful.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html</link>
+        <guid isPermaLink="true">http://localhost:4000//tech/2017/10/24/A-few-stones-about-setting-Jekyll-on-Ubuntu.html</guid>
+      </item>
+    
+      <item>
+        <title>Understanding backward() in PyTorch</title>
+        <description>&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
 &lt;/script&gt;
 
 &lt;p&gt;Having heard about the announcement about &lt;a href=&quot;https://github.com/Theano/Theano&quot;&gt;Theano&lt;/a&gt; from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the &lt;a href=&quot;http://pytorch.org/docs/master/autograd.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;autograd&lt;/code&gt;&lt;/a&gt; module and what a &lt;a href=&quot;http://pytorch.org/docs/0.1.12/_modules/torch/autograd/variable.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt;&lt;/a&gt; is, but are a little confused by definition of &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt;.
@@ -642,4 +679,12 @@ RuntimeError: Trying to backward through the graph a second time, but the buffer
 
 &lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/which-is-freed-which-is-not/8636/3&quot;&gt;which is freed which is not&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/how-to-use-torch-autograd-backward-when-variables-are-non-scalar/4191&quot;&gt;how to use torch autograd backward when variables are non scalar&lt;/a&gt;&lt;/p&gt;</content><author><name>Linlin Zhao | 恒道恒名 上下求索</name><email>linlinzhao.c@gmail.com</email></author><category term="Tech" /><category term="PyTorch" /><category term="Deep-learning" /><summary type="html">Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the backward() function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the autograd module and what a Variable is, but are a little confused by definition of backward().</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/how-to-use-torch-autograd-backward-when-variables-are-non-scalar/4191&quot;&gt;how to use torch autograd backward when variables are non scalar&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 21 Oct 2017 15:15:00 +0000</pubDate>
+        <link>http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html</link>
+        <guid isPermaLink="true">http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html</guid>
+      </item>
+    
+  </channel>
+</rss>

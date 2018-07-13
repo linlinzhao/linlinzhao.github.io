@@ -14,9 +14,9 @@
             {% for list in site.blog.nav_lists %}
                 <li><a href="{{ list.url }}"> {{ list.title }} </a></li>
             {% endfor %}
-            <li><a type="application/rss+xml"
+            <!-- <li><a type="application/rss+xml"
                 href="{{ "/feed.xml" | prepend: site.baseurl | replace: '//', '/'}}">RSS
-            </a></li>
+            </a></li> -->
         </ul>
     </nav>
 </header>

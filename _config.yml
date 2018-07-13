@@ -8,6 +8,7 @@
 ## Base settings ##
 url: "https://linlinzhao.github.io" #The site's Protocol and Hostname e.g. https://blog.someone.com (!!required!!)
 title: Linlin
+name: Linlin Zhao
 description: > #this means to ignore newlines until "base_path:"
     Linlin | 赵霖林
 

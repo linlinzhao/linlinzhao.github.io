@@ -1,17 +1,17 @@
 ---
 layout: post
 comment: true
-title: A fews stones about setting Jekyll on my Ubuntu
+title: Setting Jekyll on Ubuntu 16.04 with Latex support
 key: 10003
 tags: GitHub-Pages Jekyll LaTex
 category: Tech
 date: 2017-10-24
 ---
-*Update*: 
+*Update July 2018*: 
 
 This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest. 
 
-<--more-->
+---
 
 I did encounter a few stones on my way to adopt [Tian Qi's TeXt](https://tianqi.name/blog/)
 for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about web design, that is why even a little stone

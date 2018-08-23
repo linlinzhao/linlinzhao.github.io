@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="EN">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Understanding backward() in PyTorch (Updated for V0.4) - Linlin</title>
+<meta name="description" content="Update for PyTorch 0.4:Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other ...">
+<link rel="canonical" href="http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html">
+<link rel="alternate" type="application/rss+xml" title="Linlin" href="http://localhost:4000/feed.xml">
+
+        <!--
+    for Safari on iOS
+    https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/app-icon/
+-->
+<link rel="apple-touch-icon" sizes="180x180" href="/statics/images/logo/icon-180x180.png">
+<link rel="apple-touch-icon" sizes="167x167" href="/statics/images/logo/icon-167x167.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/statics/images/logo/icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/statics/images/logo/icon-120x120.png">
+<link rel="shortcut icon" href="/statics/images/logo/icon-120x120.png">
+<!--
+    for Chrome on Android
+    https://developer.chrome.com/multidevice/android/installtohomescreen
+-->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="/statics/images/logo/icon-192x192.png">
+<!--
+    for Edge on Windows 10
+    https://msdn.microsoft.com/en-us/library/dn255024(v=vs.85).aspx
+-->
+<meta name="msapplication-TileImage" content="/statics/images/logo/icon-144x144.png">
+<meta name="msapplication-square310x310logo" content="/statics/images/icon-310x310.png">
+<meta name="msapplication-wide310x150logo" content="/statics/images/icon-310x150.png">
+<meta name="msapplication-square150x150logo" content="/statics/images/icon-150x150.png">
+<meta name="msapplication-square70x70logo" content="/statics/images/icon-70x70.png">
+<meta name="msapplication-TileColor" content="#eeeeee">
+        <link rel="stylesheet" href="/statics/css/blog.css">
+        <style>
+            
+        </style>
+        <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Understanding backward() in PyTorch (Updated for V0.4) | Linlin</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Understanding backward() in PyTorch (Updated for V0.4)" />
+<meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
+<meta property="og:locale" content="EN" />
+<meta name="description" content="Update for PyTorch 0.4: Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other words, Variable is NOT needed anymore. The flag require_grad can be directly set in tensor. Accordingly, this post is also updated." />
+<meta property="og:description" content="Update for PyTorch 0.4: Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other words, Variable is NOT needed anymore. The flag require_grad can be directly set in tensor. Accordingly, this post is also updated." />
+<link rel="canonical" href="http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html" />
+<meta property="og:url" content="http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html" />
+<meta property="og:site_name" content="Linlin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-24T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"Update for PyTorch 0.4: Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other words, Variable is NOT needed anymore. The flag require_grad can be directly set in tensor. Accordingly, this post is also updated.","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html","headline":"Understanding backward() in PyTorch (Updated for V0.4)","dateModified":"2017-10-24T00:00:00+00:00","datePublished":"2017-10-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+        <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="m-page-stage js-page-stage">
+            <div class="m-page-content">
+    <header class="m-page-header main clearfix">
+    <a class="site-title" title="恒道恒名，上下求索"
+        href="/blog">Linlin's blog
+    </a>
+    <div class="site-logo">
+        <?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="7pt" height="7pt" viewBox="0 0 7 7" version="1.1">
+<g id="surface1">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 6.738281 3.375 C 6.738281 5.21875 5.242188 6.714844 3.398438 6.714844 C 1.554688 6.714844 0.0625 5.21875 0.0625 3.375 C 0.0625 1.535156 1.554688 0.0390625 3.398438 0.0390625 C 5.242188 0.0390625 6.738281 1.535156 6.738281 3.375 Z M 6.738281 3.375 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 3.152344 6.726562 C 1.707031 6.652344 0.402344 5.527344 0.105469 4.113281 C -0.167969 2.929688 0.261719 1.625 1.1875 0.839844 C 1.84375 0.269531 2.726562 -0.03125 3.597656 0.0351562 C 4.972656 0.0898438 6.234375 1.109375 6.605469 2.433594 C 6.753906 2.917969 6.753906 3.441406 6.695312 3.941406 C 6.484375 5.21875 5.480469 6.320312 4.222656 6.628906 C 3.875 6.714844 3.507812 6.757812 3.152344 6.726562 Z M 2.636719 6.523438 C 2.023438 6.21875 1.644531 5.523438 1.730469 4.84375 C 1.800781 4.046875 2.527344 3.382812 3.328125 3.371094 C 3.996094 3.390625 4.65625 2.972656 4.902344 2.347656 C 5.195312 1.65625 4.941406 0.796875 4.324219 0.375 C 3.816406 0 3.136719 0.078125 2.558594 0.210938 C 1.222656 0.539062 0.191406 1.789062 0.117188 3.160156 C 0.0195312 4.398438 0.699219 5.648438 1.792969 6.238281 C 2.066406 6.386719 2.453125 6.558594 2.707031 6.5625 L 2.679688 6.542969 Z M 3.289062 2.128906 C 2.953125 2.066406 2.847656 1.570312 3.140625 1.378906 C 3.441406 1.148438 3.910156 1.464844 3.789062 1.832031 C 3.738281 2.046875 3.503906 2.179688 3.289062 2.128906 Z M 3.460938 5.421875 C 3.875 5.371094 3.882812 4.707031 3.46875 4.644531 C 3.144531 4.558594 2.859375 4.96875 3.050781 5.246094 C 3.132812 5.371094 3.308594 5.46875 3.460938 5.421875 Z M 3.460938 5.421875 "/>
+</g>
+</svg>
+
+    </div>
+    <nav>
+        <ul class="inline-list">
+            <li><a href="/">Home</a></li>
+            <li><a
+                href="/blog/all.html?tag=">All
+            </a></li>
+            
+                <li><a href="/blog/about.html"> About </a></li>
+            
+            <!-- <li><a type="application/rss+xml"
+                href="/feed.xml">RSS
+            </a></li> -->
+        </ul>
+    </nav>
+</header>
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Understanding backward() in PyTorch (Updated for V0.4) | Linlin</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Understanding backward() in PyTorch (Updated for V0.4)" />
+<meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
+<meta property="og:locale" content="EN" />
+<meta name="description" content="Update for PyTorch 0.4: Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other words, Variable is NOT needed anymore. The flag require_grad can be directly set in tensor. Accordingly, this post is also updated." />
+<meta property="og:description" content="Update for PyTorch 0.4: Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other words, Variable is NOT needed anymore. The flag require_grad can be directly set in tensor. Accordingly, this post is also updated." />
+<link rel="canonical" href="http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html" />
+<meta property="og:url" content="http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html" />
+<meta property="og:site_name" content="Linlin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-24T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"Update for PyTorch 0.4: Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other words, Variable is NOT needed anymore. The flag require_grad can be directly set in tensor. Accordingly, this post is also updated.","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html","headline":"Understanding backward() in PyTorch (Updated for V0.4)","dateModified":"2017-10-24T00:00:00+00:00","datePublished":"2017-10-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <div class="m-page-main">
+        <div class="m-post">
+    <div class="main js-main">
+        <div class="col-1">
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <meta itemprop="mainEntityOfPage" itemscope itemType="https://schema.org/WebPage"/>
+                <header class="article-header">
+                    <h1 itemprop="headline" itemprop="name headline">Understanding backward() in PyTorch (Updated for V0.4)</h1>
+		    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Linlin" />
+                    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Understanding backward() in PyTorch (Updated for V0.4) | Linlin</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Understanding backward() in PyTorch (Updated for V0.4)" />
+<meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
+<meta property="og:locale" content="EN" />
+<meta name="description" content="Update for PyTorch 0.4: Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other words, Variable is NOT needed anymore. The flag require_grad can be directly set in tensor. Accordingly, this post is also updated." />
+<meta property="og:description" content="Update for PyTorch 0.4: Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other words, Variable is NOT needed anymore. The flag require_grad can be directly set in tensor. Accordingly, this post is also updated." />
+<link rel="canonical" href="http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html" />
+<meta property="og:url" content="http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html" />
+<meta property="og:site_name" content="Linlin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-24T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"Update for PyTorch 0.4: Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other words, Variable is NOT needed anymore. The flag require_grad can be directly set in tensor. Accordingly, this post is also updated.","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html","headline":"Understanding backward() in PyTorch (Updated for V0.4)","dateModified":"2017-10-24T00:00:00+00:00","datePublished":"2017-10-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+                    <div class="m-article-data clearfix">
+	
+        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
+            
+                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
+            
+        </meta>
+	
+
+	
+	
+        <ul class="inline-list tag-wrapper">
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=PyTorch,">PyTorch,
+                </a></li>
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=backward">backward
+                </a></li>
+            
+        </ul>
+	
+    <div class="other-wrapper">
+        
+        <div class="date-wrapper">
+            
+                <time class="article-meta" datetime="2017-10-24T00:00:00+00:00" itemprop="datePublished">
+                    Oct 24, 2017
+                </time>
+            
+        </div>
+    </div>
+</div>
+
+
+                </header>
+                <div class="m-article-content js-article-content" itemprop="articleBody">
+                    <p>Update for PyTorch 0.4:</p>
+
+<p>Earlier versions used <code class="highlighter-rouge">Variable</code> to wrap tensors with different properties. Since version 0.4, <code class="highlighter-rouge">Variable</code> is merged with <code class="highlighter-rouge">tensor</code>, in other words, <code class="highlighter-rouge">Variable</code> is NOT needed anymore. The flag <code class="highlighter-rouge">require_grad</code> can be directly set in <code class="highlighter-rouge">tensor</code>. Accordingly, this post is also updated.</p>
+
+<hr />
+
+<!--more-->
+<p>Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the <code class="highlighter-rouge">backward()</code> function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the <a href="http://pytorch.org/docs/master/autograd.html"><code class="highlighter-rouge">autograd</code></a> module and what a <a href="http://pytorch.org/docs/0.1.12/_modules/torch/autograd/variable.html"><code class="highlighter-rouge">Variable</code></a> is, but are a little confused by definition of <code class="highlighter-rouge">backward()</code>.</p>
+
+<p>First let’s recall the gradient computing under mathematical notions. 
+For an independent variable <script type="math/tex">x</script> (scalar or vector), the whatever operation on <script type="math/tex">x</script> is <script type="math/tex">y = f(x)</script>. Then the gradient of <script type="math/tex">y</script> w.r.t <script type="math/tex">x_i</script>s is</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\nabla y&=\begin{bmatrix}
+\frac{\partial y}{\partial x_1}\\
+\frac{\partial y}{\partial x_2}\\
+\vdots
+\end{bmatrix}
+\end{align}. %]]></script>
+
+<p>Then for a specific point of <script type="math/tex">x=[X_1, X_2, \cdots]</script>, we’ll get the gradient of <script type="math/tex">y</script> on that point as a vector. 
+With these notions in mind, the following things are a bit confusing at the beginning</p>
+
+<ol>
+  <li>
+    <p>Mathematically, we would say “The gradients of a function w.r.t. the independent variables”, whereas the <code class="highlighter-rouge">.grad</code> is attached to the leaf <code class="highlighter-rouge">tensor</code>s. In Theano and Tensorflow, the computed gradients are stored separately in a variable. But with a moment of adjustment, it is fairly easy to buy that. In Pytorch it is also possible to get the <code class="highlighter-rouge">.grad</code> for intermediate <code class="highlighter-rouge">Variable</code>s with help of <code class="highlighter-rouge">register_hook</code> function</p>
+  </li>
+  <li>
+    <p>The parameter <code class="highlighter-rouge">grad_variables</code> of the function <code class="highlighter-rouge">torch.autograd.backward(variables, grad_tensors=None, retain_graph=None, create_graph=None, retain_variables=None, grad_variables=None)</code> is not straightforward for knowing its functionality. **note that <code class="highlighter-rouge">grad_variables</code> is deprecated, use <code class="highlighter-rouge">grad_tensors</code> instead.</p>
+  </li>
+  <li>
+    <p>What is <code class="highlighter-rouge">retain_graph</code> doing?</p>
+  </li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span> <span class="k">as</span> <span class="n">T</span>
+<span class="kn">import</span> <span class="nn">torch.autograd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</code></pre></div></div>
+
+<h3 id="simplicity-of-using-backward">Simplicity of using <code class="highlighter-rouge">backward()</code></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'''
+Define a scalar variable, set requires_grad to be true to add it to backward path for computing gradients
+
+It is actually very simple to use backward()
+
+first define the computation graph, then call backward()
+'''</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#x is a leaf created by user, thus grad_fn is none</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c">#define an operation on x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y'</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c">#define one more operation to check the chain rule</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z'</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[-0.6955]], requires_grad=True)
+y tensor([[-1.3911]], grad_fn=&lt;MulBackward&gt;)
+z tensor([[-2.6918]], grad_fn=&lt;PowBackward0&gt;)
+</code></pre></div></div>
+
+<p>The simple operations defined a forward path <script type="math/tex">z=(2x)^3</script>, <script type="math/tex">z</script> will be the final output <code class="highlighter-rouge">tensor</code> we would like to compute gradient: <script type="math/tex">dz=24x^2dx</script>, which will be passed to the parameter <code class="highlighter-rouge">tensors</code> in <code class="highlighter-rouge">backward()</code> function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#yes, it is just as simple as this to compute gradients:</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'z gradient:'</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient:'</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">,</span> <span class="s">'Requires gradient?'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span> <span class="c"># note that x.grad is also a tensor</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>z gradient None
+y gradient None
+x gradient tensor([[11.6105]]) Requires gradient? False
+</code></pre></div></div>
+
+<p>The gradients of both <script type="math/tex">y</script> and <script type="math/tex">z</script> are None, since the function returns the gradient for the leaves, which is <script type="math/tex">x</script> in this case. At the very beginning, I was assuming something like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="n">gradient</span><span class="p">:</span> <span class="bp">None</span>
+
+<span class="n">y</span> <span class="n">gradient</span><span class="p">:</span> <span class="bp">None</span>
+
+<span class="n">z</span> <span class="n">gradient</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">11.6105</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>since the gradient is calculated for the final output <script type="math/tex">z</script>.</p>
+
+<p>With a blink of thinking, we could figure out it would be practically chaos if <script type="math/tex">x</script> is a multi-dimensional vector. <code class="highlighter-rouge">x.grad</code> should be interpreted as the gradient of <script type="math/tex">z</script> at <script type="math/tex">x</script>.</p>
+
+<h3 id="how-do-we-use-grad_tensors">How do we use <code class="highlighter-rouge">grad_tensors</code>?</h3>
+
+<p><code class="highlighter-rouge">grad_tensors</code> should be a list of torch tensors. In default case, the <code class="highlighter-rouge">backward()</code> is applied to scalar-valued function, the default value of <code class="highlighter-rouge">grad_tensors</code> is thus <code class="highlighter-rouge">torch.FloatTensor([0])</code>. But why is that? What if we put some other values to it?</p>
+
+<p>Keep the same forward path, then do <code class="highlighter-rouge">backward</code> by only setting <code class="highlighter-rouge">retain_graph</code> as <code class="highlighter-rouge">True</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#x is a leaf created by user, thus grad_fn is none</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c">#define an operation on x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="c">#define one more operation to check the chain rule</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Keeping the default value of grad_tensors gives'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z gradient:'</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient:'</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[-0.7207]], requires_grad=True)
+Keeping the default value of grad_tensors gives
+z gradient: None
+y gradient: None
+x gradient: tensor([[12.4668]])
+</code></pre></div></div>
+
+<p>Testing the explicit default value, which should give the same result. For the same graph which is retained, DO NOT forget to zero the gradient before recalculate the gradients.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Set grad_tensors to 1 gives'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z gradient:'</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient:'</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set grad_tensors to 0 gives
+z gradient: None
+y gradient: None
+x gradient: tensor([[12.4668]])
+</code></pre></div></div>
+
+<p>Then what about other values, let’s try 0.1 and 0.5.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Set grad_tensors to 0.1 gives'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z gradient:'</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient:'</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set grad_tensors to 0.1 gives
+z gradient: None
+y gradient: None
+x gradient: tensor([[1.2467]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Modifying the default value of grad_variables to 0.1 gives'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z gradient'</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient'</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Modifying the default value of grad_variables to 0.5 gives
+
+z gradient None
+
+y gradient None
+
+x gradient tensor([[6.2334]])
+</code></pre></div></div>
+
+<p>It looks like the elements of <code class="highlighter-rouge">grad_tensors</code> act as scaling factors. Now let’s set <script type="math/tex">x</script> to be a <script type="math/tex">2\times 2</script> matrix. Note that <script type="math/tex">z</script> will also be a matrix. (Always use the latest version, <code class="highlighter-rouge">backward</code> had been improved a lot from earlier version, becoming much easier to understand.)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#x is a leaf created by user, thus grad_fn is none</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c">#define an operation on x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="c">#define one more operation to check the chain rule</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'z shape:'</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient for its all elements:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">()</span>
+<span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span> <span class="c">#the gradient for x will be accumulated, it needs to be cleared.</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient for the second column:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">()</span>
+<span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient for the first row:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[-2.5212,  1.2730],
+        [ 0.0366, -0.0750]], requires_grad=True)
+z shape: torch.Size([2, 2])
+x gradient for its all elements:
+ tensor([[152.5527,  38.8946],
+        [  0.0322,   0.1349]])
+
+x gradient for the second column:
+ tensor([[ 0.0000, 38.8946],
+        [ 0.0000,  0.1349]])
+
+x gradient for the first row:
+ tensor([[152.5527,  38.8946],
+        [  0.0000,   0.0000]])
+</code></pre></div></div>
+
+<p>We can clearly see the gradients of <script type="math/tex">z</script> are computed w.r.t to each dimension of <script type="math/tex">x</script>, because the operations are all element-wise.</p>
+
+<p>Then what if we render the output one-dimensional (scalar) while <script type="math/tex">x</script> is two-dimensional. This is a real simplified scenario of neural networks.</p>
+
+<script type="math/tex; mode=display">f(x)=\frac{1}{n}\sum_i^n(2x_i)^3</script>
+
+<script type="math/tex; mode=display">f'(x)=\frac{1}{n}\sum_i^n24x_i^2</script>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#x is a leaf created by user, thus grad_fn is none</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c">#define an operation on x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="c">#print('y', y)</span>
+<span class="c">#define one more operation to check the chain rule</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'out'</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+<span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[ 1.8528,  0.2083],
+        [-1.5296,  0.3136]], requires_grad=True)
+out tensor(5.6434, grad_fn=&lt;MeanBackward1&gt;)
+x gradient:
+ tensor([[20.5970,  0.2604],
+        [14.0375,  0.5903]])
+</code></pre></div></div>
+
+<p>We will get complaints if the <code class="highlighter-rouge">grad_tensors</code> is specified for the scalar function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+&lt;ipython-input-78-db7cccdf3863&gt; in &lt;module&gt;()
+      1 x.grad.data.zero_()
+----&gt; 2 out.backward(T.FloatTensor([[1, 1], [1, 1]]), retain_graph=True)
+      3 print('x gradient', x.grad)
+
+
+/usr/lib/python3.7/site-packages/torch/tensor.py in backward(self, gradient, retain_graph, create_graph)
+     91                 products. Defaults to ``False``.
+     92         """
+---&gt; 93         torch.autograd.backward(self, gradient, retain_graph, create_graph)
+     94 
+     95     def register_hook(self, hook):
+
+
+/usr/lib/python3.7/site-packages/torch/autograd/__init__.py in backward(tensors, grad_tensors, retain_graph, create_graph, grad_variables)
+     88     Variable._execution_engine.run_backward(
+     89         tensors, grad_tensors, retain_graph, create_graph,
+---&gt; 90         allow_unreachable=True)  # allow_unreachable flag
+     91 
+     92 
+
+
+RuntimeError: invalid gradient at index 0 - expected shape [] but got [2, 2]
+</code></pre></div></div>
+
+<h3 id="what-is-retain_graph-doing">What is <code class="highlighter-rouge">retain_graph</code> doing?</h3>
+
+<p>When training a model, the graph will be re-generated for each iteration. Therefore each iteration will consume the graph if the <code class="highlighter-rouge">retain_graph</code> is false, in order to keep the graph, we need to set it be true.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#x is a leaf created by user, thus grad_fn is none</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c">#define an operation on x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="c">#print('y', y)</span>
+<span class="c">#define one more operation to check the chain rule</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'out'</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+<span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>  <span class="c">#without setting retain_graph to be true, it is alright for first time of backward.</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+
+<span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span> <span class="c">#Now we get complaint saying that no graph is available for tracing back. </span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[-0.7452,  1.5727],
+        [ 0.1702,  0.7374]], requires_grad=True)
+out tensor(7.7630, grad_fn=&lt;MeanBackward1&gt;)
+x gradient tensor([[ 3.3323, 14.8394],
+        [ 0.1738,  3.2623]])
+
+
+
+---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+&lt;ipython-input-82-80a8d867d529&gt; in &lt;module&gt;()
+     12 
+     13 x.grad.data.zero_()
+---&gt; 14 out.backward() #Now we get complaint saying that no graph is available for tracing back.
+     15 print('x gradient', x.grad)
+
+
+/usr/lib/python3.7/site-packages/torch/tensor.py in backward(self, gradient, retain_graph, create_graph)
+     91                 products. Defaults to ``False``.
+     92         """
+---&gt; 93         torch.autograd.backward(self, gradient, retain_graph, create_graph)
+     94 
+     95     def register_hook(self, hook):
+
+
+/usr/lib/python3.7/site-packages/torch/autograd/__init__.py in backward(tensors, grad_tensors, retain_graph, create_graph, grad_variables)
+     88     Variable._execution_engine.run_backward(
+     89         tensors, grad_tensors, retain_graph, create_graph,
+---&gt; 90         allow_unreachable=True)  # allow_unreachable flag
+     91 
+     92 
+
+
+RuntimeError: Trying to backward through the graph a second time, but the buffers have already been freed. Specify retain_graph=True when calling backward the first time.
+</code></pre></div></div>
+
+<h3 id="wrap-up">Wrap up</h3>
+
+<ol>
+  <li>The <code class="highlighter-rouge">backward()</code> function made differentiation very simple</li>
+  <li>For non-scalar <code class="highlighter-rouge">tensor</code>, we need to specify <code class="highlighter-rouge">grad_tensors</code></li>
+  <li>If you need to backward() twice on a graph or subgraph, you will need to set <code class="highlighter-rouge">retain_graph</code> to be true.</li>
+  <li>Note that grad will accumulate from excuting the graph multiple times.</li>
+</ol>
+
+                </div>
+                <footer>
+                    
+                        <meta itemprop="dateModified" content="2017-10-24T00:00:00+00:00">
+                    
+                    <div class="article-license">
+                        <div class="m-license">
+    <div class="clearfix">
+        
+        <a class="octocat" href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2017-10-21-understanding-backward()-in-PyTorch.md">
+            <img alt="View on Github" src="/statics/images/octocat.jpg" />
+        </a>
+        <p><a href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2017-10-21-understanding-backward()-in-PyTorch.md">View this POST on Github</a>.</P>
+        
+        <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> license.</p>
+        <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+            <img alt="Creative Commons License" src="/statics/images/license-cc4.png" />
+        </a>
+        <p>欢迎转载，转载需注明出处：<a class="url" href="http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html">
+            http://localhost:4000/tech/2017/10/24/understanding-backward()-in-PyTorch.html
+        </a>，且禁止用于商业目的。</p>
+    </div>
+</div>
+
+                    </div>
+                </footer>
+                <section></section><div class="article__previous-next clearfix"><div class="previous"><span></span><a href="/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html">Setting Jekyll on Ubuntu 16.04 with Latex support</a></div><div class="next"><span></span><a href="/probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html">Bayesian basics I - the way of reasoning</a></div></div></article>
+        </div>
+        <div class="col-2">
+            <aside class="js-article-aside">
+                <div class="m-toc js-toc"></div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script src="//cdn.bootcss.com/toc/0.3.2/toc.min.js"></script>
+<script type="text/javascript">
+    window.throttle = function(func, wait) {
+        var args,
+            result,
+            thisArg,
+            timeoutId,
+            lastCalled = 0;
+
+        function trailingCall() {
+            lastCalled = new Date;
+            timeoutId = null;
+            result = func.apply(thisArg, args);
+        }
+        return function() {
+            var now = new Date,
+                remaining = wait - (now - lastCalled);
+
+            args = arguments;
+            thisArg = this;
+
+            if (remaining <= 0) {
+                clearTimeout(timeoutId);
+                timeoutId = null;
+                lastCalled = now;
+                result = func.apply(thisArg, args);
+            }
+            else if (!timeoutId) {
+                timeoutId = setTimeout(trailingCall, remaining);
+            }
+            return result;
+        };
+    }
+    $(function() {
+        var $window = $(window);
+        var $pageStage = $('.js-page-stage');
+        var $pageMain = $('.js-main');
+        var $pageFooter = $('.js-page-footer');
+        var $articleContent = $('.js-article-content');
+        var $articleAside = $('.js-article-aside');
+        var $toc = $('.js-toc');
+        var hasTitle = $articleContent.find('h1, h2, h3').length > 0;
+
+        function asideSticky() {
+            return $window.outerWidth() > 1150 && $pageStage.hasClass('has-toc');
+        }
+        function setTocClass() {
+            if (hasTitle) {
+                !$pageStage.hasClass('has-toc') && $pageStage.addClass('has-toc');
+            }
+        }
+
+        setTocClass();
+
+        function setAsideTOC() {
+            var asideTop,
+                asideLeft,
+                scrollBottom,
+                asideBottomTop,
+                lastScrollTop;
+
+            function init() {
+                var asideOffset = $articleAside.offset();
+                var footerOffset = $pageFooter.offset();
+                var mainOffset = $pageMain.offset();
+                asideTop = mainOffset.top;
+                asideHeight = $toc.outerHeight() + parseInt($articleAside.css('padding-top'), 10) + parseInt($articleAside.css('padding-bottom'), 10);
+                asideLeft = mainOffset.left + $pageMain.outerWidth() - $articleAside.outerWidth() - parseInt($pageMain.css('padding-right'), 10);
+                scrollBottom = footerOffset.top - asideHeight;
+                asideBottomTop = scrollBottom - mainOffset.top;
+            }
+            function setAside(force) {
+                force !== true && (force = false);
+                var scrollTop = $window.scrollTop();
+                if (scrollTop >= asideTop && scrollTop <= scrollBottom) {
+                    (!force && lastScrollTop >= asideTop && lastScrollTop <= scrollBottom) ||
+                        $articleAside.addClass('fixed').css({
+                            left: asideLeft + 'px',
+                            top: 0
+                        });
+                } else if (scrollTop < asideTop) {
+                    (!force && lastScrollTop < asideTop) ||
+                        $articleAside.removeClass('fixed').css({
+                            left: 0,
+                            top: 0
+                        });
+                } else {
+                    (!force && lastScrollTop > scrollBottom) ||
+                        $articleAside.removeClass('fixed').css({
+                            left: 0,
+                            top: asideBottomTop + 'px'
+                        });
+                }
+                lastScrollTop = scrollTop;
+            }
+            asideSticky() && (init(), setAside());
+            $window.on('scroll', function() {
+                asideSticky() && setAside();
+            });
+            $window.on('resize', throttle(function() {
+                setTocClass();
+                asideSticky() && (init(), setAside(true));
+            }, 100));
+            setTimeout(init, 4000);
+        }
+        setTimeout(setAsideTOC, 1000);
+
+        $toc.toc({
+            'selectors': 'h1,h2,h3',
+            'container': '.js-article-content',
+        });
+    });
+</script>
+
+
+
+
+
+    </div>
+</div>
+
+        </div>
+        <div class="m-page-footer js-page-footer">
+    <div class="main">
+        <aside>
+            <div class="follow-me">
+    <ul class="inline-list" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索">
+        <link itemprop="url" href="http://localhost:4000/">
+        
+        
+        
+        
+        
+            <li title="Follow me on Github.">
+                <div class="round-button github">
+                    <a itemprop="sameAs" href="https://github.com/linlinzhao" target="_blank">
+                        <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path class="svgpath" data-index="path_0" fill="#272636" d="M0 525.2c0 223.6 143.3 413.7 343 483.5 26.9 6.8 22.8-12.4 22.8-25.4l0-88.7c-155.3 18.2-161.5-84.6-172-101.7-21.1-36-70.8-45.2-56-62.3 35.4-18.2 71.4 4.6 113.1 66.3 30.2 44.7 89.1 37.2 119 29.7 6.5-26.9 20.5-50.9 39.7-69.6C248.8 728.2 181.7 630 181.7 513.2c0-56.6 18.7-108.7 55.3-150.7-23.3-69.3 2.2-128.5 5.6-137.3 66.5-6 135.5 47.6 140.9 51.8 37.8-10.2 80.9-15.6 129.1-15.6 48.5 0 91.8 5.6 129.8 15.9 12.9-9.8 77-55.8 138.8-50.2 3.3 8.8 28.2 66.7 6.3 135 37.1 42.1 56 94.6 56 151.4 0 117-67.5 215.3-228.8 243.7 26.9 26.6 43.6 63.4 43.6 104.2l0 128.8c0.9 10.3 0 20.5 17.2 20.5C878.1 942.4 1024 750.9 1024 525.3c0-282.9-229.3-512-512-512C229.1 13.2 0 242.3 0 525.2L0 525.2z" />
+</svg>
+</div>
+                    </a>
+                </div>
+            </li>
+        
+        
+        
+    </ul>
+    
+        <p class="email">
+            <a title="Send me Email." href="mailto:linlinzhao.c@gmail.com" target="_self"> linlinzhao.c@gmail.com </a>
+        </p>
+    
+</div>
+
+        </aside>
+        <footer class="site-info">
+            <p>© Linlin 2015 - 2017</p>
+            <p>Powered by <a
+                title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
+                title="TeXt is a succinct theme for blogging." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
+            </p>
+        </footer>
+    </div>
+</div>
+        <script>
+            $(function() {
+                // display coding language //
+                $(".highlight").each(function() {
+                    $(this).attr("data-lang", $(this).find("code").attr("data-lang"));
+                });
+            });
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,16 @@
+current directory: /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+/usr/bin/ruby -r ./siteconf20180822-7653-8i2kh6.rb extconf.rb
+creating Makefile
+
+current directory: /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" clean
+
+current directory: /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR="
+compiling ruby_http_parser.c
+compiling ryah_http_parser.c
+linking shared-object ruby_http_parser.so
+
+current directory: /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 ruby_http_parser.so ./.gem.20180822-7653-9ewvuj

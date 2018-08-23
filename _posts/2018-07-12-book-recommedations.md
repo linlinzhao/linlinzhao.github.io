@@ -1,7 +1,7 @@
 ---
 layout: post
 comment: true
-title: Books I love the most as a bioinformatician, machine learning enthusiast and father 
+title: Book list
 key: 10001
 tags: blog
 category: blog
@@ -33,7 +33,7 @@ I've built my passion about Bayesian statistics from Dr. MacKay's doctoral thesi
 
 **The Elements of Statistics Learning** by T. Hastie, R. Tibshirani and J. Friedman, 2008
 
-### Fun but more inspiring
+### Fun and very inspiring
 This is my favorite list!
 
 **Surely you are joking, Mr. Feyman** by E. Hutchings

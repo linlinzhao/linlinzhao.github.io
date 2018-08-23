@@ -1,5 +1,5 @@
 current directory: /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/commonmarker-0.17.11/ext/commonmarker
-/usr/bin/ruby -r ./siteconf20180822-7653-31yfkw.rb extconf.rb
+/usr/bin/ruby -r ./siteconf20180823-21577-o5t3s8.rb extconf.rb
 creating Makefile
 
 current directory: /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/commonmarker-0.17.11/ext/commonmarker
@@ -67,4 +67,4 @@ linking shared-object commonmarker/commonmarker.so
 
 current directory: /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/commonmarker-0.17.11/ext/commonmarker
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 commonmarker.so ./.gem.20180822-7653-1xhay9o/commonmarker
+/usr/bin/install -c -m 0755 commonmarker.so ./.gem.20180823-21577-gresjr/commonmarker

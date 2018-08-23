@@ -1,5 +1,5 @@
 current directory: /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.8.4/ext/nokogiri
-/usr/bin/ruby -r ./siteconf20180822-7653-tacuw4.rb extconf.rb
+/usr/bin/ruby -r ./siteconf20180823-21577-1vbqdds.rb extconf.rb
 checking if the C compiler accepts ... yes
 Building nokogiri using packaged libraries.
 Using mini_portile version 2.3.0
@@ -191,4 +191,4 @@ rm -rf /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/no
 
 current directory: /home/linlin/github/linlinzhao.github.io/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.8.4/ext/nokogiri
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 nokogiri.so ./.gem.20180822-7653-lumy8r/nokogiri
+/usr/bin/install -c -m 0755 nokogiri.so ./.gem.20180823-21577-3uh468/nokogiri

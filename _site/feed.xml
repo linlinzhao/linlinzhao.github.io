@@ -8,7 +8,154 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>Books I love the most as a bioinformatician, machine learning enthusiast and father</title>
+        <title>PhD Positions for developing Deep Generative Models for De Novo design of Molecules and Materials</title>
+        <description>&lt;p&gt;The Institutes for Mathematical Modelling of Biological Systems (Prof. Dr. Markus Kollmann), Pharmaceutical and Medicinal Chemistry (Prof. Dr. Holger Gohlke), and Machine Learning (Prof. Dr. Stefan Harmeling), invite applications for positions on PhD level in the interdisciplinary field between computational sciences and life sciences. This job is part of the Artificial Intelligence Initiative at Heinrich Heine University. Our joint research effort focuses on designing biomolecules ‘in silico’ for biotechnological applications, such as molecules needed for generating biodegradable material. In particular, we look for persons that are interested to develop and extend modern machine learning concepts, such as Deep Generative models and Monte Carlo Search Methods, within a Reinforcement Learning framework to approach the problem of generating highly complex structures under strong constraints. For an introduction into the field please have a look at this basic &lt;a href=&quot;https://www.nature.com/articles/s41586-018-0337-2.pdf&quot;&gt;review&lt;/a&gt;.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;We look for highly motivated candidates with strong mathematical and computational skills (e.g. with background either in physics, mathematics, engineering, or computational sciences) and with experience or strong interest in&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Deep learning&lt;/li&gt;
+  &lt;li&gt;MCMC methods&lt;/li&gt;
+  &lt;li&gt;Bayesian statistics&lt;/li&gt;
+  &lt;li&gt;Tensorflow programming&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(Biological background is not required)&lt;/p&gt;
+
+&lt;p&gt;The positions are located at the Institute for Mathematical Modelling of Biological Systems.
+Applications including a short but informative CV together with a motivation letter should be sent to &lt;a href=&quot;nicole.brand@hhu.de&quot;&gt;MS. Nicole&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000//machine%20learning/2018/08/23/job-post-markus.html</link>
+        <guid isPermaLink="true">http://localhost:4000//machine%20learning/2018/08/23/job-post-markus.html</guid>
+      </item>
+    
+      <item>
+        <title>Mathematical interpretation of why Gradient descent works</title>
+        <description>&lt;p&gt;For minimizing a differentiable multivariable function &lt;script type=&quot;math/tex&quot;&gt;f(\mathbf x)&lt;/script&gt; with initial value of &lt;script type=&quot;math/tex&quot;&gt;\mathbf x_0&lt;/script&gt;, the fastest decreasing would be the direction of negative gradient of &lt;script type=&quot;math/tex&quot;&gt;f(x)&lt;/script&gt; since its gradient points to fastest ascending direction. The updating rule 
+&lt;!--more--&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}
+\mathbf	x_{t+1} = \mathbf x_t - \eta\nabla f(\mathbf x_t), t=1,2~\cdots
+\end{equation}&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;with sufficiently small $\eta$ leads to &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+f(\mathbf x_{t+1})&lt;f(\mathbf x_t) %]]&gt;&lt;/script&gt;. 
+The scalar constant &lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt; is the step size determining how far the updating moves in the negative gradient direction, which is usually called learning rate in machine learning model training.&lt;/p&gt;
+
+&lt;p&gt;*** But, why &lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt; has to be small?&lt;/p&gt;
+
+&lt;p&gt;To gain the mathematical interpretation, assume the general context of&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	\min_{\mathbf x}f(\mathbf x), \mathbf x\in \mathcal R^m
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;with initial condition &lt;script type=&quot;math/tex&quot;&gt;\mathbf x=\mathbf x_0&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;The goal of first updating is to find $\mathbf x_1=\mathbf x_0+\Delta\mathbf x$ such that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	f(\mathbf x_1) \le f(\mathbf x_0), 
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;\Delta\mathbf x&lt;/script&gt; is the updating vector.&lt;/p&gt;
+
+&lt;p&gt;First we approximate &lt;script type=&quot;math/tex&quot;&gt;f(\mathbf x_1)&lt;/script&gt; with the first-order Taylor expansion as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	f(\mathbf x_1) = f(\mathbf x_0 + \Delta\mathbf x)=f(\mathbf x_0)+\Delta\mathbf x^T\nabla f(\mathbf x_0), 
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;which leads to&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	f(\mathbf x_1) - f(\mathbf x_0)=\Delta\mathbf x^T\nabla f(\mathbf x_0). 
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;Now to ensure the semi-negative definite of $f(\mathbf x_1) - f(\mathbf x_0)$, we can simply choose&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	\Delta\mathbf x = -\eta\nabla f(\mathbf x_0)
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;and then we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	f(\mathbf x_1) - f(\mathbf x_0)=-\eta\|\nabla f(\mathbf x_0)\|^2 \le 0, 
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;for some scalar constant &lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt;, and &lt;script type=&quot;math/tex&quot;&gt;\|\nabla f(\mathbf x_0)\|^2=0&lt;/script&gt; if and only if &lt;script type=&quot;math/tex&quot;&gt;f(\mathbf x_0)&lt;/script&gt; is already the minimum.&lt;/p&gt;
+
+&lt;p&gt;To sum up and generalize to step &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;, the updating rule&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	\mathbf x_{t+1} = \mathbf x_t - \eta \nabla f(\mathbf x_t)
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;drives the searching towards the minimum given that the proper value of $\eta$ can ensure that &lt;script type=&quot;math/tex&quot;&gt;x_{t+1}&lt;/script&gt; is close enough to &lt;script type=&quot;math/tex&quot;&gt;x_t&lt;/script&gt; such that first-order approximate is a valid approximate with tolerable error.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 19 Aug 2018 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000//optimization/2018/08/19/math-interpretation-sgd.html</link>
+        <guid isPermaLink="true">http://localhost:4000//optimization/2018/08/19/math-interpretation-sgd.html</guid>
+      </item>
+    
+      <item>
+        <title>Why can cross entropy be loss function?</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;This post is an expansion of my answer on &lt;a href=&quot;https://stats.stackexchange.com/a/357974/41910&quot;&gt;Cross Validated&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as 
+&lt;!--more--&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}
+	S(v)=-\sum_ip(v_i)\log p(v_i)\label{eq:entropy},
+\end{equation}&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;for &lt;script type=&quot;math/tex&quot;&gt;p(v_i)&lt;/script&gt; as the probabilities of different states &lt;script type=&quot;math/tex&quot;&gt;v_i&lt;/script&gt; of the system. From an information theory point of view, &lt;script type=&quot;math/tex&quot;&gt;S(v)&lt;/script&gt; is the amount of information is needed for removing the uncertainty. For instance, the event A &lt;code class=&quot;highlighter-rouge&quot;&gt;I will die eventually&lt;/code&gt; is almost certain (maybe we can solving the aging problem for word &lt;code class=&quot;highlighter-rouge&quot;&gt;almost&lt;/code&gt;), therefore it has low entropy which requires only the information of &lt;code class=&quot;highlighter-rouge&quot;&gt;might solve the aging problem&lt;/code&gt; to make it certain. However, the event B &lt;code class=&quot;highlighter-rouge&quot;&gt;The president will die in 50 years&lt;/code&gt; is much more uncertain than A, thus it needs more information to remove the uncertainties.&lt;/p&gt;
+
+&lt;p&gt;Now look at the definition of KL divergence between events A and B&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	D_{KL}(A\parallel B) = \sum_ip_A(v_i)\log p_A(v_i) - p_A(v_i)\log p_B(v_i)\label{eq:kld}, 
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;where the first term of the right hand side is the entropy of event A, the second term can be interpreted as the expectation of event B in terms of event A. And the &lt;script type=&quot;math/tex&quot;&gt;D_{KL}&lt;/script&gt; describes how different B is from A from the perspective of A.&lt;/p&gt;
+
+&lt;p&gt;To relate cross entropy to entropy and KL divergence, we need to reformalize the cross entropy in terms of events A and B as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	H(A, B) = -\sum_ip_A(v_i)\log p_B(v_i)\label{eq:crossentropy}. 
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;From the definitions, we can easily see&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	H(A, B) = D_{KL}(A\parallel B)+S_A\label{eq:entropyrelation}. 
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;From the relation, the fact that if &lt;script type=&quot;math/tex&quot;&gt;S_A&lt;/script&gt; is a constant, then minimizing &lt;script type=&quot;math/tex&quot;&gt;H(A, B)&lt;/script&gt; is equivalent to minimizing &lt;script type=&quot;math/tex&quot;&gt;D_{KL}(A\parallel B)&lt;/script&gt; can answer why the cross entropy error function arises from the likelihood function of the model. 
+A further question follows naturally as how the entropy can be a constant. In a machine learning task, we start with a dataset (denoted as &lt;script type=&quot;math/tex&quot;&gt;P(\mathcal D)&lt;/script&gt;) which represent the problem to be solved, and the learning purpose is to make the model estimated distribution (denoted as &lt;script type=&quot;math/tex&quot;&gt;P(model)&lt;/script&gt;) as close as possible to true distribution of the problem (denoted as &lt;script type=&quot;math/tex&quot;&gt;P(truth)&lt;/script&gt;). 
+&lt;script type=&quot;math/tex&quot;&gt;P(truth)&lt;/script&gt; is unknown and represented by &lt;script type=&quot;math/tex&quot;&gt;P(\mathcal D)&lt;/script&gt;. Therefore in an ideal world, we expect&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+	P(model)\approx P(\mathcal D) \approx P(truth)
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;and minimize &lt;script type=&quot;math/tex&quot;&gt;D_{KL}(P(\mathcal D)\parallel P(model))&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Luckily, in practice &lt;script type=&quot;math/tex&quot;&gt;\mathcal D&lt;/script&gt; is given, which means its entropy &lt;script type=&quot;math/tex&quot;&gt;S(D)&lt;/script&gt; is fixed as a constant. Now we see that the equivalence of minimizing cross entropy and KL divergence in a classification problem for given dataset, which shows the cross entropy can be the proper error function.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 19 Jul 2018 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000//machine%20learning/2018/07/19/crossentropy-kl-divergence.html</link>
+        <guid isPermaLink="true">http://localhost:4000//machine%20learning/2018/07/19/crossentropy-kl-divergence.html</guid>
+      </item>
+    
+      <item>
+        <title>Book list</title>
         <description>&lt;p&gt;Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive.&lt;/p&gt;
 
 &lt;p&gt;This post is a growing list of books in different categories&lt;/p&gt;
@@ -35,7 +182,7 @@ From the basic logics, Jaynes built up the whole realm of probability theory in 
 
 &lt;p&gt;&lt;strong&gt;The Elements of Statistics Learning&lt;/strong&gt; by T. Hastie, R. Tibshirani and J. Friedman, 2008&lt;/p&gt;
 
-&lt;h3 id=&quot;fun-but-more-inspiring&quot;&gt;Fun but more inspiring&lt;/h3&gt;
+&lt;h3 id=&quot;fun-and-very-inspiring&quot;&gt;Fun and very inspiring&lt;/h3&gt;
 &lt;p&gt;This is my favorite list!&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Surely you are joking, Mr. Feyman&lt;/strong&gt; by E. Hutchings&lt;/p&gt;
@@ -289,6 +436,7 @@ From the basic logics, Jaynes built up the whole realm of probability theory in 
 &lt;p&gt;This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest.&lt;/p&gt;
 
 &lt;hr /&gt;
+&lt;!--more--&gt;
 
 &lt;p&gt;I did encounter a few stones on my way to adopt &lt;a href=&quot;https://tianqi.name/blog/&quot;&gt;Tian Qi’s TeXt&lt;/a&gt;
 for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about web design, that is why even a little stone
@@ -333,40 +481,45 @@ For independent lines, the expressions should start from a new line after &lt;co
       </item>
     
       <item>
-        <title>Understanding backward() in PyTorch</title>
-        <description>&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
-&lt;/script&gt;
+        <title>Understanding backward() in PyTorch (Updated for V0.4)</title>
+        <description>&lt;p&gt;Update for PyTorch 0.4:&lt;/p&gt;
 
-&lt;p&gt;Having heard about the announcement about &lt;a href=&quot;https://github.com/Theano/Theano&quot;&gt;Theano&lt;/a&gt; from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the &lt;a href=&quot;http://pytorch.org/docs/master/autograd.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;autograd&lt;/code&gt;&lt;/a&gt; module and what a &lt;a href=&quot;http://pytorch.org/docs/0.1.12/_modules/torch/autograd/variable.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt;&lt;/a&gt; is, but are a little confused by definition of &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt;.
+&lt;p&gt;Earlier versions used &lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt; to wrap tensors with different properties. Since version 0.4, &lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt; is merged with &lt;code class=&quot;highlighter-rouge&quot;&gt;tensor&lt;/code&gt;, in other words, &lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt; is NOT needed anymore. The flag &lt;code class=&quot;highlighter-rouge&quot;&gt;require_grad&lt;/code&gt; can be directly set in &lt;code class=&quot;highlighter-rouge&quot;&gt;tensor&lt;/code&gt;. Accordingly, this post is also updated.&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;!--more--&gt;
-First let’s recall the gradient computing under mathematical notions. For an independent variable &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; (scalar or vector), the whatever operation on &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;y = f(x)&lt;/script&gt;. The gradient of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; w.r.t &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt;s is&lt;/p&gt;
+&lt;p&gt;Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the &lt;a href=&quot;http://pytorch.org/docs/master/autograd.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;autograd&lt;/code&gt;&lt;/a&gt; module and what a &lt;a href=&quot;http://pytorch.org/docs/0.1.12/_modules/torch/autograd/variable.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt;&lt;/a&gt; is, but are a little confused by definition of &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;First let’s recall the gradient computing under mathematical notions. 
+For an independent variable &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; (scalar or vector), the whatever operation on &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;y = f(x)&lt;/script&gt;. Then the gradient of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; w.r.t &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt;s is&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{align}\nabla y&amp;=\begin{bmatrix}
+\begin{align}
+\nabla y&amp;=\begin{bmatrix}
 \frac{\partial y}{\partial x_1}\\
 \frac{\partial y}{\partial x_2}\\
 \vdots
 \end{bmatrix}
 \end{align}. %]]&gt;&lt;/script&gt;
 
-&lt;p&gt;Then for a specific point of &lt;script type=&quot;math/tex&quot;&gt;x=[X_1, X_2, \dots]&lt;/script&gt;, we’ll get the gradient of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; on that point as a vector. With these notions in my mind, those things are a bit confusing at the beginning&lt;/p&gt;
+&lt;p&gt;Then for a specific point of &lt;script type=&quot;math/tex&quot;&gt;x=[X_1, X_2, \cdots]&lt;/script&gt;, we’ll get the gradient of &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; on that point as a vector. 
+With these notions in mind, the following things are a bit confusing at the beginning&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;Mathematically, we would say “The gradients of a function w.r.t. the independent variables”, whereas the &lt;code class=&quot;highlighter-rouge&quot;&gt;.grad&lt;/code&gt; is attached to the leaf &lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt;s. In Theano and Tensorflow, the computed gradients are stored separately in a variable. But with a memont of adjustment, it is fairly easy to buy that.&lt;/p&gt;
+    &lt;p&gt;Mathematically, we would say “The gradients of a function w.r.t. the independent variables”, whereas the &lt;code class=&quot;highlighter-rouge&quot;&gt;.grad&lt;/code&gt; is attached to the leaf &lt;code class=&quot;highlighter-rouge&quot;&gt;tensor&lt;/code&gt;s. In Theano and Tensorflow, the computed gradients are stored separately in a variable. But with a moment of adjustment, it is fairly easy to buy that. In Pytorch it is also possible to get the &lt;code class=&quot;highlighter-rouge&quot;&gt;.grad&lt;/code&gt; for intermediate &lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt;s with help of &lt;code class=&quot;highlighter-rouge&quot;&gt;register_hook&lt;/code&gt; function&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_variables&lt;/code&gt; of the function &lt;code class=&quot;highlighter-rouge&quot;&gt;torch.autograd.backward(variables, grad_variables=None, retain_graph=None, create_graph=None, retain_variables=None)&lt;/code&gt; is not straightforward for knowing its functionality.&lt;/p&gt;
+    &lt;p&gt;The parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_variables&lt;/code&gt; of the function &lt;code class=&quot;highlighter-rouge&quot;&gt;torch.autograd.backward(variables, grad_tensors=None, retain_graph=None, create_graph=None, retain_variables=None, grad_variables=None)&lt;/code&gt; is not straightforward for knowing its functionality. **note that &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_variables&lt;/code&gt; is deprecated, use &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_tensors&lt;/code&gt; instead.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;What is &lt;code class=&quot;highlighter-rouge&quot;&gt;retain_graph&lt;/code&gt; doing?&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;__future__&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_function&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.autograd&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.autograd&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -380,7 +533,7 @@ It is actually very simple to use backward()
 first define the computation graph, then call backward()
 '''&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#define an operation on x&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
@@ -391,104 +544,119 @@ first define the computation graph, then call backward()
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x Variable containing:
- 0.6194
-[torch.FloatTensor of size 1x1]
-
-y Variable containing:
- 1.2388
-[torch.FloatTensor of size 1x1]
-
-z Variable containing:
- 1.9013
-[torch.FloatTensor of size 1x1]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x tensor([[-0.6955]], requires_grad=True)
+y tensor([[-1.3911]], grad_fn=&amp;lt;MulBackward&amp;gt;)
+z tensor([[-2.6918]], grad_fn=&amp;lt;PowBackward0&amp;gt;)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The simple operations defined a forward path &lt;script type=&quot;math/tex&quot;&gt;z=(2x)^3&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; will be the final output &lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt; we would like to compute gradient: &lt;script type=&quot;math/tex&quot;&gt;dz=24x^2dx&lt;/script&gt;, which will be passed to the parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;Variables&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;The simple operations defined a forward path &lt;script type=&quot;math/tex&quot;&gt;z=(2x)^3&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; will be the final output &lt;code class=&quot;highlighter-rouge&quot;&gt;tensor&lt;/code&gt; we would like to compute gradient: &lt;script type=&quot;math/tex&quot;&gt;dz=24x^2dx&lt;/script&gt;, which will be passed to the parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;tensors&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; function.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#yes, it is just as simple as this to compute gradients:&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'y gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# note that x.grad is also a Variable&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'y gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Requires gradient?'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# note that x.grad is also a tensor&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;z gradient None
 y gradient None
-x gradient Variable containing:
- 9.2083
-[torch.FloatTensor of size 1x1]
+x gradient tensor([[11.6105]]) Requires gradient? False
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The gradients of both &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; are None, since the function returns the gradient for the leaves, which is &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; in this case. At the very beginning, I was assuming something like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x gradient None
-y gradient None
-z gradient Variable containing:
-128.3257
-[torch.FloatTensor of size 1x1],
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gradient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gradient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gradient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;11.6105&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;since the gradient is for the final output &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt;. With a blink of thinking, we could figure out it would be practically chaos if &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is a multi-dimensional vector. &lt;code class=&quot;highlighter-rouge&quot;&gt;x.grad&lt;/code&gt; should be interpreted as the gradient of &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; at &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;.&lt;/p&gt;
+&lt;p&gt;since the gradient is calculated for the final output &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt;.&lt;/p&gt;
 
-&lt;p&gt;With flexibility in PyTorch’s core, it is easy to get the &lt;code class=&quot;highlighter-rouge&quot;&gt;.grad&lt;/code&gt; for intermediate &lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt;s with help of &lt;code class=&quot;highlighter-rouge&quot;&gt;register_hook&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;With a blink of thinking, we could figure out it would be practically chaos if &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is a multi-dimensional vector. &lt;code class=&quot;highlighter-rouge&quot;&gt;x.grad&lt;/code&gt; should be interpreted as the gradient of &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; at &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;how-do-we-use-grad_variables&quot;&gt;How do we use &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_variables&lt;/code&gt;?&lt;/h3&gt;
+&lt;h3 id=&quot;how-do-we-use-grad_tensors&quot;&gt;How do we use &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_tensors&lt;/code&gt;?&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;grad_variables&lt;/code&gt; should be a list of torch tensors. In default case, the &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; is applied to scalar-valued function, the default value of &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_variables&lt;/code&gt; is thus &lt;code class=&quot;highlighter-rouge&quot;&gt;torch.FloatTensor([1])&lt;/code&gt;. But why is that? What if we put some other values to it?&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;grad_tensors&lt;/code&gt; should be a list of torch tensors. In default case, the &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; is applied to scalar-valued function, the default value of &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_tensors&lt;/code&gt; is thus &lt;code class=&quot;highlighter-rouge&quot;&gt;torch.FloatTensor([0])&lt;/code&gt;. But why is that? What if we put some other values to it?&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
+&lt;p&gt;Keep the same forward path, then do &lt;code class=&quot;highlighter-rouge&quot;&gt;backward&lt;/code&gt; by only setting &lt;code class=&quot;highlighter-rouge&quot;&gt;retain_graph&lt;/code&gt; as &lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#define an operation on x&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#define one more operation to check the chain rule&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Keeping the default value of grad_variables gives'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'y gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Keeping the default value of grad_tensors gives'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'y gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x Variable containing:
--0.2782
-[torch.FloatTensor of size 1x1]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x tensor([[-0.7207]], requires_grad=True)
+Keeping the default value of grad_tensors gives
+z gradient: None
+y gradient: None
+x gradient: tensor([[12.4668]])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-Keeping the default value of grad_variables gives
-z gradient None
-y gradient None
-x gradient Variable containing:
- 1.8581
-[torch.FloatTensor of size 1x1]
+&lt;p&gt;Testing the explicit default value, which should give the same result. For the same graph which is retained, DO NOT forget to zero the gradient before recalculate the gradients.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Tensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Set grad_tensors to 1 gives'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'y gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Set grad_tensors to 0 gives
+z gradient: None
+y gradient: None
+x gradient: tensor([[12.4668]])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then what about other values, let’s try 0.1 and 0.5.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Tensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Set grad_tensors to 0.1 gives'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'y gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Set grad_tensors to 0.1 gives
+z gradient: None
+y gradient: None
+x gradient: tensor([[1.2467]])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Modifying the default value of grad_variables to 0.1 gives'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'y gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Modifying the default value of grad_variables to 0.1 gives
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Modifying the default value of grad_variables to 0.5 gives
+
 z gradient None
+
 y gradient None
-x gradient Variable containing:
- 0.1858
-[torch.FloatTensor of size 1x1]
+
+x gradient tensor([[6.2334]])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Now let’s set &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; to be a matrix. Note that &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; will also be a matrix.&lt;/p&gt;
+&lt;p&gt;It looks like the elements of &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_tensors&lt;/code&gt; act as scaling factors. Now let’s set &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; to be a &lt;script type=&quot;math/tex&quot;&gt;2\times 2&lt;/script&gt; matrix. Note that &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; will also be a matrix. (Always use the latest version, &lt;code class=&quot;highlighter-rouge&quot;&gt;backward&lt;/code&gt; had been improved a lot from earlier version, becoming much easier to understand.)&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;'''
-Try to set x to be column vector or row vector! You'll see different behaviors.
-
-'''&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#define an operation on x&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
@@ -496,45 +664,38 @@ Try to set x to be column vector or row vector! You'll see different behaviors.
 &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z shape:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient for its all elements:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#the gradient for x will be accumulated, it needs to be cleared.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient for the second column:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient for the first row:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x Variable containing:
- 1.3689 -1.6859
- 1.0549 -0.9156
-[torch.FloatTensor of size 2x2]
-
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x tensor([[-2.5212,  1.2730],
+        [ 0.0366, -0.0750]], requires_grad=True)
 z shape: torch.Size([2, 2])
-x gradient Variable containing:
- 44.9719   0.0000
- 26.7060   0.0000
-[torch.FloatTensor of size 2x2]
+x gradient for its all elements:
+ tensor([[152.5527,  38.8946],
+        [  0.0322,   0.1349]])
 
-x gradient Variable containing:
-  0.0000  68.2102
-  0.0000  20.1196
-[torch.FloatTensor of size 2x2]
+x gradient for the second column:
+ tensor([[ 0.0000, 38.8946],
+        [ 0.0000,  0.1349]])
 
-x gradient Variable containing:
- 44.9719  68.2102
- 26.7060  20.1196
-[torch.FloatTensor of size 2x2]
+x gradient for the first row:
+ tensor([[152.5527,  38.8946],
+        [  0.0000,   0.0000]])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;We can clearly see the gradients of &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; are computed w.r.t to each dimension of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, because the operations are all element-wise. &lt;code class=&quot;highlighter-rouge&quot;&gt;T.FloatTensor([1, 0])&lt;/code&gt; will give the gradients for first column of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;.&lt;/p&gt;
+&lt;p&gt;We can clearly see the gradients of &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; are computed w.r.t to each dimension of &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, because the operations are all element-wise.&lt;/p&gt;
 
 &lt;p&gt;Then what if we render the output one-dimensional (scalar) while &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is two-dimensional. This is a real simplified scenario of neural networks.&lt;/p&gt;
 
@@ -542,7 +703,7 @@ x gradient Variable containing:
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;f'(x)=\frac{1}{n}\sum_i^n24x_i^2&lt;/script&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#define an operation on x&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
@@ -551,38 +712,60 @@ x gradient Variable containing:
 &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'out'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x tensor([[ 1.8528,  0.2083],
+        [-1.5296,  0.3136]], requires_grad=True)
+out tensor(5.6434, grad_fn=&amp;lt;MeanBackward1&amp;gt;)
+x gradient:
+ tensor([[20.5970,  0.2604],
+        [14.0375,  0.5903]])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We will get complaints if the &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_tensors&lt;/code&gt; is specified for the scalar function.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;retain_graph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x Variable containing:
- 0.0192 -0.1596
--1.1868 -0.1631
-[torch.FloatTensor of size 2x2]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---------------------------------------------------------------------------
 
-out Variable containing:
--3.3603
-[torch.FloatTensor of size 1]
+RuntimeError                              Traceback (most recent call last)
 
-x gradient Variable containing:
- 0.0022  0.1528
- 8.4515  0.1596
-[torch.FloatTensor of size 2x2]
+&amp;lt;ipython-input-78-db7cccdf3863&amp;gt; in &amp;lt;module&amp;gt;()
+      1 x.grad.data.zero_()
+----&amp;gt; 2 out.backward(T.FloatTensor([[1, 1], [1, 1]]), retain_graph=True)
+      3 print('x gradient', x.grad)
 
-x gradient Variable containing:
- 0.0002  0.0153
- 0.8451  0.0160
-[torch.FloatTensor of size 2x2]
+
+/usr/lib/python3.7/site-packages/torch/tensor.py in backward(self, gradient, retain_graph, create_graph)
+     91                 products. Defaults to ``False``.
+     92         &quot;&quot;&quot;
+---&amp;gt; 93         torch.autograd.backward(self, gradient, retain_graph, create_graph)
+     94 
+     95     def register_hook(self, hook):
+
+
+/usr/lib/python3.7/site-packages/torch/autograd/__init__.py in backward(tensors, grad_tensors, retain_graph, create_graph, grad_variables)
+     88     Variable._execution_engine.run_backward(
+     89         tensors, grad_tensors, retain_graph, create_graph,
+---&amp;gt; 90         allow_unreachable=True)  # allow_unreachable flag
+     91 
+     92 
+
+
+RuntimeError: invalid gradient at index 0 - expected shape [] but got [2, 2]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;what-is-retain_graph-doing&quot;&gt;What is &lt;code class=&quot;highlighter-rouge&quot;&gt;retain_graph&lt;/code&gt; doing?&lt;/h3&gt;
 
 &lt;p&gt;When training a model, the graph will be re-generated for each iteration. Therefore each iteration will consume the graph if the &lt;code class=&quot;highlighter-rouge&quot;&gt;retain_graph&lt;/code&gt; is false, in order to keep the graph, we need to set it be true.&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requires_grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#x is a leaf created by user, thus grad_fn is none&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#define an operation on x&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
@@ -591,69 +774,47 @@ x gradient Variable containing:
 &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'out'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#without setting retain_graph to be true, this gives an error.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#without setting retain_graph to be true, it is alright for first time of backward.&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
 &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FloatTensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#Now we get complaint saying that no graph is available for tracing back. &lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x gradient'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x Variable containing:
- 0.3358 -1.0588
--0.4989 -0.9955
-[torch.FloatTensor of size 2x2]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x tensor([[-0.7452,  1.5727],
+        [ 0.1702,  0.7374]], requires_grad=True)
+out tensor(7.7630, grad_fn=&amp;lt;MeanBackward1&amp;gt;)
+x gradient tensor([[ 3.3323, 14.8394],
+        [ 0.1738,  3.2623]])
 
-out Variable containing:
--4.5198
-[torch.FloatTensor of size 1]
-
-x gradient Variable containing:
- 0.6765  6.7261
- 1.4936  5.9466
-[torch.FloatTensor of size 2x2]
 
 
 ---------------------------------------------------------------------------
 
 RuntimeError                              Traceback (most recent call last)
 
-&amp;lt;ipython-input-27-0ae5673f71fa&amp;gt; in &amp;lt;module&amp;gt;()
-     11 print('x gradient', x.grad)
-     12 x.grad.data.zero_()
----&amp;gt; 13 out.backward(T.FloatTensor([0.1]))
-     14 print('x gradient', x.grad)
+&amp;lt;ipython-input-82-80a8d867d529&amp;gt; in &amp;lt;module&amp;gt;()
+     12 
+     13 x.grad.data.zero_()
+---&amp;gt; 14 out.backward() #Now we get complaint saying that no graph is available for tracing back.
+     15 print('x gradient', x.grad)
 
 
-/usr/local/lib/python2.7/dist-packages/torch/autograd/variable.pyc in backward(self, gradient, retain_graph, create_graph, retain_variables)
-    154                 Variable.
-    155         &quot;&quot;&quot;
---&amp;gt; 156         torch.autograd.backward(self, gradient, retain_graph, create_graph, retain_variables)
-    157
-    158     def register_hook(self, hook):
+/usr/lib/python3.7/site-packages/torch/tensor.py in backward(self, gradient, retain_graph, create_graph)
+     91                 products. Defaults to ``False``.
+     92         &quot;&quot;&quot;
+---&amp;gt; 93         torch.autograd.backward(self, gradient, retain_graph, create_graph)
+     94 
+     95     def register_hook(self, hook):
 
 
-/usr/local/lib/python2.7/dist-packages/torch/autograd/__init__.pyc in backward(variables, grad_variables, retain_graph, create_graph, retain_variables)
-     96
-     97     Variable._execution_engine.run_backward(
----&amp;gt; 98         variables, grad_variables, retain_graph)
-     99
-    100
-
-
-/usr/local/lib/python2.7/dist-packages/torch/autograd/function.pyc in apply(self, *args)
-     89
-     90     def apply(self, *args):
----&amp;gt; 91         return self._forward_cls.backward(self, *args)
-     92
-     93
-
-
-/usr/local/lib/python2.7/dist-packages/torch/autograd/_functions/basic_ops.pyc in backward(ctx, grad_output)
-    207     def backward(ctx, grad_output):
-    208         if ctx.tensor_first:
---&amp;gt; 209             var, = ctx.saved_variables
-    210             return grad_output.mul(ctx.constant).mul(var.pow(ctx.constant - 1)), None
-    211         else:
+/usr/lib/python3.7/site-packages/torch/autograd/__init__.py in backward(tensors, grad_tensors, retain_graph, create_graph, grad_variables)
+     88     Variable._execution_engine.run_backward(
+     89         tensors, grad_tensors, retain_graph, create_graph,
+---&amp;gt; 90         allow_unreachable=True)  # allow_unreachable flag
+     91 
+     92 
 
 
 RuntimeError: Trying to backward through the graph a second time, but the buffers have already been freed. Specify retain_graph=True when calling backward the first time.
@@ -662,33 +823,57 @@ RuntimeError: Trying to backward through the graph a second time, but the buffer
 &lt;h3 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h3&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; function made differentiation very simple. It provides much flexibility for some uncommon differentiation needs.&lt;/li&gt;
-  &lt;li&gt;For non-scalar &lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt;s, we need to specify &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_variables&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;If you need to backward() twice on a graph or subgraph, you will need to set &lt;code class=&quot;highlighter-rouge&quot;&gt;retain_graph&lt;/code&gt; to be true, since the computation of graph will consume itself if it is false.&lt;/li&gt;
-  &lt;li&gt;Remember that gradient for &lt;code class=&quot;highlighter-rouge&quot;&gt;Variable&lt;/code&gt; will be accumulated, zero it if do not need accumulation.&lt;/li&gt;
+  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; function made differentiation very simple&lt;/li&gt;
+  &lt;li&gt;For non-scalar &lt;code class=&quot;highlighter-rouge&quot;&gt;tensor&lt;/code&gt;, we need to specify &lt;code class=&quot;highlighter-rouge&quot;&gt;grad_tensors&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;If you need to backward() twice on a graph or subgraph, you will need to set &lt;code class=&quot;highlighter-rouge&quot;&gt;retain_graph&lt;/code&gt; to be true.&lt;/li&gt;
+  &lt;li&gt;Note that grad will accumulate from excuting the graph multiple times.&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;h3 id=&quot;some-discussions-about-backward-from-pytorch&quot;&gt;Some discussions about &lt;code class=&quot;highlighter-rouge&quot;&gt;backward()&lt;/code&gt; from &lt;a href=&quot;https://discuss.pytorch.org/&quot;&gt;PyTorch&lt;/a&gt;&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/clarification-using-backward-on-non-scalars/1059&quot;&gt;clarification-using backward on non scalars&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/how-the-backward-works-for-torch-variable/907&quot;&gt;How the backward works for torch variable&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/understanding-backward-of-variables-for-complex-operations/3569&quot;&gt;understanding backward of variables for complex operations&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/multiple-calls-to-backward-with-requires-grad-true/1688/7&quot;&gt;multiple calls to backward with requires grad true&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/why-need-implementation-of-backward-method/9013&quot;&gt;why need implementation of backward method&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/what-exactly-does-retain-variables-true-in-loss-backward-do/3508/5&quot;&gt;what exactly does retain-variables true in loss backward do&lt;/a&gt; Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;retain_variables&lt;/code&gt; will be replaced with &lt;code class=&quot;highlighter-rouge&quot;&gt;retain_graph&lt;/code&gt;!&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/which-is-freed-which-is-not/8636/3&quot;&gt;which is freed which is not&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://discuss.pytorch.org/t/how-to-use-torch-autograd-backward-when-variables-are-non-scalar/4191&quot;&gt;how to use torch autograd backward when variables are non scalar&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sat, 21 Oct 2017 15:15:00 +0000</pubDate>
-        <link>http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html</link>
-        <guid isPermaLink="true">http://localhost:4000//tech/2017/10/21/Understanding-backward()-in-PyTorch.html</guid>
+        <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000//tech/2017/10/24/understanding-backward()-in-PyTorch.html</link>
+        <guid isPermaLink="true">http://localhost:4000//tech/2017/10/24/understanding-backward()-in-PyTorch.html</guid>
+      </item>
+    
+      <item>
+        <title>Bayesian basics I - the way of reasoning</title>
+        <description>&lt;p&gt;One day after lunch, one of my colleagues spotted a man running outside of our windows where there is a fire escape balcony along the outside of our building. We immediately realized that he was probably a thief since we occasionally had heard of people from other labs losing expensive computers after seeing a man on the fire escape balcony. We then felt alarmed, called the police and alerted everybody to back up their data.&lt;/p&gt;
+
+&lt;p&gt;Why did we decide to call police immediately? What was going on in our brains? First let us assume&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;our world had been very peaceful and safe before we saw that guy running outside the window – in other words, no crimes at all and nobody had ever lost anything.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Then we would not find the running guy suspicious, and we wouldn’t be alarmed enough to call the police, since there could be many reasonable and logical ways to explain his behavior. He might just enjoy running around buildings, employ parkour as his exercise regimen, or maybe he dropped something from upstairs and had to get it back. The possibility of him being a thief would be one of many, and not a likely one under our assumption.&lt;/p&gt;
+
+&lt;p&gt;What if we add another observation?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Before the incident where we saw the guy outside our window, another one of our colleagues saw him outside and then discovered that his laptop had been stolen.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now it is very plausible that the running guy did something bad and some alert colleagues suspected that he was possibly a thief. Okay, what about adding more observations:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;After our colleague’s laptop was stolen, people always lost things if someone strange was spotted.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After these observations, normally we would have learned that we should call the police if some stranger showed up on our balconies.&lt;/p&gt;
+
+&lt;p&gt;Let’s have a close look and boil down the example. We first have an ‘observation’ — ‘a guy running outside of the window’, and some ‘prior knowledge’ — ‘no crimes in our past world’. Then we won’t connect this observation to stealing since our life experience leads us to believe that everyone is innocent. However this belief will be changed a bit — ‘some alert colleagues suspected that he is a thief’, after we know a new laptop was lost. And it has been changed continually as more and more observations tell us that a strange person showing up in our private balcony is a plausible sign of stealing. What we have learned from both prior knowledge and those observations is ‘posterior knowledge’.&lt;/p&gt;
+
+&lt;p&gt;Through this example, basic elements of Bayesian reasoning have been introduced: the prior, the observations and the posterior. The prior is the belief we have about the world before the observation; the posterior is the belief altered by the observations. So the posterior depends on both the prior and the observations.&lt;/p&gt;
+
+&lt;p&gt;I hope you would agree with me that Bayesian reasoning is very natural. Let me give another quick example. You see a beautiful girl on campus and feel like she is the type you really want to build a serious relationship with, maybe even a family. So you are too cautious and nervous to ask her for her number and ask to date her. Now your belief that she will agree to be your girlfriend is a bit low. But on one day, she makes eye contact with you and even says ‘Hi’. With this observation, you update your belief and think she will definitely agree to date you.  Then the following story is up to you:)&lt;/p&gt;
+
+&lt;p&gt;Bayesian reasoning fascinates me simply because it is such a natural way of learning and thinking.
+I’ve no idea whether our universe follows a set of deterministic rules, but the sure thing is that our life is full of uncertainties. Usually a guy cannot be certain if the beautiful girl being asked would be willing to be his girlfriend; though we would like to know what the weather would be a month from now for our vacation in Barcelona, we cannot be certain what it will be; it is also very hard for us to choose one of many good job offers. Despite all sorts of uncertainties, we have to make decisions quickly (from an evolutionary point view). We all know that probability theory is the hammer for uncertainty, equipment we can use to infer and make decisions. Dr. H. Barlow said “The brain is nothing but a statistical decision organ”. Indeed, our brains are trained to get something useful out of our noisy surroundings.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000//probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html</link>
+        <guid isPermaLink="true">http://localhost:4000//probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html</guid>
       </item>
     
   </channel>

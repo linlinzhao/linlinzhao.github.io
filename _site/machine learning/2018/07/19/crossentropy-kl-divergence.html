@@ -4,9 +4,9 @@
         <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<title>Book list - Linlin</title>
-<meta name="description" content="Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings ...">
-<link rel="canonical" href="http://localhost:4000/blog/2018/07/12/book-recommedations.html">
+<title>Why can cross entropy be loss function? - Linlin</title>
+<meta name="description" content="  This post is an expansion of my answer on Cross ValidatedIntuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two ...">
+<link rel="canonical" href="http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html">
 <link rel="alternate" type="application/rss+xml" title="Linlin" href="http://localhost:4000/feed.xml">
 
         <!--
@@ -39,20 +39,20 @@
             
         </style>
         <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Book list | Linlin</title>
+<title>Why can cross entropy be loss function? | Linlin</title>
 <meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Book list" />
+<meta property="og:title" content="Why can cross entropy be loss function?" />
 <meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
 <meta property="og:locale" content="EN" />
-<meta name="description" content="Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories" />
-<meta property="og:description" content="Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories" />
-<link rel="canonical" href="http://localhost:4000/blog/2018/07/12/book-recommedations.html" />
-<meta property="og:url" content="http://localhost:4000/blog/2018/07/12/book-recommedations.html" />
+<meta name="description" content="This post is an expansion of my answer on Cross Validated Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as" />
+<meta property="og:description" content="This post is an expansion of my answer on Cross Validated Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as" />
+<link rel="canonical" href="http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html" />
+<meta property="og:url" content="http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html" />
 <meta property="og:site_name" content="Linlin" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-07-12T15:15:00+00:00" />
+<meta property="article:published_time" content="2018-07-19T00:00:00+00:00" />
 <script type="application/ld+json">
-{"description":"Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/blog/2018/07/12/book-recommedations.html","headline":"Book list","dateModified":"2018-07-12T15:15:00+00:00","datePublished":"2018-07-12T15:15:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2018/07/12/book-recommedations.html"},"@context":"http://schema.org"}</script>
+{"description":"This post is an expansion of my answer on Cross Validated Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html","headline":"Why can cross entropy be loss function?","dateModified":"2018-07-19T00:00:00+00:00","datePublished":"2018-07-19T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
         <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
@@ -91,20 +91,20 @@
 </header>
 
     <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Book list | Linlin</title>
+<title>Why can cross entropy be loss function? | Linlin</title>
 <meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Book list" />
+<meta property="og:title" content="Why can cross entropy be loss function?" />
 <meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
 <meta property="og:locale" content="EN" />
-<meta name="description" content="Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories" />
-<meta property="og:description" content="Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories" />
-<link rel="canonical" href="http://localhost:4000/blog/2018/07/12/book-recommedations.html" />
-<meta property="og:url" content="http://localhost:4000/blog/2018/07/12/book-recommedations.html" />
+<meta name="description" content="This post is an expansion of my answer on Cross Validated Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as" />
+<meta property="og:description" content="This post is an expansion of my answer on Cross Validated Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as" />
+<link rel="canonical" href="http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html" />
+<meta property="og:url" content="http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html" />
 <meta property="og:site_name" content="Linlin" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-07-12T15:15:00+00:00" />
+<meta property="article:published_time" content="2018-07-19T00:00:00+00:00" />
 <script type="application/ld+json">
-{"description":"Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/blog/2018/07/12/book-recommedations.html","headline":"Book list","dateModified":"2018-07-12T15:15:00+00:00","datePublished":"2018-07-12T15:15:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2018/07/12/book-recommedations.html"},"@context":"http://schema.org"}</script>
+{"description":"This post is an expansion of my answer on Cross Validated Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html","headline":"Why can cross entropy be loss function?","dateModified":"2018-07-19T00:00:00+00:00","datePublished":"2018-07-19T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <div class="m-page-main">
@@ -114,23 +114,23 @@
             <article itemscope itemtype="http://schema.org/BlogPosting">
                 <meta itemprop="mainEntityOfPage" itemscope itemType="https://schema.org/WebPage"/>
                 <header class="article-header">
-                    <h1 itemprop="headline" itemprop="name headline">Book list</h1>
+                    <h1 itemprop="headline" itemprop="name headline">Why can cross entropy be loss function?</h1>
 		    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Linlin" />
                     <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Book list | Linlin</title>
+<title>Why can cross entropy be loss function? | Linlin</title>
 <meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Book list" />
+<meta property="og:title" content="Why can cross entropy be loss function?" />
 <meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
 <meta property="og:locale" content="EN" />
-<meta name="description" content="Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories" />
-<meta property="og:description" content="Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories" />
-<link rel="canonical" href="http://localhost:4000/blog/2018/07/12/book-recommedations.html" />
-<meta property="og:url" content="http://localhost:4000/blog/2018/07/12/book-recommedations.html" />
+<meta name="description" content="This post is an expansion of my answer on Cross Validated Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as" />
+<meta property="og:description" content="This post is an expansion of my answer on Cross Validated Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as" />
+<link rel="canonical" href="http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html" />
+<meta property="og:url" content="http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html" />
 <meta property="og:site_name" content="Linlin" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-07-12T15:15:00+00:00" />
+<meta property="article:published_time" content="2018-07-19T00:00:00+00:00" />
 <script type="application/ld+json">
-{"description":"Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive. This post is a growing list of books in different categories","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/blog/2018/07/12/book-recommedations.html","headline":"Book list","dateModified":"2018-07-12T15:15:00+00:00","datePublished":"2018-07-12T15:15:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2018/07/12/book-recommedations.html"},"@context":"http://schema.org"}</script>
+{"description":"This post is an expansion of my answer on Cross Validated Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html","headline":"Why can cross entropy be loss function?","dateModified":"2018-07-19T00:00:00+00:00","datePublished":"2018-07-19T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
                     <div class="m-article-data clearfix">
@@ -147,7 +147,15 @@
         <ul class="inline-list tag-wrapper">
             
                 <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=blog">blog
+                    href="/blog/all.html?tag=probability,">probability,
+                </a></li>
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=KL-divergence,">KL-divergence,
+                </a></li>
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=entropy">entropy
                 </a></li>
             
         </ul>
@@ -156,8 +164,8 @@
         
         <div class="date-wrapper">
             
-                <time class="article-meta" datetime="2018-07-12T15:15:00+00:00" itemprop="datePublished">
-                    Jul 12, 2018
+                <time class="article-meta" datetime="2018-07-19T00:00:00+00:00" itemprop="datePublished">
+                    Jul 19, 2018
                 </time>
             
         </div>
@@ -167,85 +175,78 @@
 
                 </header>
                 <div class="m-article-content js-article-content" itemprop="articleBody">
-                    <p>Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive.</p>
+                    <blockquote>
+  <p>This post is an expansion of my answer on <a href="https://stats.stackexchange.com/a/357974/41910">Cross Validated</a></p>
+</blockquote>
 
-<p>This post is a growing list of books in different categories</p>
-
+<p>Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as 
 <!--more-->
+<script type="math/tex">\begin{equation}
+	S(v)=-\sum_ip(v_i)\log p(v_i)\label{eq:entropy},
+\end{equation}</script></p>
 
-<h3 id="science-and-research">Science and research</h3>
+<p>for <script type="math/tex">p(v_i)</script> as the probabilities of different states <script type="math/tex">v_i</script> of the system. From an information theory point of view, <script type="math/tex">S(v)</script> is the amount of information is needed for removing the uncertainty. For instance, the event A <code class="highlighter-rouge">I will die eventually</code> is almost certain (maybe we can solving the aging problem for word <code class="highlighter-rouge">almost</code>), therefore it has low entropy which requires only the information of <code class="highlighter-rouge">might solve the aging problem</code> to make it certain. However, the event B <code class="highlighter-rouge">The president will die in 50 years</code> is much more uncertain than A, thus it needs more information to remove the uncertainties.</p>
 
-<p><strong>Probability: the logic of science</strong> by E.T. Jaynes, 2003</p>
+<p>Now look at the definition of KL divergence between events A and B</p>
 
-<p>It is raining then there must be cloud in the sky. There is no cloud then it must not be raining. 
-And this Aristotle logic told us <em>“there is cloud”</em> cannot deduce <em>“it is raining”</em>. However, the cloud in the sky makes raining more plausible than a clear sky. 
-From the basic logics, Jaynes built up the whole realm of probability theory in a natural and consistent way. This is fantastic! I love it, especially as a Bayesian statistics fan.</p>
+<script type="math/tex; mode=display">\begin{equation}
+	D_{KL}(A\parallel B) = \sum_ip_A(v_i)\log p_A(v_i) - p_A(v_i)\log p_B(v_i)\label{eq:kld}, 
+\end{equation}</script>
 
-<p><strong>Theory of Games and Economic Behavior</strong> by J. von Neumann and O. Morgenstern, 1953</p>
+<p>where the first term of the right hand side is the entropy of event A, the second term can be interpreted as the expectation of event B in terms of event A. And the <script type="math/tex">D_{KL}</script> describes how different B is from A from the perspective of A.</p>
 
-<h3 id="machine-learning">Machine Learning</h3>
+<p>To relate cross entropy to entropy and KL divergence, we need to reformalize the cross entropy in terms of events A and B as</p>
 
-<p><strong>Patter Recognition and Machine Learning</strong> by C. M. Bishop, 2006</p>
+<script type="math/tex; mode=display">\begin{equation}
+	H(A, B) = -\sum_ip_A(v_i)\log p_B(v_i)\label{eq:crossentropy}. 
+\end{equation}</script>
 
-<p><strong>Information Theory, Inference, and Learning Algorithms</strong> by D. Mackay</p>
+<p>From the definitions, we can easily see</p>
 
-<p>I’ve built my passion about Bayesian statistics from Dr. MacKay’s doctoral thesis. His writing is always right to the point in a simple and clear way.</p>
+<script type="math/tex; mode=display">\begin{equation}
+	H(A, B) = D_{KL}(A\parallel B)+S_A\label{eq:entropyrelation}. 
+\end{equation}</script>
 
-<p><strong>The Elements of Statistics Learning</strong> by T. Hastie, R. Tibshirani and J. Friedman, 2008</p>
+<p>From the relation, the fact that if <script type="math/tex">S_A</script> is a constant, then minimizing <script type="math/tex">H(A, B)</script> is equivalent to minimizing <script type="math/tex">D_{KL}(A\parallel B)</script> can answer why the cross entropy error function arises from the likelihood function of the model. 
+A further question follows naturally as how the entropy can be a constant. In a machine learning task, we start with a dataset (denoted as <script type="math/tex">P(\mathcal D)</script>) which represent the problem to be solved, and the learning purpose is to make the model estimated distribution (denoted as <script type="math/tex">P(model)</script>) as close as possible to true distribution of the problem (denoted as <script type="math/tex">P(truth)</script>). 
+<script type="math/tex">P(truth)</script> is unknown and represented by <script type="math/tex">P(\mathcal D)</script>. Therefore in an ideal world, we expect</p>
 
-<h3 id="fun-and-very-inspiring">Fun and very inspiring</h3>
-<p>This is my favorite list!</p>
+<script type="math/tex; mode=display">\begin{equation}
+	P(model)\approx P(\mathcal D) \approx P(truth)
+\end{equation}</script>
 
-<p><strong>Surely you are joking, Mr. Feyman</strong> by E. Hutchings</p>
+<p>and minimize <script type="math/tex">D_{KL}(P(\mathcal D)\parallel P(model))</script>.</p>
 
-<p>Funny stories from the great physicist Feyman can encourage and inspire you to think and explore more about things surrounding us. The world is wonderful and beautiful.</p>
+<p>Luckily, in practice <script type="math/tex">\mathcal D</script> is given, which means its entropy <script type="math/tex">S(D)</script> is fixed as a constant. Now we see that the equivalence of minimizing cross entropy and KL divergence in a classification problem for given dataset, which shows the cross entropy can be the proper error function.</p>
 
-<p><strong>Naked Economics</strong></p>
-
-<p><strong>Thinking: Fast and Slow</strong></p>
-
-<p>…</p>
-<h3 id="chinese-philosophy-and-history">Chinese philosophy and history</h3>
-
-<p><strong>庄子 Zhuang zi</strong> by Zhuang zi, ～300BC</p>
-
-<p>The Taoism philosopher emphasized the freedom of living without restrains from daily lives. Following his teachings brings strong and positive mentalities.</p>
-
-<p><strong>传习录 Chuan Xi Lu</strong> by 王阳明 Wang Yangming ～1500</p>
-
-<p>“知行合一”</p>
-
-<p><strong>资治通鉴</strong> by 司马光 Sima Guang</p>
-
-<p>….</p>
 
                 </div>
                 <footer>
                     
-                        <meta itemprop="dateModified" content="2018-07-12T15:15:00+00:00">
+                        <meta itemprop="dateModified" content="2018-07-19T00:00:00+00:00">
                     
                     <div class="article-license">
                         <div class="m-license">
     <div class="clearfix">
         
-        <a class="octocat" href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2018-07-12-book-recommedations.md">
+        <a class="octocat" href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2018-07-19-crossentropy-kl-divergence.md">
             <img alt="View on Github" src="/statics/images/octocat.jpg" />
         </a>
-        <p><a href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2018-07-12-book-recommedations.md">View this POST on Github</a>.</P>
+        <p><a href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2018-07-19-crossentropy-kl-divergence.md">View this POST on Github</a>.</P>
         
         <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> license.</p>
         <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
             <img alt="Creative Commons License" src="/statics/images/license-cc4.png" />
         </a>
-        <p>欢迎转载，转载需注明出处：<a class="url" href="http://localhost:4000/blog/2018/07/12/book-recommedations.html">
-            http://localhost:4000/blog/2018/07/12/book-recommedations.html
+        <p>欢迎转载，转载需注明出处：<a class="url" href="http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html">
+            http://localhost:4000/machine%20learning/2018/07/19/crossentropy-kl-divergence.html
         </a>，且禁止用于商业目的。</p>
     </div>
 </div>
 
                     </div>
                 </footer>
-                <section></section><div class="article__previous-next clearfix"><div class="previous"><span></span><a href="/machine%20learning/2018/07/19/crossentropy-kl-divergence.html">Why can cross entropy be loss function?</a></div><div class="next"><span></span><a href="/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">PyTorch 中的基本操作</a></div></div></article>
+                <section></section><div class="article__previous-next clearfix"><div class="previous"><span></span><a href="/optimization/2018/08/19/math-interpretation-sgd.html">Mathematical interpretation of why Gradient descent works</a></div><div class="next"><span></span><a href="/blog/2018/07/12/book-recommedations.html">Book list</a></div></div></article>
         </div>
         <div class="col-2">
             <aside class="js-article-aside">

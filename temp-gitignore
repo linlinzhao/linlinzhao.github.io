@@ -1,9 +1,11 @@
 node_modules/*
 
-vendor/*.md
+vendor/**/*.md
 
-vendor/*.yml
-vendor/*.markdown
-vendor/*.erb
+vendor/**/*.yml
+
+vendor/**/*.markdown
+
+vendor/**/*.erb
 
 

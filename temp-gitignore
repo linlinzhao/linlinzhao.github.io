@@ -7,3 +7,6 @@ vendor/bundle/ruby/2.5.0/gems/jekyll-3.7.3/lib/site_template/_posts/0000-00-00-w
 vendor/bundle/ruby/2.5.0/gems/liquid-4.0.0/lib/liquid/locales/en.yml
 
 vendor/bundle/ruby/2.5.0/gems/minima-2.5.0/assets/main.scss
+
+.bundle/config
+

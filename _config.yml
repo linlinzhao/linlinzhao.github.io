@@ -88,3 +88,5 @@ plugins:
 
 plugins_dir:
    - jekyll-seo-tag
+
+#exclude: ['vendor/bundle/ruby/2.5.0/gems/liquid-4.0.0/lib/liquid/locales/en.yml']

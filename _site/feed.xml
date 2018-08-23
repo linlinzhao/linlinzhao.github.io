@@ -4,8 +4,8 @@
     <title>Linlin Zhao</title>
     <description>Linlin | 赵霖林
 </description>
-    <link>http://localhost:4000</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <link>https://linlinzhao.github.io</link>
+    <atom:link href="https://linlinzhao.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
         <title>PhD Positions for developing Deep Generative Models for De Novo design of Molecules and Materials</title>
@@ -28,8 +28,8 @@
 Applications including a short but informative CV together with a motivation letter should be sent to &lt;a href=&quot;nicole.brand@hhu.de&quot;&gt;MS. Nicole&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//machine%20learning/2018/08/23/job-post-markus.html</link>
-        <guid isPermaLink="true">http://localhost:4000//machine%20learning/2018/08/23/job-post-markus.html</guid>
+        <link>https://linlinzhao.github.io//machine%20learning/2018/08/23/job-post-markus.html</link>
+        <guid isPermaLink="true">https://linlinzhao.github.io//machine%20learning/2018/08/23/job-post-markus.html</guid>
       </item>
     
       <item>
@@ -98,8 +98,8 @@ The scalar constant &lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt; 
 
 </description>
         <pubDate>Sun, 19 Aug 2018 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//optimization/2018/08/19/math-interpretation-sgd.html</link>
-        <guid isPermaLink="true">http://localhost:4000//optimization/2018/08/19/math-interpretation-sgd.html</guid>
+        <link>https://linlinzhao.github.io//optimization/2018/08/19/math-interpretation-sgd.html</link>
+        <guid isPermaLink="true">https://linlinzhao.github.io//optimization/2018/08/19/math-interpretation-sgd.html</guid>
       </item>
     
       <item>
@@ -150,8 +150,8 @@ A further question follows naturally as how the entropy can be a constant. In a 
 
 </description>
         <pubDate>Thu, 19 Jul 2018 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//machine%20learning/2018/07/19/crossentropy-kl-divergence.html</link>
-        <guid isPermaLink="true">http://localhost:4000//machine%20learning/2018/07/19/crossentropy-kl-divergence.html</guid>
+        <link>https://linlinzhao.github.io//machine%20learning/2018/07/19/crossentropy-kl-divergence.html</link>
+        <guid isPermaLink="true">https://linlinzhao.github.io//machine%20learning/2018/07/19/crossentropy-kl-divergence.html</guid>
       </item>
     
       <item>
@@ -209,8 +209,8 @@ From the basic logics, Jaynes built up the whole realm of probability theory in 
 &lt;p&gt;….&lt;/p&gt;
 </description>
         <pubDate>Thu, 12 Jul 2018 15:15:00 +0000</pubDate>
-        <link>http://localhost:4000//blog/2018/07/12/book-recommedations.html</link>
-        <guid isPermaLink="true">http://localhost:4000//blog/2018/07/12/book-recommedations.html</guid>
+        <link>https://linlinzhao.github.io//blog/2018/07/12/book-recommedations.html</link>
+        <guid isPermaLink="true">https://linlinzhao.github.io//blog/2018/07/12/book-recommedations.html</guid>
       </item>
     
       <item>
@@ -425,8 +425,8 @@ From the basic logics, Jaynes built up the whole realm of probability theory in 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 10 Nov 2017 15:15:00 +0000</pubDate>
-        <link>http://localhost:4000//tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html</link>
-        <guid isPermaLink="true">http://localhost:4000//tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html</guid>
+        <link>https://linlinzhao.github.io//tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html</link>
+        <guid isPermaLink="true">https://linlinzhao.github.io//tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html</guid>
       </item>
     
       <item>
@@ -476,8 +476,8 @@ For independent lines, the expressions should start from a new line after &lt;co
 &lt;p&gt;Okay, that is it. I hope someone could find this post useful.&lt;/p&gt;
 </description>
         <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html</link>
-        <guid isPermaLink="true">http://localhost:4000//tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html</guid>
+        <link>https://linlinzhao.github.io//tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html</link>
+        <guid isPermaLink="true">https://linlinzhao.github.io//tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html</guid>
       </item>
     
       <item>
@@ -830,8 +830,8 @@ RuntimeError: Trying to backward through the graph a second time, but the buffer
 &lt;/ol&gt;
 </description>
         <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//tech/2017/10/24/understanding-backward()-in-PyTorch.html</link>
-        <guid isPermaLink="true">http://localhost:4000//tech/2017/10/24/understanding-backward()-in-PyTorch.html</guid>
+        <link>https://linlinzhao.github.io//tech/2017/10/24/understanding-backward()-in-PyTorch.html</link>
+        <guid isPermaLink="true">https://linlinzhao.github.io//tech/2017/10/24/understanding-backward()-in-PyTorch.html</guid>
       </item>
     
       <item>
@@ -872,8 +872,8 @@ RuntimeError: Trying to backward through the graph a second time, but the buffer
 I’ve no idea whether our universe follows a set of deterministic rules, but the sure thing is that our life is full of uncertainties. Usually a guy cannot be certain if the beautiful girl being asked would be willing to be his girlfriend; though we would like to know what the weather would be a month from now for our vacation in Barcelona, we cannot be certain what it will be; it is also very hard for us to choose one of many good job offers. Despite all sorts of uncertainties, we have to make decisions quickly (from an evolutionary point view). We all know that probability theory is the hammer for uncertainty, equipment we can use to infer and make decisions. Dr. H. Barlow said “The brain is nothing but a statistical decision organ”. Indeed, our brains are trained to get something useful out of our noisy surroundings.&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html</link>
-        <guid isPermaLink="true">http://localhost:4000//probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html</guid>
+        <link>https://linlinzhao.github.io//probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html</link>
+        <guid isPermaLink="true">https://linlinzhao.github.io//probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html</guid>
       </item>
     
   </channel>

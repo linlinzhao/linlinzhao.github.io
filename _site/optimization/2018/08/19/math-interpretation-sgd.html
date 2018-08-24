@@ -172,12 +172,13 @@
                 </header>
                 <div class="m-article-content js-article-content" itemprop="articleBody">
                     <p>For minimizing a differentiable multivariable function <script type="math/tex">f(\mathbf x)</script> with initial value of <script type="math/tex">\mathbf x_0</script>, the fastest decreasing would be the direction of negative gradient of <script type="math/tex">f(x)</script> since its gradient points to fastest ascending direction. The updating rule 
-<!--more-->
-<script type="math/tex">\begin{equation}
-\mathbf	x_{t+1} = \mathbf x_t - \eta\nabla f(\mathbf x_t), t=1,2~\cdots
-\end{equation}</script></p>
+<!--more--></p>
 
-<p>with sufficiently small $\eta$ leads to <script type="math/tex">% <![CDATA[
+<script type="math/tex; mode=display">\begin{equation}
+\mathbf	x_{t+1} = \mathbf x_t - \eta\nabla f(\mathbf x_t), t=1,2~\cdots
+\end{equation}</script>
+
+<p>with sufficiently small <script type="math/tex">\eta</script> leads to <script type="math/tex">% <![CDATA[
 f(\mathbf x_{t+1})<f(\mathbf x_t) %]]></script>. 
 The scalar constant <script type="math/tex">\eta</script> is the step size determining how far the updating moves in the negative gradient direction, which is usually called learning rate in machine learning model training.</p>
 

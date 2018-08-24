@@ -12,13 +12,14 @@ date: 2018-08-19
 
 For minimizing a differentiable multivariable function $$f(\mathbf x)$$ with initial value of $$\mathbf x_0$$, the fastest decreasing would be the direction of negative gradient of $$f(x)$$ since its gradient points to fastest ascending direction. The updating rule 
 <!--more-->
+
 $$
 \begin{equation}
 \mathbf	x_{t+1} = \mathbf x_t - \eta\nabla f(\mathbf x_t), t=1,2~\cdots
 \end{equation}
 $$
 
-with sufficiently small $\eta$ leads to $$f(\mathbf x_{t+1})<f(\mathbf x_t)$$. 
+with sufficiently small $$\eta$$ leads to $$f(\mathbf x_{t+1})<f(\mathbf x_t)$$. 
 The scalar constant $$\eta$$ is the step size determining how far the updating moves in the negative gradient direction, which is usually called learning rate in machine learning model training. 
 
 ### But, why $$\eta$$ has to be small?

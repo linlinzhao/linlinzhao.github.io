@@ -35,12 +35,13 @@ Applications including a short but informative CV together with a motivation let
       <item>
         <title>Mathematical interpretation of why Gradient descent works</title>
         <description>&lt;p&gt;For minimizing a differentiable multivariable function &lt;script type=&quot;math/tex&quot;&gt;f(\mathbf x)&lt;/script&gt; with initial value of &lt;script type=&quot;math/tex&quot;&gt;\mathbf x_0&lt;/script&gt;, the fastest decreasing would be the direction of negative gradient of &lt;script type=&quot;math/tex&quot;&gt;f(x)&lt;/script&gt; since its gradient points to fastest ascending direction. The updating rule 
-&lt;!--more--&gt;
-&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}
-\mathbf	x_{t+1} = \mathbf x_t - \eta\nabla f(\mathbf x_t), t=1,2~\cdots
-\end{equation}&lt;/script&gt;&lt;/p&gt;
+&lt;!--more--&gt;&lt;/p&gt;
 
-&lt;p&gt;with sufficiently small $\eta$ leads to &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+\mathbf	x_{t+1} = \mathbf x_t - \eta\nabla f(\mathbf x_t), t=1,2~\cdots
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;with sufficiently small &lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt; leads to &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
 f(\mathbf x_{t+1})&lt;f(\mathbf x_t) %]]&gt;&lt;/script&gt;. 
 The scalar constant &lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt; is the step size determining how far the updating moves in the negative gradient direction, which is usually called learning rate in machine learning model training.&lt;/p&gt;
 

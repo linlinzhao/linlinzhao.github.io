@@ -18,7 +18,7 @@ Since $$X$$ is Gaussian distributed $$p(X\mid \mu)\sim \mathcal N(\mu, \sigma^2)
 
 $$
 \begin{equation}
-\prod_{k=1}^N p(x_k\mid \mu)=(2\pi\sigma^2)^{\frac{N}{2}}\exp\left (-\frac{1}{2}\sum_{k=1}^N(\frac{x_k-\mu}{\sigma})^2\right).
+p(x\mid \mu)=\prod_{k=1}^N p(x_k\mid \mu)=(2\pi\sigma^2)^{\frac{N}{2}}\exp\left (-\frac{1}{2}\sum_{k=1}^N(\frac{x_k-\mu}{\sigma})^2\right).
 \end{equation}
 $$
 

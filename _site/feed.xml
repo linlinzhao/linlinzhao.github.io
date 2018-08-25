@@ -18,7 +18,7 @@ Assuming &lt;script type=&quot;math/tex&quot;&gt;N&lt;/script&gt; observations a
 &lt;p&gt;Since &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is Gaussian distributed &lt;script type=&quot;math/tex&quot;&gt;p(X\mid \mu)\sim \mathcal N(\mu, \sigma^2)&lt;/script&gt;, the likelihood function is&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
-\prod_{k=1}^N p(x_k\mid \mu)=(2\pi\sigma^2)^{\frac{N}{2}}\exp\left (-\frac{1}{2}\sum_{k=1}^N(\frac{x_k-\mu}{\sigma})^2\right).
+p(x\mid \mu)=\prod_{k=1}^N p(x_k\mid \mu)=(2\pi\sigma^2)^{\frac{N}{2}}\exp\left (-\frac{1}{2}\sum_{k=1}^N(\frac{x_k-\mu}{\sigma})^2\right).
 \end{equation}&lt;/script&gt;
 
 &lt;p&gt;The conjugate prior can be &lt;script type=&quot;math/tex&quot;&gt;p(\mu)\sim \mathcal N(\mu_0, \sigma_0^2)&lt;/script&gt;, specifically&lt;/p&gt;

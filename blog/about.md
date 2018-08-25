@@ -7,11 +7,12 @@ key: page-about
 
 ### The Yin-Yang logo
 >"道生一，一生二，二生三，三生万物"
->“Tao gave birth to one, one gave birth to two, two gave birth to three, three gave birth to all the myriad things. All the myriad things carry the yin on their backs and hold the yang in their embrace.”
+
+>Translate: “Tao gave birth to one, one gave birth to two, two gave birth to three, three gave birth to all the myriad things. All the myriad things carry the yin on their backs and hold the yang in their embrace.”
 
 The "Tao" 道 in Chinese philosophy Taoism means the fundamental rules governing the universe. 
 
-The [Yin-Yang](https://en.wikipedia.org/wiki/Yin_and_yang) principle can be found everywhere, dark and light, 0's and 1's in digital electronics, binary classification in machine learning. 
+The [Yin-Yang](https://en.wikipedia.org/wiki/Yin_and_yang) principle can be found everywhere, dark and light, 0's and 1's in digital electronics, binary classification in machine learning, kind and evil in the same person, and so on. 
 The physicist Bohr spoke of the unity of opposites and contradictions in nature and reformalized Yin-Yang in Latin as "Contraria sunt Complementa". 
 
 ### Favorite quotes

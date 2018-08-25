@@ -8,6 +8,72 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood</title>
+        <description>&lt;p&gt;&lt;em&gt;In an earlier &lt;a href=&quot;https://linlinzhao.com/probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html&quot;&gt;post&lt;/a&gt;, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;As simple example of Bayesian inference in action, we estimate the expectation &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; of univariate Gaussian with known variance &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt; as an example. 
+Assuming &lt;script type=&quot;math/tex&quot;&gt;N&lt;/script&gt; observations as &lt;script type=&quot;math/tex&quot;&gt;X=(x_1,\cdots, x_N)&lt;/script&gt;, maximum likelihood estimate gives &lt;script type=&quot;math/tex&quot;&gt;\mu=\sum_kx_k/N=\bar X&lt;/script&gt;, of which the calculation details are neglected. Now we focus on Bayesian estimate.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;p&gt;Since &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is Gaussian distributed &lt;script type=&quot;math/tex&quot;&gt;p(X\mid \mu)\sim \mathcal N(\mu, \sigma^2)&lt;/script&gt;, the likelihood function is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+\prod_{k=1}^N p(x_k\mid \mu)=(2\pi\sigma^2)^{\frac{N}{2}}\exp\left (-\frac{1}{2}\sum_{k=1}^N(\frac{x_k-\mu}{\sigma})^2\right).
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;The conjugate prior can be &lt;script type=&quot;math/tex&quot;&gt;p(\mu)\sim \mathcal N(\mu_0, \sigma_0^2)&lt;/script&gt;, specifically&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+p(\mu)=(2\pi \sigma_0^2)^{-1/2}\exp\left (-\frac{1}{2}(\frac{\mu-\mu_0}{\sigma_0})^2\right ).
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;Then applying Bayes rule yields the posterior&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align}
+\nonumber p(\mu\mid x)&amp;=\frac{p(x\mid \mu)p(\mu)}{\int_u p(x\mid \mu)p(\mu)d\mu}\\
+ &amp;=c\exp\left(-\frac{1}{2}\left((\frac{N}{\sigma^2}+\frac{1}{\sigma_0^2})\mu^2-2(\frac{1}{\sigma^2}\sum_{k=1}^Nx_k+\frac{\mu_0}{\sigma_0^2})\mu\right)\right)\label{p1},
+\end{align} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; is a constant. The quadratic form of &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; in the exponential function makes us safe to assume &lt;script type=&quot;math/tex&quot;&gt;p(\mu\mid x)\sim \mathcal N(\mu_N, \sigma_N^2)&lt;/script&gt; which gives&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+p(\mu\mid x)=(2\pi \sigma_N^2)^{-1/2}\exp\left (-\frac{1}{2}(\frac{\mu-\mu_N}{\sigma_N})^2\right )=\alpha \exp\left(-\frac{1}{2}\left(\frac{\mu^2}{\sigma_N2}-\frac{2\mu_N}{\sigma_N^2}\right)\right).
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;Comparing two expressions for posterior &lt;script type=&quot;math/tex&quot;&gt;p(\mu\mid x)&lt;/script&gt;, we have&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align*}
+\sigma_N^2&amp;=\frac{\sigma^2\sigma_0^2}{N\sigma_0^2+\sigma^2}\\
+\mu_N&amp;=\frac{\sigma_0^2\sum_kx_k}{N\sigma_0^2+\sigma^2}+\frac{\sigma^2\mu_0}{N\sigma_0^2+\sigma^2}.
+\end{align*} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Then using the posterior we can estimate &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+\hat \mu=\int_{-\infty}^{\infty}\mu p(\mu\mid x)d\mu=\mu_N=\frac{\sigma_0^2\sum_kx_k}{N\sigma_0^2+\sigma^2}+\frac{\sigma^2\mu_0}{N\sigma_0^2+\sigma^2}.
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;Notice that as the data size &lt;script type=&quot;math/tex&quot;&gt;N&lt;/script&gt; is getting larger, the Bayesian estimation is getting closer to the estimation of maximum likelihood. When our data size is small, the prior of Bayesian estimation drives the parameter away from its maximum likelihood estimation for avoiding extreme cases (e.g. over-fitting).&lt;/p&gt;
+
+&lt;p&gt;In theory and general, after posterior is obtained, the prediction of novel data can be viewed as the ensemble of all possible parameters. In the case of Bayesian learning, we can make prediction for output &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; given new input &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+p(y\mid x, D)=\int p(y\mid x, w)p(w\mid D)dw,
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;p(w\mid D)&lt;/script&gt; is the posterior with &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; the parameter vector and &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; the training data. 
+This is the so-called full Bayesian approach where the difficulty for application lies on the estimation of the integral. 
+Alternatively Maximum a Posteriori (MAP) estimate is utilized widely for practical purposes, which is a point-wise estimate and gives the most probable parameter set given the training data. The MAP usually works better than maximum likelihood since a suitable prior can render the fitting curve smoother thanks to its regularization on complex models.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000//bayesian/2018/08/25/bayesian2-univariant-gaussian.html</link>
+        <guid isPermaLink="true">http://localhost:4000//bayesian/2018/08/25/bayesian2-univariant-gaussian.html</guid>
+      </item>
+    
+      <item>
         <title>PhD Positions for developing Deep Generative Models for De Novo design of Molecules and Materials</title>
         <description>&lt;p&gt;The Institutes for Mathematical Modelling of Biological Systems (Prof. Dr. Markus Kollmann), Pharmaceutical and Medicinal Chemistry (Prof. Dr. Holger Gohlke), and Machine Learning (Prof. Dr. Stefan Harmeling), invite applications for positions on PhD level in the interdisciplinary field between computational sciences and life sciences. This job is part of the Artificial Intelligence Initiative at Heinrich Heine University. Our joint research effort focuses on designing biomolecules ‘in silico’ for biotechnological applications, such as molecules needed for generating biodegradable material. In particular, we look for persons that are interested to develop and extend modern machine learning concepts, such as Deep Generative models and Monte Carlo Search Methods, within a Reinforcement Learning framework to approach the problem of generating highly complex structures under strong constraints. For an introduction into the field please have a look at this basic &lt;a href=&quot;https://www.nature.com/articles/s41586-018-0337-2.pdf&quot;&gt;review&lt;/a&gt;.&lt;/p&gt;
 

@@ -3,8 +3,8 @@ layout: post
 comment: true
 title: Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood
 key: 10009
-tags: probability, bayesian, inference
-category: bayesian
+tags: probability bayesian inference
+category: stats
 date: 2018-08-25
 ---
 

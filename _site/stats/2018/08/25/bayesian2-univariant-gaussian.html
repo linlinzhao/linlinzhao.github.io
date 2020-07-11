@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <title>Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood - Linlin</title>
 <meta name="description" content="In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the...">
-<link rel="canonical" href="http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html">
+<link rel="canonical" href="http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html">
 <link rel="alternate" type="application/rss+xml" title="Linlin" href="http://localhost:4000/feed.xml">
 
         <!--
@@ -46,13 +46,13 @@
 <meta property="og:locale" content="EN" />
 <meta name="description" content="In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate." />
 <meta property="og:description" content="In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate." />
-<link rel="canonical" href="http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html" />
-<meta property="og:url" content="http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html" />
+<link rel="canonical" href="http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html" />
+<meta property="og:url" content="http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html" />
 <meta property="og:site_name" content="Linlin" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-08-25T00:00:00+00:00" />
 <script type="application/ld+json">
-{"description":"In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html"},"@type":"BlogPosting","url":"http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html","headline":"Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood","datePublished":"2018-08-25T00:00:00+00:00","dateModified":"2018-08-25T00:00:00+00:00","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@context":"http://schema.org"}</script>
+{"description":"In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate.","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html","headline":"Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood","dateModified":"2018-08-25T00:00:00+00:00","datePublished":"2018-08-25T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
         <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
@@ -98,13 +98,13 @@
 <meta property="og:locale" content="EN" />
 <meta name="description" content="In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate." />
 <meta property="og:description" content="In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate." />
-<link rel="canonical" href="http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html" />
-<meta property="og:url" content="http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html" />
+<link rel="canonical" href="http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html" />
+<meta property="og:url" content="http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html" />
 <meta property="og:site_name" content="Linlin" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-08-25T00:00:00+00:00" />
 <script type="application/ld+json">
-{"description":"In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html"},"@type":"BlogPosting","url":"http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html","headline":"Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood","datePublished":"2018-08-25T00:00:00+00:00","dateModified":"2018-08-25T00:00:00+00:00","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@context":"http://schema.org"}</script>
+{"description":"In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate.","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html","headline":"Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood","dateModified":"2018-08-25T00:00:00+00:00","datePublished":"2018-08-25T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <div class="m-page-main">
@@ -124,13 +124,13 @@
 <meta property="og:locale" content="EN" />
 <meta name="description" content="In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate." />
 <meta property="og:description" content="In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate." />
-<link rel="canonical" href="http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html" />
-<meta property="og:url" content="http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html" />
+<link rel="canonical" href="http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html" />
+<meta property="og:url" content="http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html" />
 <meta property="og:site_name" content="Linlin" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-08-25T00:00:00+00:00" />
 <script type="application/ld+json">
-{"description":"In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html"},"@type":"BlogPosting","url":"http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html","headline":"Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood","datePublished":"2018-08-25T00:00:00+00:00","dateModified":"2018-08-25T00:00:00+00:00","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@context":"http://schema.org"}</script>
+{"description":"In an earlier post, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood. As simple example of Bayesian inference in action, we estimate the expectation of univariate Gaussian with known variance as an example. Assuming observations as , maximum likelihood estimate gives , of which the calculation details are neglected. Now we focus on Bayesian estimate.","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"BlogPosting","url":"http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html","headline":"Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood","dateModified":"2018-08-25T00:00:00+00:00","datePublished":"2018-08-25T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
                     <div class="m-article-data clearfix">
@@ -147,11 +147,11 @@
         <ul class="inline-list tag-wrapper">
             
                 <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=probability,">probability,
+                    href="/blog/all.html?tag=probability">probability
                 </a></li>
             
                 <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=bayesian,">bayesian,
+                    href="/blog/all.html?tag=bayesian">bayesian
                 </a></li>
             
                 <li><a class="round-rect-button"
@@ -252,8 +252,8 @@ Alternatively Maximum a Posteriori (MAP) estimate is utilized widely for practic
         <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
             <img alt="Creative Commons License" src="/statics/images/license-cc4.png" />
         </a>
-        <p>欢迎转载，转载需注明出处：<a class="url" href="http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html">
-            http://localhost:4000/bayesian/2018/08/25/bayesian2-univariant-gaussian.html
+        <p>欢迎转载，转载需注明出处：<a class="url" href="http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html">
+            http://localhost:4000/stats/2018/08/25/bayesian2-univariant-gaussian.html
         </a>，且禁止用于商业目的。</p>
     </div>
 </div>

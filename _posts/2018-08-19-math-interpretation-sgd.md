@@ -3,7 +3,7 @@ layout: post
 comment: true
 title: Mathematical interpretation of why Gradient descent works
 key: 10007
-tags: optimization, gradient-descent
+tags: optimization gradient-descent
 category: optimization
 date: 2018-08-19
 ---

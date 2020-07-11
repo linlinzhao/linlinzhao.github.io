@@ -3,8 +3,8 @@ layout: post
 comment: true
 title: Bayesian basics I - the way of reasoning 
 key: 10005
-tags: probability, Bayesian
-category: probability 
+tags: probability bayesian
+category: stats
 date: 2015-07-12
 ---
 

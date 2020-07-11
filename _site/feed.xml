@@ -69,8 +69,8 @@ Alternatively Maximum a Posteriori (MAP) estimate is utilized widely for practic
 
 </description>
         <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//bayesian/2018/08/25/bayesian2-univariant-gaussian.html</link>
-        <guid isPermaLink="true">http://localhost:4000//bayesian/2018/08/25/bayesian2-univariant-gaussian.html</guid>
+        <link>http://localhost:4000//stats/2018/08/25/bayesian2-univariant-gaussian.html</link>
+        <guid isPermaLink="true">http://localhost:4000//stats/2018/08/25/bayesian2-univariant-gaussian.html</guid>
       </item>
     
       <item>
@@ -939,8 +939,8 @@ RuntimeError: Trying to backward through the graph a second time, but the buffer
 I’ve no idea whether our universe follows a set of deterministic rules, but the sure thing is that our life is full of uncertainties. Usually a guy cannot be certain if the beautiful girl being asked would be willing to be his girlfriend; though we would like to know what the weather would be a month from now for our vacation in Barcelona, we cannot be certain what it will be; it is also very hard for us to choose one of many good job offers. Despite all sorts of uncertainties, we have to make decisions quickly (from an evolutionary point view). We all know that probability theory is the hammer for uncertainty, equipment we can use to infer and make decisions. Dr. H. Barlow said “The brain is nothing but a statistical decision organ”. Indeed, our brains are trained to get something useful out of our noisy surroundings.&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html</link>
-        <guid isPermaLink="true">http://localhost:4000//probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html</guid>
+        <link>http://localhost:4000//stats/2015/07/12/Bayesian-basics1-way-of-reasoning.html</link>
+        <guid isPermaLink="true">http://localhost:4000//stats/2015/07/12/Bayesian-basics1-way-of-reasoning.html</guid>
       </item>
     
   </channel>

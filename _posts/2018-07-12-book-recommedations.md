@@ -3,7 +3,7 @@ layout: post
 comment: true
 title: Book list
 key: 10001
-tags: blog
+tags: book 
 category: blog
 date: 2018-07-12 23:15:00 +08:00
 ---

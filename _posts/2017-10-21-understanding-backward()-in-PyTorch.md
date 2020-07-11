@@ -3,7 +3,7 @@ layout: post
 comment: true
 title: Understanding backward() in PyTorch (Updated for V0.4) 
 key: 10004
-tags: PyTorch, backward 
+tags: PyTorch machine-learning
 category: tech
 date: 2017-10-24
 ---

@@ -2,8 +2,8 @@
 layout: post
 comment: true
 title: Remote jupyterlab without SSH and sudo
-key: 10005
-tags: Jupyterlab, Linux
+key: A10010
+tags: Jupyterlab Linux
 category: stats
 date: 2020-07-24
 ---
@@ -71,7 +71,7 @@ c.NotebookApp.password = password #use password instead of access token.
 ```
 nohup jupyter lab &
 ```
-This command will run jupyterlab in the background, and the printouts will be forwarded to a generated file "nohup.out" in which you will something like this 
+This command will run jupyterlab in the background, and the printouts will be forwarded to a generated file "nohup.out" in which you will see something like this 
 ```
 [I 16:45:57.163 LabApp] http://yourIPorDomainName:8890/
 ```

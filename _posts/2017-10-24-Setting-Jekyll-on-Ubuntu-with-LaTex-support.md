@@ -2,7 +2,7 @@
 layout: post
 comment: true
 title: Setting Jekyll on Ubuntu 16.04 with Latex support
-key: 10003
+key: A10003
 tags: GitHub-Pages Jekyll LaTex
 category: Tech
 date: 2017-10-24

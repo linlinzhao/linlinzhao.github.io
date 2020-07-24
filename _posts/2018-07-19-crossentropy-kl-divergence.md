@@ -2,7 +2,7 @@
 layout: post
 comment: true
 title: Why can cross entropy be loss function?
-key: 10006
+key: A10006
 tags: probability KL-divergence entropy
 category: machine learning
 date: 2018-07-19

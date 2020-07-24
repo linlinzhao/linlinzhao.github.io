@@ -2,7 +2,7 @@
 layout: post
 comment: true
 title: Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood
-key: 10009
+key: A10009
 tags: probability bayesian inference
 category: stats
 date: 2018-08-25
@@ -10,7 +10,7 @@ date: 2018-08-25
 
 *In an earlier [post](https://linlinzhao.com/probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html), we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood.*
 
-As simple example of Bayesian inference in action, we estimate the expectation $$\mu$$ of univariate Gaussian with known variance $$\sigma^2$$ as an example. 
+As a simple example of Bayesian inference in action, we estimate the expectation $$\mu$$ of univariate Gaussian with known variance $$\sigma^2$$. 
 Assuming $$N$$ observations as $$X=(x_1,\cdots, x_N)$$, maximum likelihood estimate gives $$\mu=\sum_kx_k/N=\bar X$$, of which the calculation details are neglected. Now we focus on Bayesian estimate. 
 
 <!--more-->

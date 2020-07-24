@@ -2,7 +2,7 @@
 layout: post
 comment: true
 title: Bayesian basics I - the way of reasoning 
-key: 10005
+key: A10005
 tags: probability bayesian
 category: stats
 date: 2015-07-12

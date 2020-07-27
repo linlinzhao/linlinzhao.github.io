@@ -8,9 +8,10 @@ category: stats
 date: 2020-07-24
 ---
 
-[SSH port forwarding](https://www.ssh.com/ssh/tunneling/example) is a common way of connecting to remote jupyter notebooks. This typically takes three steps: run jupyter on the server, ssh tunneling to the jupyter instance, and then type the localhost link to your browser. That actually doesn't sound satisfying, and it could be simpler. In this post, I'll guide you through setting up a remote jupyterlab workspace for Python3 from scratch. Since you want to set remote notebooks, I'll assume you feel comfortable with command lines and remote editing. 
+****Disclaimer: this guideline is only suggested for servers within secure local connections, e.g. within an institution or corporation's network.*
 
 <!--more-->
+[SSH port forwarding](https://www.ssh.com/ssh/tunneling/example) is a common way of connecting to remote jupyter notebooks. This typically takes three steps: run jupyter on the server, ssh tunneling to the jupyter instance, and then type the localhost link to your browser. That actually doesn't sound satisfying, and it could be simpler. In this post, I'll guide you through setting up a remote jupyterlab workspace for Python3 from scratch. Since you want to set remote notebooks, I'll assume you feel comfortable with command lines and remote editing. 
 
 ## Check your python version on server
 As of 2020, Python3 is strongly recommended.
@@ -93,4 +94,8 @@ netstat -tulpn | grep '8890'
 Then use `top` or `kill` command to end the process. 
 
 ## The end
-The method has been tested on RHEL7 and Debian servers. It also works for Windows Subsystems for Linux (WSL) Ubuntu 18.04. Hope you'll find this guide helpful.  
+- The method has been tested on RHEL7 and Debian servers. 
+- It also works for Windows Subsystems for Linux (WSL) Ubuntu 18.04. 
+- For small scale collaborations, you can directly share the link to your partner who can directly use your environment. 
+
+Hope you'll find this guide helpful.  

@@ -67,6 +67,8 @@ password = passwd("yourpassword")
 c.NotebookApp.password = password #use password instead of access token.  
 ```
 
+To avoid hard-coding your password to a file, comment last three lines to disable password. Then Juypyter will generate a one-time token for accessing the jupyterlab instance.  
+
 ## Run jupyterlab in the background
 ```
 nohup jupyter lab &
@@ -77,10 +79,12 @@ This command will run jupyterlab in the background, and the printouts will be fo
 ```
 This is your accesible link to the jupyter instance. Now you can safely logout the server.  
 
-## Connect to remote jupyterlab
-Type `http://yourIPorDomainName:8890/` in your browser.
+If you choose to use token for accessing, you'll need to copy the full link with token to your browser. And the token will be used to set a [cookie](https://jupyter-notebook.readthedocs.io/en/stable/security.html#:~:text=If%20a%20generated%20token%20doesn,notebook%20password%20command%20is%20added.) for your browser.
 
-Then you'll be asked to enter the password you have put into the jupyter config file on the server.
+## Connect to remote jupyterlab
+Type `http://yourIPorDomainName:8890/` or `link with token` in your browser.
+
+You'll be asked to enter the password you have put into the jupyter config file on the server.
 
 Now enjoy working with the remote jupyterlab. As long as the server is running, you only need the link to access.  
 

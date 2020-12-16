@@ -96,9 +96,30 @@ netstat -tulpn | grep '8890'
 ```
 Then use `top` or `kill` command to end the process. 
 
+## Manage multiple environments in one Jupyter instance
+You'll probably notice that starting a Jupyter instance for every environment is actually annoying, because we often times need to work on several projects with different settings. 
+It is better that one can link conda environments to ipython kernels such that the environments can show up in one jupyter instance. For instance, I use miniconda3, and `conda env list` tells me following:
+```
+base                  *  /path/to/miniconda3
+rdkit                    /path/to/miniconda3/envs/rdkit
+yolo                     /path/to/miniconda3/envs/yolo
+```
+The idea is that when I start a jupyterlab instance in the base environment, I can also access `rdkit` and `yolo` envs.
+```bash
+conda activate base
+conda install ipykernel
+ipython kernel install --user --name=yolo
+ipython kernel install --user --name=rdkit
+```
+Next step is to make sure the ipython kernels are linked to the right envs, for example, in the json file `.local/share/jupyter/kernels/rdkit/kernel.json`, the first entry for `argv` should point to `/path/to/miniconda3/envs/rdkit`. If not, change that accordingly.
+
+Now `rdkit` and `yolo` will show up in jupyterlab.
+
+
+
 ## The end
 - The method has been tested on RHEL7 and Debian servers. 
-- It also works for Windows Subsystems for Linux (WSL) Ubuntu 18.04. 
-- For small scale collaborations, you can directly share the link to your partner who can directly use your environment. 
+- It also works for Windows Subsystems for Linux (WSL) Ubuntu 18.04.
+- For downloading files from remote, besides `scp`, you can right click the file to create a downloadable link in jupyterlab.
 
 Hope you'll find this guide helpful.  

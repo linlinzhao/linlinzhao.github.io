@@ -8,10 +8,130 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Remote jupyterlab without SSH and sudo</title>
+        <description>&lt;p&gt;&lt;em&gt;Disclaimer: this guideline is only suggested for servers within secure local connections, e.g. within an institution or corporation’s network&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.ssh.com/ssh/tunneling/example&quot;&gt;SSH port forwarding&lt;/a&gt; is a common way of connecting to remote jupyter notebooks. This typically takes three steps: run jupyter on the server, ssh tunneling to the jupyter instance, and then type the localhost link to your browser. That actually doesn’t sound satisfying, and it could be simpler. In this post, I’ll guide you through setting up a remote jupyterlab workspace for Python3 from scratch. Since you want to set remote notebooks, I’ll assume you feel comfortable with command lines and remote editing.&lt;/p&gt;
+
+&lt;h2 id=&quot;check-your-python-version-on-server&quot;&gt;Check your python version on server&lt;/h2&gt;
+&lt;p&gt;As of 2020, Python3 is strongly recommended.&lt;/p&gt;
+
+&lt;p&gt;If you are using RedHat Enterprise 7, the system-wide default version is Python2.7, but your system administrator usually should have installed python3. Suppose python3.6 is installed, you can enable python3 by &lt;code class=&quot;highlighter-rouge&quot;&gt;scl enable rh-python36 bash&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you are using Debian or Ubuntu, python3 comes with the system. In case you want to make python3 as default, add the following line to your &lt;code class=&quot;highlighter-rouge&quot;&gt;.bashrc&lt;/code&gt; file:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;alias python=python3&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;manage-python-environments&quot;&gt;Manage python environments&lt;/h2&gt;
+&lt;p&gt;Working with python &lt;a href=&quot;https://realpython.com/python-virtual-environments-a-primer/&quot;&gt;virtual environments&lt;/a&gt; is good practice. 
+Here &lt;code class=&quot;highlighter-rouge&quot;&gt;venv&lt;/code&gt; module and &lt;code class=&quot;highlighter-rouge&quot;&gt;conda&lt;/code&gt; are briefly introduced, which use &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;conda&lt;/code&gt; as package manager respectively. 
+This &lt;a href=&quot;https://www.anaconda.com/blog/understanding-conda-and-pip#:~:text=Pip%20installs%20Python%20packages%20whereas,software%20written%20in%20any%20language.&amp;amp;text=Another%20key%20difference%20between%20the,the%20packages%20installed%20in%20them.&quot;&gt;post&lt;/a&gt; from Anaconda summarizes the differences between pip and conda nicely.
+Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;conda&lt;/code&gt; are direct competitors in terms of managing packages. Within a venv environment, doing &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install conda&lt;/code&gt; wouldn’t give you a standalone &lt;code class=&quot;highlighter-rouge&quot;&gt;conda&lt;/code&gt; command for your venv environment.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-venv-way&quot;&gt;The venv way&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;cd to your project directory, e.g. “myProject”&lt;/li&gt;
+  &lt;li&gt;Create virtual environments: &lt;code class=&quot;highlighter-rouge&quot;&gt;python -m venv project-venv&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Activate the environments: &lt;code class=&quot;highlighter-rouge&quot;&gt;source ./project-venv/bin/activate&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Install packages to the venv with pip, e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install jupyterlab&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;To quit the venv: &lt;code class=&quot;highlighter-rouge&quot;&gt;deactivate&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;the-conda-way&quot;&gt;The conda way&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Go to home folder: &lt;code class=&quot;highlighter-rouge&quot;&gt;cd $HOME&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Create a temporary folder to keep home folder clean: &lt;code class=&quot;highlighter-rouge&quot;&gt;mkdir temp &amp;amp;&amp;amp; cd temp&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Get the &lt;a href=&quot;https://repo.anaconda.com/archive/&quot;&gt;anaconda&lt;/a&gt; or miniconda linux installer, e.g. for Anaconda3: &lt;code class=&quot;highlighter-rouge&quot;&gt;wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Install the downloaded: &lt;code class=&quot;highlighter-rouge&quot;&gt;TMPDIR=./ bash ./Anaconda3-2020.07-Linux-x86_64.sh&lt;/code&gt;. Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;TMPDIR&lt;/code&gt; is specified to avoid permission issue caused by limited space of the default TMPDIR.&lt;/li&gt;
+  &lt;li&gt;Hit enter until you are asked to type “yes”.&lt;/li&gt;
+  &lt;li&gt;The default path is usually &lt;code class=&quot;highlighter-rouge&quot;&gt;$HOME/anaconda3/&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;At the end of installation, say “yes” to have conda initializer. But that would set Anaconda python3 as your default python&lt;/li&gt;
+  &lt;li&gt;Logout and login again, you’ll enter the conda base environment.&lt;/li&gt;
+  &lt;li&gt;If you hate anaconda to change your default python and automatically activate base environment like me, run this command to remedy: &lt;code class=&quot;highlighter-rouge&quot;&gt;conda config --set auto_activate_base false&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Create conda virtual environment: &lt;code class=&quot;highlighter-rouge&quot;&gt;conda create -n myCondaEnv python=3.7 anaconda&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Activate environment &lt;code class=&quot;highlighter-rouge&quot;&gt;conda activate myCondaEnv&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Intall packages to &lt;code class=&quot;highlighter-rouge&quot;&gt;myCondaEnv&lt;/code&gt;, including &lt;code class=&quot;highlighter-rouge&quot;&gt;conda install jupyterlab&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;configure-jupyter&quot;&gt;Configure Jupyter&lt;/h2&gt;
+&lt;p&gt;Up to this point, you are set to use ssh tunneling for remote connecting, but we can get around that by a few configurations for jupyter notebooks.&lt;/p&gt;
+
+&lt;h3 id=&quot;generate-jupyter-notebook-configuration-file&quot;&gt;Generate jupyter notebook configuration file&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jupyter notebook --generate-config
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This command creates a configuration file at &lt;code class=&quot;highlighter-rouge&quot;&gt;$HOME/.jupyter/jupyter_notebook_config.py&lt;/code&gt; with all defaults commented out.&lt;/p&gt;
+&lt;h3 id=&quot;customize-the-config-file&quot;&gt;Customize the config file&lt;/h3&gt;
+&lt;p&gt;Put the following lines to &lt;code class=&quot;highlighter-rouge&quot;&gt;jupyter_notebook_config.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NotebookApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'*'&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#use the system IP address for accessing &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NotebookApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8890&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#if the specified port is occupied,incrementally get next one&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NotebookApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;open_browser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#no browser&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;IPython.lib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;yourpassword&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NotebookApp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#use password instead of access token.  &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To avoid hard-coding your password to a file, comment last three lines to disable password. Then Juypyter will generate a one-time token for accessing the jupyterlab instance.&lt;/p&gt;
+
+&lt;h2 id=&quot;run-jupyterlab-in-the-background&quot;&gt;Run jupyterlab in the background&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nohup jupyter lab &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This command will run jupyterlab in the background, and the printouts will be forwarded to a generated file “nohup.out” in which you will see something like this&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[I 16:45:57.163 LabApp] http://yourIPorDomainName:8890/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This is your accesible link to the jupyter instance. Now you can safely logout the server.&lt;/p&gt;
+
+&lt;p&gt;If you choose to use token for accessing, you’ll need to copy the full link with token to your browser. And the token will be used to set a &lt;a href=&quot;https://jupyter-notebook.readthedocs.io/en/stable/security.html#:~:text=If%20a%20generated%20token%20doesn,notebook%20password%20command%20is%20added.&quot;&gt;cookie&lt;/a&gt; for your browser.&lt;/p&gt;
+
+&lt;h2 id=&quot;connect-to-remote-jupyterlab&quot;&gt;Connect to remote jupyterlab&lt;/h2&gt;
+&lt;p&gt;Type &lt;code class=&quot;highlighter-rouge&quot;&gt;http://yourIPorDomainName:8890/&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;link with token&lt;/code&gt; in your browser.&lt;/p&gt;
+
+&lt;p&gt;You’ll be asked to enter the password you have put into the jupyter config file on the server.&lt;/p&gt;
+
+&lt;p&gt;Now enjoy working with the remote jupyterlab. As long as the server is running, you only need the link to access.&lt;/p&gt;
+
+&lt;h2 id=&quot;kill-the-process-of-jupyterlab-if-needed&quot;&gt;Kill the process of jupyterlab if needed&lt;/h2&gt;
+&lt;p&gt;You might want to kill the process at some point.
+With this command you can find the &lt;code class=&quot;highlighter-rouge&quot;&gt;pid&lt;/code&gt; of process for jupyterlab:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;netstat -tulpn | grep '8890'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Then use &lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;kill&lt;/code&gt; command to end the process.&lt;/p&gt;
+
+&lt;h2 id=&quot;manage-multiple-environments-in-one-jupyter-instance&quot;&gt;Manage multiple environments in one Jupyter instance&lt;/h2&gt;
+&lt;p&gt;You’ll probably notice that starting a Jupyter instance for every environment is actually annoying, because we often times need to work on several projects with different settings. 
+It is better that one can link conda environments to ipython kernels such that the environments can show up in one jupyter instance. For instance, I use miniconda3, and &lt;code class=&quot;highlighter-rouge&quot;&gt;conda env list&lt;/code&gt; tells me following:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;base                  *  /path/to/miniconda3
+rdkit                    /path/to/miniconda3/envs/rdkit
+yolo                     /path/to/miniconda3/envs/yolo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The idea is that when I start a jupyterlab instance in the base environment, I can also access &lt;code class=&quot;highlighter-rouge&quot;&gt;rdkit&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;yolo&lt;/code&gt; envs.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda activate base
+conda install ipykernel
+ipython kernel install &lt;span class=&quot;nt&quot;&gt;--user&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;yolo
+ipython kernel install &lt;span class=&quot;nt&quot;&gt;--user&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;rdkit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Next step is to make sure the ipython kernels are linked to the right envs, for example, in the json file &lt;code class=&quot;highlighter-rouge&quot;&gt;.local/share/jupyter/kernels/rdkit/kernel.json&lt;/code&gt;, the first entry for &lt;code class=&quot;highlighter-rouge&quot;&gt;argv&lt;/code&gt; should point to &lt;code class=&quot;highlighter-rouge&quot;&gt;/path/to/miniconda3/envs/rdkit&lt;/code&gt;. If not, change that accordingly.&lt;/p&gt;
+
+&lt;p&gt;Now &lt;code class=&quot;highlighter-rouge&quot;&gt;rdkit&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;yolo&lt;/code&gt; will show up in jupyterlab.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-end&quot;&gt;The end&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;The method has been tested on RHEL7 and Debian servers.&lt;/li&gt;
+  &lt;li&gt;It also works for Windows Subsystems for Linux (WSL) Ubuntu 18.04.&lt;/li&gt;
+  &lt;li&gt;For downloading files from remote, besides &lt;code class=&quot;highlighter-rouge&quot;&gt;scp&lt;/code&gt;, you can right click the file to create a downloadable link in jupyterlab.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hope you’ll find this guide helpful.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 24 Jul 2020 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000//tech/2020/07/24/remote-jupyterlab.html</link>
+        <guid isPermaLink="true">http://localhost:4000//tech/2020/07/24/remote-jupyterlab.html</guid>
+      </item>
+    
+      <item>
         <title>Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood</title>
         <description>&lt;p&gt;&lt;em&gt;In an earlier &lt;a href=&quot;https://linlinzhao.com/probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html&quot;&gt;post&lt;/a&gt;, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;As simple example of Bayesian inference in action, we estimate the expectation &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; of univariate Gaussian with known variance &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt; as an example. 
+&lt;p&gt;As a simple example of Bayesian inference in action, we estimate the expectation &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; of univariate Gaussian with known variance &lt;script type=&quot;math/tex&quot;&gt;\sigma^2&lt;/script&gt;. 
 Assuming &lt;script type=&quot;math/tex&quot;&gt;N&lt;/script&gt; observations as &lt;script type=&quot;math/tex&quot;&gt;X=(x_1,\cdots, x_N)&lt;/script&gt;, maximum likelihood estimate gives &lt;script type=&quot;math/tex&quot;&gt;\mu=\sum_kx_k/N=\bar X&lt;/script&gt;, of which the calculation details are neglected. Now we focus on Bayesian estimate.&lt;/p&gt;
 
 &lt;!--more--&gt;
@@ -71,31 +191,6 @@ Alternatively Maximum a Posteriori (MAP) estimate is utilized widely for practic
         <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
         <link>http://localhost:4000//stats/2018/08/25/bayesian2-univariant-gaussian.html</link>
         <guid isPermaLink="true">http://localhost:4000//stats/2018/08/25/bayesian2-univariant-gaussian.html</guid>
-      </item>
-    
-      <item>
-        <title>PhD Positions for developing Deep Generative Models for De Novo design of Molecules and Materials</title>
-        <description>&lt;p&gt;The Institutes for Mathematical Modelling of Biological Systems (Prof. Dr. Markus Kollmann), Pharmaceutical and Medicinal Chemistry (Prof. Dr. Holger Gohlke), and Machine Learning (Prof. Dr. Stefan Harmeling), invite applications for positions on PhD level in the interdisciplinary field between computational sciences and life sciences. This job is part of the Artificial Intelligence Initiative at Heinrich Heine University. Our joint research effort focuses on designing biomolecules ‘in silico’ for biotechnological applications, such as molecules needed for generating biodegradable material. In particular, we look for persons that are interested to develop and extend modern machine learning concepts, such as Deep Generative models and Monte Carlo Search Methods, within a Reinforcement Learning framework to approach the problem of generating highly complex structures under strong constraints. For an introduction into the field please have a look at this basic &lt;a href=&quot;https://www.nature.com/articles/s41586-018-0337-2.pdf&quot;&gt;review&lt;/a&gt;.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;We look for highly motivated candidates with strong mathematical and computational skills (e.g. with background either in physics, mathematics, engineering, or computational sciences) and with experience or strong interest in&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Deep learning&lt;/li&gt;
-  &lt;li&gt;MCMC methods&lt;/li&gt;
-  &lt;li&gt;Bayesian statistics&lt;/li&gt;
-  &lt;li&gt;Tensorflow programming&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;(Biological background is not required)&lt;/p&gt;
-
-&lt;p&gt;The positions are located at the Institute for Mathematical Modelling of Biological Systems.
-Applications including a short but informative CV together with a motivation letter should be sent to &lt;a href=&quot;nicole.brand@hhu.de&quot;&gt;MS. Nicole&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000//machine%20learning/2018/08/23/job-post-markus.html</link>
-        <guid isPermaLink="true">http://localhost:4000//machine%20learning/2018/08/23/job-post-markus.html</guid>
       </item>
     
       <item>
@@ -219,65 +314,6 @@ A further question follows naturally as how the entropy can be a constant. In a 
         <pubDate>Thu, 19 Jul 2018 00:00:00 +0000</pubDate>
         <link>http://localhost:4000//machine%20learning/2018/07/19/crossentropy-kl-divergence.html</link>
         <guid isPermaLink="true">http://localhost:4000//machine%20learning/2018/07/19/crossentropy-kl-divergence.html</guid>
-      </item>
-    
-      <item>
-        <title>Book list</title>
-        <description>&lt;p&gt;Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive.&lt;/p&gt;
-
-&lt;p&gt;This post is a growing list of books in different categories&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;science-and-research&quot;&gt;Science and research&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Probability: the logic of science&lt;/strong&gt; by E.T. Jaynes, 2003&lt;/p&gt;
-
-&lt;p&gt;It is raining then there must be cloud in the sky. There is no cloud then it must not be raining. 
-And this Aristotle logic told us &lt;em&gt;“there is cloud”&lt;/em&gt; cannot deduce &lt;em&gt;“it is raining”&lt;/em&gt;. However, the cloud in the sky makes raining more plausible than a clear sky. 
-From the basic logics, Jaynes built up the whole realm of probability theory in a natural and consistent way. This is fantastic! I love it, especially as a Bayesian statistics fan.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theory of Games and Economic Behavior&lt;/strong&gt; by J. von Neumann and O. Morgenstern, 1953&lt;/p&gt;
-
-&lt;h3 id=&quot;machine-learning&quot;&gt;Machine Learning&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Patter Recognition and Machine Learning&lt;/strong&gt; by C. M. Bishop, 2006&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Information Theory, Inference, and Learning Algorithms&lt;/strong&gt; by D. Mackay&lt;/p&gt;
-
-&lt;p&gt;I’ve built my passion about Bayesian statistics from Dr. MacKay’s doctoral thesis. His writing is always right to the point in a simple and clear way.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;The Elements of Statistics Learning&lt;/strong&gt; by T. Hastie, R. Tibshirani and J. Friedman, 2008&lt;/p&gt;
-
-&lt;h3 id=&quot;fun-and-very-inspiring&quot;&gt;Fun and very inspiring&lt;/h3&gt;
-&lt;p&gt;This is my favorite list!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Surely you are joking, Mr. Feyman&lt;/strong&gt; by E. Hutchings&lt;/p&gt;
-
-&lt;p&gt;Funny stories from the great physicist Feyman can encourage and inspire you to think and explore more about things surrounding us. The world is wonderful and beautiful.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Naked Economics&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Thinking: Fast and Slow&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;…&lt;/p&gt;
-&lt;h3 id=&quot;chinese-philosophy-and-history&quot;&gt;Chinese philosophy and history&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;庄子 Zhuang zi&lt;/strong&gt; by Zhuang zi, ～300BC&lt;/p&gt;
-
-&lt;p&gt;The Taoism philosopher emphasized the freedom of living without restrains from daily lives. Following his teachings brings strong and positive mentalities.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;传习录 Chuan Xi Lu&lt;/strong&gt; by 王阳明 Wang Yangming ～1500&lt;/p&gt;
-
-&lt;p&gt;“知行合一”&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;资治通鉴&lt;/strong&gt; by 司马光 Sima Guang&lt;/p&gt;
-
-&lt;p&gt;….&lt;/p&gt;
-</description>
-        <pubDate>Thu, 12 Jul 2018 15:15:00 +0000</pubDate>
-        <link>http://localhost:4000//blog/2018/07/12/book-recommedations.html</link>
-        <guid isPermaLink="true">http://localhost:4000//blog/2018/07/12/book-recommedations.html</guid>
       </item>
     
       <item>

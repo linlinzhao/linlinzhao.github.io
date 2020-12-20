@@ -51,7 +51,7 @@
 <meta property="og:site_name" content="Linlin" />
 <link rel="next" href="http://localhost:4000/blog/page2" />
 <script type="application/ld+json">
-{"description":"Linlin’s Blog 恒道恒名，上下求索","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"WebPage","url":"http://localhost:4000/blog/","headline":"Blog","@context":"http://schema.org"}</script>
+{"description":"Linlin’s Blog 恒道恒名，上下求索","url":"http://localhost:4000/blog/","@type":"WebPage","headline":"Blog","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
         <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Linlin" />
 <link rel="next" href="http://localhost:4000/blog/page2" />
 <script type="application/ld+json">
-{"description":"Linlin’s Blog 恒道恒名，上下求索","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@type":"WebPage","url":"http://localhost:4000/blog/","headline":"Blog","@context":"http://schema.org"}</script>
+{"description":"Linlin’s Blog 恒道恒名，上下求索","url":"http://localhost:4000/blog/","@type":"WebPage","headline":"Blog","author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <div class="m-page-main">
@@ -112,12 +112,54 @@
             
                 <article>
                     <h1>
+                        <a href="/tech/2020/07/24/remote-jupyterlab.html">Remote jupyterlab without SSH and sudo</a>
+                    </h1>
+                    <div class="m-article-content">
+                        <p><em>Disclaimer: this guideline is only suggested for servers within secure local connections, e.g. within an institution or corporation’s network</em>.</p> <p><a href="https://www.ssh.com/ssh/tunneling/example">SSH port forwarding</a> is a common way of connecting to remote jupyter notebooks. This typically takes three steps: run jupyter on the server, ssh tunneling to the jupyter instance, and then type the localhost link to your browser. That actually doesn’t sound satisfying, and it could be simpler. In this post, I’ll guide you through setting up a remote jupyterlab workspace for Python3 from scratch. Since you want to set remote notebooks, I’ll assume you feel comfortable with command lines and remote editing.</p> <h2 id="check-your-python-version-on-server">Check your python version on server</h2> <p>As of 2020, Python3 is strongly recommended.</p> <p>If you are using RedHat Enterprise 7, the system-wide default version is Python2.7, but your system administrator usually should have installed python3. Suppose python3.6 is installed, you can enable python3 by <code class="highlighter-rouge">scl enable rh-python36 bash</code>.</p> <p>If you are using Debian or Ubuntu, python3 comes with the system. In case you want to make python3 as default, add the following line to your <code class="highlighter-rouge">.bashrc</code> file: <code class="highlighter-rouge">alias python=python3</code></p> <h2 id="manage-python-environments">Manage python environments</h2> <p>Working with python <a href="https://realpython.com/python-virtual-environments-a-primer/">virtual environments</a> is good practice. Here...
+                    </div>
+                    <div class="m-article-data clearfix">
+	
+        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
+            
+                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
+            
+        </meta>
+	
+
+	
+	
+        <ul class="inline-list tag-wrapper">
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=Jupyterlab">Jupyterlab
+                </a></li>
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=Linux">Linux
+                </a></li>
+            
+        </ul>
+	
+    <div class="other-wrapper">
+        
+        <div class="date-wrapper">
+            
+                <span class="article-meta">Jul 24, 2020</span>
+            
+        </div>
+    </div>
+</div>
+
+                </article>
+            
+                <article>
+                    <h1>
                         <a href="/stats/2018/08/25/bayesian2-univariant-gaussian.html">Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood</a>
                     </h1>
                     <div class="m-article-content">
                         <p><em>In an earlier <a href="https://linlinzhao.com/probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html">post</a>, we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood.</em></p>
 
-<p>As simple example of Bayesian inference in action, we estimate the expectation <script type="math/tex">\mu</script> of univariate Gaussian with known variance <script type="math/tex">\sigma^2</script> as an example. 
+<p>As a simple example of Bayesian inference in action, we estimate the expectation <script type="math/tex">\mu</script> of univariate Gaussian with known variance <script type="math/tex">\sigma^2</script>. 
 Assuming <script type="math/tex">N</script> observations as <script type="math/tex">X=(x_1,\cdots, x_N)</script>, maximum likelihood estimate gives <script type="math/tex">\mu=\sum_kx_k/N=\bar X</script>, of which the calculation details are neglected. Now we focus on Bayesian estimate.</p>
 
 
@@ -154,46 +196,6 @@ Assuming <script type="math/tex">N</script> observations as <script type="math/t
         <div class="date-wrapper">
             
                 <span class="article-meta">Aug 25, 2018</span>
-            
-        </div>
-    </div>
-</div>
-
-                </article>
-            
-                <article>
-                    <h1>
-                        <a href="/machine%20learning/2018/08/23/job-post-markus.html">PhD Positions for developing Deep Generative Models for De Novo design of Molecules and Materials</a>
-                    </h1>
-                    <div class="m-article-content">
-                        <p>The Institutes for Mathematical Modelling of Biological Systems (Prof. Dr. Markus Kollmann), Pharmaceutical and Medicinal Chemistry (Prof. Dr. Holger Gohlke), and Machine Learning (Prof. Dr. Stefan Harmeling), invite applications for positions on PhD level in the interdisciplinary field between computational sciences and life sciences. This job is part of the Artificial Intelligence Initiative at Heinrich Heine University. Our joint research effort focuses on designing biomolecules ‘in silico’ for biotechnological applications, such as molecules needed for generating biodegradable material. In particular, we look for persons that are interested to develop and extend modern machine learning concepts, such as Deep Generative models and Monte Carlo Search Methods, within a Reinforcement Learning framework to approach the problem of generating highly complex structures under strong constraints. For an introduction into the field please have a look at this basic <a href="https://www.nature.com/articles/s41586-018-0337-2.pdf">review</a>.</p>
-
-
-                    </div>
-                    <div class="m-article-data clearfix">
-	
-        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
-            
-                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
-            
-        </meta>
-	
-
-	
-	
-        <ul class="inline-list tag-wrapper">
-            
-                <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=position">position
-                </a></li>
-            
-        </ul>
-	
-    <div class="other-wrapper">
-        
-        <div class="date-wrapper">
-            
-                <span class="article-meta">Aug 23, 2018</span>
             
         </div>
     </div>
@@ -290,48 +292,6 @@ Assuming <script type="math/tex">N</script> observations as <script type="math/t
         <div class="date-wrapper">
             
                 <span class="article-meta">Jul 19, 2018</span>
-            
-        </div>
-    </div>
-</div>
-
-                </article>
-            
-                <article>
-                    <h1>
-                        <a href="/blog/2018/07/12/book-recommedations.html">Book list</a>
-                    </h1>
-                    <div class="m-article-content">
-                        <p>Once I heard something like this “The best technology that has even been created is book”. Truly, the innate abilities encoded in genes make us human beings survive, but the knowledge and wisdom condensed in books make us thrive.</p>
-
-<p>This post is a growing list of books in different categories</p>
-
-
-                    </div>
-                    <div class="m-article-data clearfix">
-	
-        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
-            
-                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
-            
-        </meta>
-	
-
-	
-	
-        <ul class="inline-list tag-wrapper">
-            
-                <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=book">book
-                </a></li>
-            
-        </ul>
-	
-    <div class="other-wrapper">
-        
-        <div class="date-wrapper">
-            
-                <span class="article-meta">Jul 12, 2018</span>
             
         </div>
     </div>
@@ -440,10 +400,58 @@ Assuming <script type="math/tex">N</script> observations as <script type="math/t
 
                 </article>
             
+                <article>
+                    <h1>
+                        <a href="/tech/2017/10/24/understanding-backward()-in-PyTorch.html">Understanding backward() in PyTorch (Updated for V0.4)</a>
+                    </h1>
+                    <div class="m-article-content">
+                        <p>Update for PyTorch 0.4:</p>
+
+<p>Earlier versions used <code class="highlighter-rouge">Variable</code> to wrap tensors with different properties. Since version 0.4, <code class="highlighter-rouge">Variable</code> is merged with <code class="highlighter-rouge">tensor</code>, in other words, <code class="highlighter-rouge">Variable</code> is NOT needed anymore. The flag <code class="highlighter-rouge">require_grad</code> can be directly set in <code class="highlighter-rouge">tensor</code>. Accordingly, this post is also updated.</p>
+
+<hr />
+
+
+                    </div>
+                    <div class="m-article-data clearfix">
+	
+        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
+            
+                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
+            
+        </meta>
+	
+
+	
+	
+        <ul class="inline-list tag-wrapper">
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=PyTorch">PyTorch
+                </a></li>
+            
+                <li><a class="round-rect-button"
+                    href="/blog/all.html?tag=machine-learning">machine-learning
+                </a></li>
+            
+        </ul>
+	
+    <div class="other-wrapper">
+        
+        <div class="date-wrapper">
+            
+                <span class="article-meta">Oct 24, 2017</span>
+            
+        </div>
+    </div>
+</div>
+
+                </article>
+            
         </div>
         
             <nav class="m-pagination">
-                <p>9 post articles, 2 pages.</p>
+                <p>8 post articles, 2 pages.</p>
                 <ul class="inline-list">
                 
                     <li><div class="round-button inactive">
@@ -520,7 +528,7 @@ Assuming <script type="math/tex">N</script> observations as <script type="math/t
 
         </aside>
         <footer class="site-info">
-            <p>© Linlin 2015 - 2017</p>
+            <p>© Linlin 2015 - 2020</p>
             <p>Powered by <a
                 title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
                 title="TeXt is a succinct theme for blogging." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
@@ -528,6 +536,7 @@ Assuming <script type="math/tex">N</script> observations as <script type="math/t
         </footer>
     </div>
 </div>
+
         <script>
             $(function() {
                 // display coding language //

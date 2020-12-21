@@ -28,12 +28,17 @@
   },
   "homepage": "https://github.com/kitian616#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-rename": "^1.2.2",
     "gulp-svg2png": "^2.0.2",
     "gulp-to-ico": "^1.0.0"
   },
   "dependencies": {
-    "hoek": "^5.0.3"
+    "cryptiles": "^4.1.3",
+    "hoek": "^5.0.3",
+    "lodash.template": "^4.5.0",
+    "minimist": "^1.2.5",
+    "url-regex": "^5.0.0",
+    "yargs-parser": "^20.2.4"
   }
 }

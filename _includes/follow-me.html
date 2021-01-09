@@ -16,9 +16,9 @@
     {%- include snippets/locale-to-string.html -%}
     {%- if _author.email -%}
       <li title="{{ __return }}">
-      <a class="button button--circle mail-button" itemprop="email" href="mailto:{{ _author.email }}" target="_blank">
-        <i class="fas fa-envelope"></i>
-      </a>
+      <!-- a class="button button--circle mail-button" itemprop="email" href="mailto:{{ _author.email }}" target="_blank" --!>
+        <!--i class="fas fa-envelope"></i --!>
+      <!-- /a --!>
     {%- endif -%}
 
     {%- assign __locale = site.data.locale.FOLLOW_ME -%}

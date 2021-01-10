@@ -48,5 +48,5 @@ The great physicist Bohr spoke of the unity of opposites and contradictions in n
 
 ## #&^*$&($)
 I am in love with Manjaro + KDE.
-![KDE]()
+![KDE](https://raw.githubusercontent.com/Linlinzhao/linlinzhao.github.io/master/assets/images/kde.png)
 

@@ -7,6 +7,7 @@ PATH
       jekyll-paginate (~> 1.1)
       jekyll-sitemap (~> 1.0)
       jemoji (~> 0.8)
+      rake (>= 12.3.3)
 
 GEM
   remote: https://rubygems.org/
@@ -80,7 +81,7 @@ GEM
       forwardable-extended (~> 2.6)
     public_suffix (4.0.6)
     racc (1.5.2)
-    rake (10.5.0)
+    rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -103,7 +104,7 @@ DEPENDENCIES
   bundler
   jekyll-seo-tag
   jekyll-text-theme!
-  rake (~> 10.0)
+  rake (>= 12.3.3)
 
 BUNDLED WITH
    2.2.2

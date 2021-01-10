@@ -1,5 +1,3 @@
-My Personal Website: 
+I blog randomly about random things, of which the random process is hard to model :)
 
-linlinzhao.github.io
-
-It is adopted from Tianqi's TeXt Jekyll theme.
+A Jekyll theme focused on blogging with simplicity: Tianqi's TeXt.

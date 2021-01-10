@@ -1,6 +1,4 @@
 ---
-layout: post
-comment: true
 title: Mathematical interpretation of why Gradient descent works
 key: A10007
 tags: optimization gradient-descent

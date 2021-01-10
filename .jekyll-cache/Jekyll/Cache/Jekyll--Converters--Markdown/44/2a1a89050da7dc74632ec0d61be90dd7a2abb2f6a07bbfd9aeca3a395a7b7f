@@ -1,0 +1,6 @@
+I"ß<blockquote>
+  <p>This post is an expansion of my answer on <a href="https://stats.stackexchange.com/a/357974/41910">Cross Validated</a></p>
+</blockquote>
+
+<p>Intuitively we can take Kullbach-Leibler(KL) divergence which quantifies the distance between two distributions as the error function, but why the cross entropy arises for classification problems? For answering it, let us first recall that entropy is used to measure the uncertainty of a system, which is defined as</p>
+:ET

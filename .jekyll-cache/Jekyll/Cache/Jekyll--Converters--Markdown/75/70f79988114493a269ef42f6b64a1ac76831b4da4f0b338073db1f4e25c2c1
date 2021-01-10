@@ -1,0 +1,346 @@
+I"��<p>Update for PyTorch 0.4:</p>
+
+<p>Earlier versions used <code class="language-plaintext highlighter-rouge">Variable</code> to wrap tensors with different properties. Since version 0.4, <code class="language-plaintext highlighter-rouge">Variable</code> is merged with <code class="language-plaintext highlighter-rouge">tensor</code>, in other words, <code class="language-plaintext highlighter-rouge">Variable</code> is NOT needed anymore. The flag <code class="language-plaintext highlighter-rouge">require_grad</code> can be directly set in <code class="language-plaintext highlighter-rouge">tensor</code>. Accordingly, this post is also updated.</p>
+
+<hr />
+
+<!--more-->
+<p>Having heard about the announcement about Theano from Bengio lab , as a Theano user, I am happy and sad to see the fading of the old hero, caused by many raising stars. Sad to see it is too old to compete with its industrial competitors, and happy to have so many excellent deep learning frameworks to choose from. Recently I started translating some of my old codes to Pytorch and have been really impressed by its dynamic nature and clearness. But at the very beginning, I was very confused by the <code class="language-plaintext highlighter-rouge">backward()</code> function when reading the tutorials and documentations. This motivated me to write this post in order for other Pytorch beginners to ease the understanding a bit. And I’ll assume that you already know the <a href="http://pytorch.org/docs/master/autograd.html"><code class="language-plaintext highlighter-rouge">autograd</code></a> module and what a <a href="http://pytorch.org/docs/0.1.12/_modules/torch/autograd/variable.html"><code class="language-plaintext highlighter-rouge">Variable</code></a> is, but are a little confused by definition of <code class="language-plaintext highlighter-rouge">backward()</code>.</p>
+
+<p>First let’s recall the gradient computing under mathematical notions. 
+For an independent variable \(x\) (scalar or vector), the whatever operation on \(x\) is \(y = f(x)\). Then the gradient of \(y\) w.r.t \(x_i\)s is</p>
+
+\[\begin{align}
+\nabla y&amp;=\begin{bmatrix}
+\frac{\partial y}{\partial x_1}\\
+\frac{\partial y}{\partial x_2}\\
+\vdots
+\end{bmatrix}
+\end{align}.\]
+
+<p>Then for a specific point of \(x=[X_1, X_2, \cdots]\), we’ll get the gradient of \(y\) on that point as a vector. 
+With these notions in mind, the following things are a bit confusing at the beginning</p>
+
+<ol>
+  <li>
+    <p>Mathematically, we would say “The gradients of a function w.r.t. the independent variables”, whereas the <code class="language-plaintext highlighter-rouge">.grad</code> is attached to the leaf <code class="language-plaintext highlighter-rouge">tensor</code>s. In Theano and Tensorflow, the computed gradients are stored separately in a variable. But with a moment of adjustment, it is fairly easy to buy that. In Pytorch it is also possible to get the <code class="language-plaintext highlighter-rouge">.grad</code> for intermediate <code class="language-plaintext highlighter-rouge">Variable</code>s with help of <code class="language-plaintext highlighter-rouge">register_hook</code> function</p>
+  </li>
+  <li>
+    <p>The parameter <code class="language-plaintext highlighter-rouge">grad_variables</code> of the function <code class="language-plaintext highlighter-rouge">torch.autograd.backward(variables, grad_tensors=None, retain_graph=None, create_graph=None, retain_variables=None, grad_variables=None)</code> is not straightforward for knowing its functionality. **note that <code class="language-plaintext highlighter-rouge">grad_variables</code> is deprecated, use <code class="language-plaintext highlighter-rouge">grad_tensors</code> instead.</p>
+  </li>
+  <li>
+    <p>What is <code class="language-plaintext highlighter-rouge">retain_graph</code> doing?</p>
+  </li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span> <span class="k">as</span> <span class="n">T</span>
+<span class="kn">import</span> <span class="nn">torch.autograd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</code></pre></div></div>
+
+<h3 id="simplicity-of-using-backward">Simplicity of using <code class="language-plaintext highlighter-rouge">backward()</code></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'''
+Define a scalar variable, set requires_grad to be true to add it to backward path for computing gradients
+
+It is actually very simple to use backward()
+
+first define the computation graph, then call backward()
+'''</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1">#x is a leaf created by user, thus grad_fn is none
+</span><span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1">#define an operation on x
+</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y'</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1">#define one more operation to check the chain rule
+</span><span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z'</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[-0.6955]], requires_grad=True)
+y tensor([[-1.3911]], grad_fn=&lt;MulBackward&gt;)
+z tensor([[-2.6918]], grad_fn=&lt;PowBackward0&gt;)
+</code></pre></div></div>
+
+<p>The simple operations defined a forward path \(z=(2x)^3\), \(z\) will be the final output <code class="language-plaintext highlighter-rouge">tensor</code> we would like to compute gradient: \(dz=24x^2dx\), which will be passed to the parameter <code class="language-plaintext highlighter-rouge">tensors</code> in <code class="language-plaintext highlighter-rouge">backward()</code> function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#yes, it is just as simple as this to compute gradients:
+</span><span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'z gradient:'</span><span class="p">,</span> <span class="n">z</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient:'</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">,</span> <span class="s">'Requires gradient?'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">requires_grad</span><span class="p">)</span> <span class="c1"># note that x.grad is also a tensor
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>z gradient None
+y gradient None
+x gradient tensor([[11.6105]]) Requires gradient? False
+</code></pre></div></div>
+
+<p>The gradients of both \(y\) and \(z\) are None, since the function returns the gradient for the leaves, which is \(x\) in this case. At the very beginning, I was assuming something like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="n">gradient</span><span class="p">:</span> <span class="bp">None</span>
+
+<span class="n">y</span> <span class="n">gradient</span><span class="p">:</span> <span class="bp">None</span>
+
+<span class="n">z</span> <span class="n">gradient</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">11.6105</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>since the gradient is calculated for the final output \(z\).</p>
+
+<p>With a blink of thinking, we could figure out it would be practically chaos if \(x\) is a multi-dimensional vector. <code class="language-plaintext highlighter-rouge">x.grad</code> should be interpreted as the gradient of \(z\) at \(x\).</p>
+
+<h3 id="how-do-we-use-grad_tensors">How do we use <code class="language-plaintext highlighter-rouge">grad_tensors</code>?</h3>
+
+<p><code class="language-plaintext highlighter-rouge">grad_tensors</code> should be a list of torch tensors. In default case, the <code class="language-plaintext highlighter-rouge">backward()</code> is applied to scalar-valued function, the default value of <code class="language-plaintext highlighter-rouge">grad_tensors</code> is thus <code class="language-plaintext highlighter-rouge">torch.FloatTensor([0])</code>. But why is that? What if we put some other values to it?</p>
+
+<p>Keep the same forward path, then do <code class="language-plaintext highlighter-rouge">backward</code> by only setting <code class="language-plaintext highlighter-rouge">retain_graph</code> as <code class="language-plaintext highlighter-rouge">True</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1">#x is a leaf created by user, thus grad_fn is none
+</span><span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1">#define an operation on x
+</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="c1">#define one more operation to check the chain rule
+</span><span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+
+<span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Keeping the default value of grad_tensors gives'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z gradient:'</span><span class="p">,</span> <span class="n">z</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient:'</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[-0.7207]], requires_grad=True)
+Keeping the default value of grad_tensors gives
+z gradient: None
+y gradient: None
+x gradient: tensor([[12.4668]])
+</code></pre></div></div>
+
+<p>Testing the explicit default value, which should give the same result. For the same graph which is retained, DO NOT forget to zero the gradient before recalculate the gradients.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Set grad_tensors to 1 gives'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z gradient:'</span><span class="p">,</span> <span class="n">z</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient:'</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set grad_tensors to 0 gives
+z gradient: None
+y gradient: None
+x gradient: tensor([[12.4668]])
+</code></pre></div></div>
+
+<p>Then what about other values, let’s try 0.1 and 0.5.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Set grad_tensors to 0.1 gives'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z gradient:'</span><span class="p">,</span> <span class="n">z</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient:'</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set grad_tensors to 0.1 gives
+z gradient: None
+y gradient: None
+x gradient: tensor([[1.2467]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Modifying the default value of grad_variables to 0.1 gives'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z gradient'</span><span class="p">,</span> <span class="n">z</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y gradient'</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Modifying the default value of grad_variables to 0.5 gives
+
+z gradient None
+
+y gradient None
+
+x gradient tensor([[6.2334]])
+</code></pre></div></div>
+
+<p>It looks like the elements of <code class="language-plaintext highlighter-rouge">grad_tensors</code> act as scaling factors. Now let’s set \(x\) to be a \(2\times 2\) matrix. Note that \(z\) will also be a matrix. (Always use the latest version, <code class="language-plaintext highlighter-rouge">backward</code> had been improved a lot from earlier version, becoming much easier to understand.)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1">#x is a leaf created by user, thus grad_fn is none
+</span><span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1">#define an operation on x
+</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="c1">#define one more operation to check the chain rule
+</span><span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'z shape:'</span><span class="p">,</span> <span class="n">z</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
+<span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient for its all elements:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">()</span>
+<span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span> <span class="c1">#the gradient for x will be accumulated, it needs to be cleared.
+</span><span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient for the second column:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">()</span>
+<span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">z</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient for the first row:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[-2.5212,  1.2730],
+        [ 0.0366, -0.0750]], requires_grad=True)
+z shape: torch.Size([2, 2])
+x gradient for its all elements:
+ tensor([[152.5527,  38.8946],
+        [  0.0322,   0.1349]])
+
+x gradient for the second column:
+ tensor([[ 0.0000, 38.8946],
+        [ 0.0000,  0.1349]])
+
+x gradient for the first row:
+ tensor([[152.5527,  38.8946],
+        [  0.0000,   0.0000]])
+</code></pre></div></div>
+
+<p>We can clearly see the gradients of \(z\) are computed w.r.t to each dimension of \(x\), because the operations are all element-wise.</p>
+
+<p>Then what if we render the output one-dimensional (scalar) while \(x\) is two-dimensional. This is a real simplified scenario of neural networks.</p>
+
+\[f(x)=\frac{1}{n}\sum_i^n(2x_i)^3\]
+
+\[f'(x)=\frac{1}{n}\sum_i^n24x_i^2\]
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1">#x is a leaf created by user, thus grad_fn is none
+</span><span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1">#define an operation on x
+</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="c1">#print('y', y)
+#define one more operation to check the chain rule
+</span><span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'out'</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+<span class="n">out</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[ 1.8528,  0.2083],
+        [-1.5296,  0.3136]], requires_grad=True)
+out tensor(5.6434, grad_fn=&lt;MeanBackward1&gt;)
+x gradient:
+ tensor([[20.5970,  0.2604],
+        [14.0375,  0.5903]])
+</code></pre></div></div>
+
+<p>We will get complaints if the <code class="language-plaintext highlighter-rouge">grad_tensors</code> is specified for the scalar function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">out</span><span class="p">.</span><span class="n">backward</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x gradient'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+&lt;ipython-input-78-db7cccdf3863&gt; in &lt;module&gt;()
+      1 x.grad.data.zero_()
+----&gt; 2 out.backward(T.FloatTensor([[1, 1], [1, 1]]), retain_graph=True)
+      3 print('x gradient', x.grad)
+
+
+/usr/lib/python3.7/site-packages/torch/tensor.py in backward(self, gradient, retain_graph, create_graph)
+     91                 products. Defaults to ``False``.
+     92         """
+---&gt; 93         torch.autograd.backward(self, gradient, retain_graph, create_graph)
+     94 
+     95     def register_hook(self, hook):
+
+
+/usr/lib/python3.7/site-packages/torch/autograd/__init__.py in backward(tensors, grad_tensors, retain_graph, create_graph, grad_variables)
+     88     Variable._execution_engine.run_backward(
+     89         tensors, grad_tensors, retain_graph, create_graph,
+---&gt; 90         allow_unreachable=True)  # allow_unreachable flag
+     91 
+     92 
+
+
+RuntimeError: invalid gradient at index 0 - expected shape [] but got [2, 2]
+</code></pre></div></div>
+
+<h3 id="what-is-retain_graph-doing">What is <code class="language-plaintext highlighter-rouge">retain_graph</code> doing?</h3>
+
+<p>When training a model, the graph will be re-generated for each iteration. Therefore each iteration will consume the graph if the <code class="language-plaintext highlighter-rouge">retain_graph</code> is false, in order to keep the graph, we need to set it be true.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1">#x is a leaf created by user, thus grad_fn is none
+</span><span class="k">print</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1">#define an operation on x
+</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="c1">#print('y', y)
+#define one more operation to check the chain rule
+</span><span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'out'</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+<span class="n">out</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span>  <span class="c1">#without setting retain_graph to be true, it is alright for first time of backward.
+</span><span class="k">print</span><span class="p">(</span><span class="s">'x gradient'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="n">out</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span> <span class="c1">#Now we get complaint saying that no graph is available for tracing back. 
+</span><span class="k">print</span><span class="p">(</span><span class="s">'x gradient'</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x tensor([[-0.7452,  1.5727],
+        [ 0.1702,  0.7374]], requires_grad=True)
+out tensor(7.7630, grad_fn=&lt;MeanBackward1&gt;)
+x gradient tensor([[ 3.3323, 14.8394],
+        [ 0.1738,  3.2623]])
+
+
+
+---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+&lt;ipython-input-82-80a8d867d529&gt; in &lt;module&gt;()
+     12 
+     13 x.grad.data.zero_()
+---&gt; 14 out.backward() #Now we get complaint saying that no graph is available for tracing back.
+     15 print('x gradient', x.grad)
+
+
+/usr/lib/python3.7/site-packages/torch/tensor.py in backward(self, gradient, retain_graph, create_graph)
+     91                 products. Defaults to ``False``.
+     92         """
+---&gt; 93         torch.autograd.backward(self, gradient, retain_graph, create_graph)
+     94 
+     95     def register_hook(self, hook):
+
+
+/usr/lib/python3.7/site-packages/torch/autograd/__init__.py in backward(tensors, grad_tensors, retain_graph, create_graph, grad_variables)
+     88     Variable._execution_engine.run_backward(
+     89         tensors, grad_tensors, retain_graph, create_graph,
+---&gt; 90         allow_unreachable=True)  # allow_unreachable flag
+     91 
+     92 
+
+
+RuntimeError: Trying to backward through the graph a second time, but the buffers have already been freed. Specify retain_graph=True when calling backward the first time.
+</code></pre></div></div>
+
+<h3 id="wrap-up">Wrap up</h3>
+
+<ol>
+  <li>The <code class="language-plaintext highlighter-rouge">backward()</code> function made differentiation very simple</li>
+  <li>For non-scalar <code class="language-plaintext highlighter-rouge">tensor</code>, we need to specify <code class="language-plaintext highlighter-rouge">grad_tensors</code></li>
+  <li>If you need to backward() twice on a graph or subgraph, you will need to set <code class="language-plaintext highlighter-rouge">retain_graph</code> to be true.</li>
+  <li>Note that grad will accumulate from excuting the graph multiple times.</li>
+</ol>
+:ET

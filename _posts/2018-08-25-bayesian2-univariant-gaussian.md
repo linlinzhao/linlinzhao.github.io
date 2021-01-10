@@ -1,11 +1,10 @@
 ---
-layout: post
-comment: true
 title: Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood
 key: A10009
+mathjax: true
 tags: probability bayesian inference
 category: stats
-date: 2018-08-25
+show_date: true
 ---
 
 *In an earlier [post](https://linlinzhao.com/probability/2015/07/12/Bayesian-basics1-way-of-reasoning.html), we get to know the concept of Bayesian reasoning. In this post we show Bayesian way of inferring basic statistics and briefly compare the Maximum a Posteriori to Maximum likelihood.*

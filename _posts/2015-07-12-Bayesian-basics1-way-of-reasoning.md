@@ -1,6 +1,4 @@
 ---
-layout: post
-comment: true
 title: Bayesian basics I - the way of reasoning 
 key: A10005
 tags: probability bayesian

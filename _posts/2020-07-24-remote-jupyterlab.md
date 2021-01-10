@@ -1,6 +1,4 @@
 ---
-layout: post
-comment: true
 title: Remote jupyterlab without SSH and sudo
 key: A10010
 tags: Jupyterlab Linux

@@ -1,203 +1,336 @@
-<!DOCTYPE html>
-<html lang="EN">
-    <head>
-        <meta charset="utf-8">
+<!DOCTYPE html><html lang="en">
+  <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<title>Setting Jekyll on Ubuntu 16.04 with Latex support - Linlin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Setting Jekyll on Ubuntu 16.04 with Latex support - Linlin's blog</title>
+
 <meta name="description" content="Update July 2018:This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest.">
-<link rel="canonical" href="http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html">
-<link rel="alternate" type="application/rss+xml" title="Linlin" href="http://localhost:4000/feed.xml">
+<link rel="canonical" href="/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html"><link rel="alternate" type="application/rss+xml" title="Linlin's blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
 
-        <!--
-    for Safari on iOS
-    https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/app-icon/
--->
-<link rel="apple-touch-icon" sizes="180x180" href="/statics/images/logo/icon-180x180.png">
-<link rel="apple-touch-icon" sizes="167x167" href="/statics/images/logo/icon-167x167.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/statics/images/logo/icon-152x152.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/statics/images/logo/icon-120x120.png">
-<link rel="shortcut icon" href="/statics/images/logo/icon-120x120.png">
-<!--
-    for Chrome on Android
-    https://developer.chrome.com/multidevice/android/installtohomescreen
--->
-<meta name="mobile-web-app-capable" content="yes">
-<link rel="icon" sizes="192x192" href="/statics/images/logo/icon-192x192.png">
-<!--
-    for Edge on Windows 10
-    https://msdn.microsoft.com/en-us/library/dn255024(v=vs.85).aspx
--->
-<meta name="msapplication-TileImage" content="/statics/images/logo/icon-144x144.png">
-<meta name="msapplication-square310x310logo" content="/statics/images/icon-310x310.png">
-<meta name="msapplication-wide310x150logo" content="/statics/images/icon-310x150.png">
-<meta name="msapplication-square150x150logo" content="/statics/images/icon-150x150.png">
-<meta name="msapplication-square70x70logo" content="/statics/images/icon-70x70.png">
-<meta name="msapplication-TileColor" content="#eeeeee">
-        <link rel="stylesheet" href="/statics/css/blog.css">
-        <style>
-            
-        </style>
-        <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Setting Jekyll on Ubuntu 16.04 with Latex support | Linlin</title>
-<meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Setting Jekyll on Ubuntu 16.04 with Latex support" />
-<meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
-<meta property="og:locale" content="EN" />
-<meta name="description" content="Update July 2018: This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest." />
-<meta property="og:description" content="Update July 2018: This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest." />
-<link rel="canonical" href="http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html" />
-<meta property="og:url" content="http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html" />
-<meta property="og:site_name" content="Linlin" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2017-10-24T00:00:00+00:00" />
-<script type="application/ld+json">
-{"description":"Update July 2018: This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest.","url":"http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html","@type":"BlogPosting","headline":"Setting Jekyll on Ubuntu 16.04 with Latex support","dateModified":"2017-10-24T00:00:00+00:00","datePublished":"2017-10-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html"},"author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
 
-        <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <div class="m-page-stage js-page-stage">
-            <div class="m-page-content">
-    <header class="m-page-header main clearfix">
-    <a class="site-title" title="恒道恒名，上下求索"
-        href="/blog">Linlin's blog
-    </a>
-    <div class="site-logo">
-        <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="7pt" height="7pt" viewBox="0 0 7 7" version="1.1">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+
+<!--<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+
+<meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
+
+<meta name="theme-color" content="#ffffff">-->
+<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" ><!-- start custom head snippets -->
+
+<!-- end custom head snippets -->
+<script>(function() {
+  window.isArray = function(val) {
+    return Object.prototype.toString.call(val) === '[object Array]';
+  };
+  window.isString = function(val) {
+    return typeof val === 'string';
+  };
+
+  window.hasEvent = function(event) {
+    return 'on'.concat(event) in window.document;
+  };
+
+  window.isOverallScroller = function(node) {
+    return node === document.documentElement || node === document.body || node === window;
+  };
+
+  window.isFormElement = function(node) {
+    var tagName = node.tagName;
+    return tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA';
+  };
+
+  window.pageLoad = (function () {
+    var loaded = false, cbs = [];
+    window.addEventListener('load', function () {
+      var i;
+      loaded = true;
+      if (cbs.length > 0) {
+        for (i = 0; i < cbs.length; i++) {
+          cbs[i]();
+        }
+      }
+    });
+    return {
+      then: function(cb) {
+        cb && (loaded ? cb() : (cbs.push(cb)));
+      }
+    };
+  })();
+})();
+(function() {
+  window.throttle = function(func, wait) {
+    var args, result, thisArg, timeoutId, lastCalled = 0;
+
+    function trailingCall() {
+      lastCalled = new Date;
+      timeoutId = null;
+      result = func.apply(thisArg, args);
+    }
+    return function() {
+      var now = new Date,
+        remaining = wait - (now - lastCalled);
+
+      args = arguments;
+      thisArg = this;
+
+      if (remaining <= 0) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+        lastCalled = now;
+        result = func.apply(thisArg, args);
+      } else if (!timeoutId) {
+        timeoutId = setTimeout(trailingCall, remaining);
+      }
+      return result;
+    };
+  };
+})();
+(function() {
+  var Set = (function() {
+    var add = function(item) {
+      var i, data = this._data;
+      for (i = 0; i < data.length; i++) {
+        if (data[i] === item) {
+          return;
+        }
+      }
+      this.size ++;
+      data.push(item);
+      return data;
+    };
+
+    var Set = function(data) {
+      this.size = 0;
+      this._data = [];
+      var i;
+      if (data.length > 0) {
+        for (i = 0; i < data.length; i++) {
+          add.call(this, data[i]);
+        }
+      }
+    };
+    Set.prototype.add = add;
+    Set.prototype.get = function(index) { return this._data[index]; };
+    Set.prototype.has = function(item) {
+      var i, data = this._data;
+      for (i = 0; i < data.length; i++) {
+        if (this.get(i) === item) {
+          return true;
+        }
+      }
+      return false;
+    };
+    Set.prototype.is = function(map) {
+      if (map._data.length !== this._data.length) { return false; }
+      var i, j, flag, tData = this._data, mData = map._data;
+      for (i = 0; i < tData.length; i++) {
+        for (flag = false, j = 0; j < mData.length; j++) {
+          if (tData[i] === mData[j]) {
+            flag = true;
+            break;
+          }
+        }
+        if (!flag) { return false; }
+      }
+      return true;
+    };
+    Set.prototype.values = function() {
+      return this._data;
+    };
+    return Set;
+  })();
+
+  window.Lazyload = (function(doc) {
+    var queue = {js: [], css: []}, sources = {js: {}, css: {}}, context = this;
+    var createNode = function(name, attrs) {
+      var node = doc.createElement(name), attr;
+      for (attr in attrs) {
+        if (attrs.hasOwnProperty(attr)) {
+          node.setAttribute(attr, attrs[attr]);
+        }
+      }
+      return node;
+    };
+    var end = function(type, url) {
+      var s, q, qi, cbs, i, j, cur, val, flag;
+      if (type === 'js' || type ==='css') {
+        s = sources[type], q = queue[type];
+        s[url] = true;
+        for (i = 0; i < q.length; i++) {
+          cur = q[i];
+          if (cur.urls.has(url)) {
+            qi = cur, val = qi.urls.values();
+            qi && (cbs = qi.callbacks);
+            for (flag = true, j = 0; j < val.length; j++) {
+              cur = val[j];
+              if (!s[cur]) {
+                flag = false;
+              }
+            }
+            if (flag && cbs && cbs.length > 0) {
+              for (j = 0; j < cbs.length; j++) {
+                cbs[j].call(context);
+              }
+              qi.load = true;
+            }
+          }
+        }
+      }
+    };
+    var load = function(type, urls, callback) {
+      var s, q, qi, node, i, cur,
+        _urls = typeof urls === 'string' ? new Set([urls]) : new Set(urls), val, url;
+      if (type === 'js' || type ==='css') {
+        s = sources[type], q = queue[type];
+        for (i = 0; i < q.length; i++) {
+          cur = q[i];
+          if (_urls.is(cur.urls)) {
+            qi = cur;
+            break;
+          }
+        }
+        val = _urls.values();
+        if (qi) {
+          callback && (qi.load || qi.callbacks.push(callback));
+          callback && (qi.load && callback());
+        } else {
+          q.push({
+            urls: _urls,
+            callbacks: callback ? [callback] : [],
+            load: false
+          });
+          for (i = 0; i < val.length; i++) {
+            node = null, url = val[i];
+            if (s[url] === undefined) {
+              (type === 'js' ) && (node = createNode('script', { src: url }));
+              (type === 'css') && (node = createNode('link', { rel: 'stylesheet', href: url }));
+              if (node) {
+                node.onload = (function(type, url) {
+                  return function() {
+                    end(type, url);
+                  };
+                })(type, url);
+                (doc.head || doc.body).appendChild(node);
+                s[url] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+    return {
+      js: function(url, callback) {
+        load('js', url, callback);
+      },
+      css: function(url, callback) {
+        load('css', url, callback);
+      }
+    };
+  })(this.document);
+})();
+</script><script>
+  (function() {
+    var TEXT_VARIABLES = {
+      version: '2.2.6',
+      sources: {
+        font_awesome: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css',
+        jquery: 'https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js',
+        leancloud_js_sdk: '//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js',
+        chart: 'https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.min.js',
+        gitalk: {
+          js: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.js',
+          css: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.css'
+        },
+        valine: 'https://unpkg.com/valine/dist/Valine.min.js',
+        mathjax: 'https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML',
+        mermaid: 'https://cdn.bootcss.com/mermaid/8.0.0-rc.8/mermaid.min.js'
+      },
+      site: {
+        toc: {
+          selectors: 'h1,h2,h3'
+        }
+      },
+      paths: {
+        search_js: '/assets/search.js'
+      }
+    };
+    window.TEXT_VARIABLES = TEXT_VARIABLES;
+  })();
+</script>
+</head>
+  <body>
+    <div class="root" data-is-touch="false">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
+
+      <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
+      <div class="header__title">
+        <div class="header__brand"><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50pt" height="50pt" viewBox="0 0 50 50" version="1.1">
 <g id="surface1">
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 6.738281 3.375 C 6.738281 5.21875 5.242188 6.714844 3.398438 6.714844 C 1.554688 6.714844 0.0625 5.21875 0.0625 3.375 C 0.0625 1.535156 1.554688 0.0390625 3.398438 0.0390625 C 5.242188 0.0390625 6.738281 1.535156 6.738281 3.375 Z M 6.738281 3.375 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 3.152344 6.726562 C 1.707031 6.652344 0.402344 5.527344 0.105469 4.113281 C -0.167969 2.929688 0.261719 1.625 1.1875 0.839844 C 1.84375 0.269531 2.726562 -0.03125 3.597656 0.0351562 C 4.972656 0.0898438 6.234375 1.109375 6.605469 2.433594 C 6.753906 2.917969 6.753906 3.441406 6.695312 3.941406 C 6.484375 5.21875 5.480469 6.320312 4.222656 6.628906 C 3.875 6.714844 3.507812 6.757812 3.152344 6.726562 Z M 2.636719 6.523438 C 2.023438 6.21875 1.644531 5.523438 1.730469 4.84375 C 1.800781 4.046875 2.527344 3.382812 3.328125 3.371094 C 3.996094 3.390625 4.65625 2.972656 4.902344 2.347656 C 5.195312 1.65625 4.941406 0.796875 4.324219 0.375 C 3.816406 0 3.136719 0.078125 2.558594 0.210938 C 1.222656 0.539062 0.191406 1.789062 0.117188 3.160156 C 0.0195312 4.398438 0.699219 5.648438 1.792969 6.238281 C 2.066406 6.386719 2.453125 6.558594 2.707031 6.5625 L 2.679688 6.542969 Z M 3.289062 2.128906 C 2.953125 2.066406 2.847656 1.570312 3.140625 1.378906 C 3.441406 1.148438 3.910156 1.464844 3.789062 1.832031 C 3.738281 2.046875 3.503906 2.179688 3.289062 2.128906 Z M 3.460938 5.421875 C 3.875 5.371094 3.882812 4.707031 3.46875 4.644531 C 3.144531 4.558594 2.859375 4.96875 3.050781 5.246094 C 3.132812 5.371094 3.308594 5.46875 3.460938 5.421875 Z M 3.460938 5.421875 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 49.8125 24.96875 C 49.8125 38.597656 38.765625 49.648438 25.136719 49.648438 C 11.503906 49.648438 0.457031 38.597656 0.457031 24.96875 C 0.457031 11.339844 11.503906 0.289062 25.136719 0.289062 C 38.765625 0.289062 49.8125 11.339844 49.8125 24.96875 Z M 49.8125 24.96875 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 23.300781 49.742188 C 12.609375 49.1875 2.980469 40.855469 0.789062 30.402344 C -1.230469 21.671875 1.929688 12.011719 8.773438 6.214844 C 13.628906 1.992188 20.15625 -0.234375 26.582031 0.25 C 36.761719 0.664062 46.082031 8.207031 48.824219 17.992188 C 49.949219 21.589844 49.945312 25.449219 49.492188 29.152344 C 47.945312 38.582031 40.527344 46.730469 31.226562 49.007812 C 28.65625 49.640625 25.945312 49.96875 23.300781 49.742188 Z M 19.492188 48.222656 C 14.957031 45.996094 12.152344 40.835938 12.796875 35.820312 C 13.308594 29.902344 18.691406 25.015625 24.605469 24.910156 C 29.558594 25.0625 34.441406 21.984375 36.242188 17.335938 C 38.398438 12.253906 36.535156 5.875 31.957031 2.773438 C 28.207031 0.0078125 23.183594 0.59375 18.914062 1.554688 C 9.042969 3.972656 1.410156 13.21875 0.859375 23.359375 C 0.140625 32.511719 5.179688 41.75 13.242188 46.128906 C 15.261719 47.21875 18.128906 48.496094 20.015625 48.519531 L 19.808594 48.394531 Z M 24.320312 15.75 C 21.820312 15.269531 21.066406 11.597656 23.21875 10.207031 C 25.429688 8.488281 28.898438 10.828125 28.027344 13.554688 C 27.628906 15.125 25.890625 16.113281 24.320312 15.75 Z M 25.574219 40.082031 C 28.640625 39.699219 28.71875 34.789062 25.660156 34.324219 C 23.238281 33.691406 21.132812 36.71875 22.5625 38.78125 C 23.167969 39.699219 24.460938 40.425781 25.574219 40.082031 Z M 25.574219 40.082031 "/>
 </g>
 </svg>
+<a title="" href="/">Linlin's blog</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
+        <ul><li class="navigation__item"><a href="/archive.html">Archive</a></li><li class="navigation__item"><a href="/about.html">About</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
+      </nav></div>
+  </header>
+</div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
-    </div>
-    <nav>
-        <ul class="inline-list">
-            <li><a href="/">Home</a></li>
-            <li><a
-                href="/blog/all.html?tag=">All
-            </a></li>
-            
-                <li><a href="/blog/about.html"> About </a></li>
-            
-            <!-- <li><a type="application/rss+xml"
-                href="/feed.xml">RSS
-            </a></li> -->
-        </ul>
-    </nav>
-</header>
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
+</aside></div>
 
-    <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Setting Jekyll on Ubuntu 16.04 with Latex support | Linlin</title>
-<meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Setting Jekyll on Ubuntu 16.04 with Latex support" />
-<meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
-<meta property="og:locale" content="EN" />
-<meta name="description" content="Update July 2018: This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest." />
-<meta property="og:description" content="Update July 2018: This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest." />
-<link rel="canonical" href="http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html" />
-<meta property="og:url" content="http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html" />
-<meta property="og:site_name" content="Linlin" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2017-10-24T00:00:00+00:00" />
-<script type="application/ld+json">
-{"description":"Update July 2018: This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest.","url":"http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html","@type":"BlogPosting","headline":"Setting Jekyll on Ubuntu 16.04 with Latex support","dateModified":"2017-10-24T00:00:00+00:00","datePublished":"2017-10-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html"},"author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
+              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
-    <div class="m-page-main">
-        <div class="m-post">
-    <div class="main js-main">
-        <div class="col-1">
-            <article itemscope itemtype="http://schema.org/BlogPosting">
-                <meta itemprop="mainEntityOfPage" itemscope itemType="https://schema.org/WebPage"/>
-                <header class="article-header">
-                    <h1 itemprop="headline" itemprop="name headline">Setting Jekyll on Ubuntu 16.04 with Latex support</h1>
-		    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Linlin" />
-                    <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Setting Jekyll on Ubuntu 16.04 with Latex support | Linlin</title>
-<meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Setting Jekyll on Ubuntu 16.04 with Latex support" />
-<meta name="author" content="Linlin Zhao | 恒道恒名 上下求索" />
-<meta property="og:locale" content="EN" />
-<meta name="description" content="Update July 2018: This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest." />
-<meta property="og:description" content="Update July 2018: This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest." />
-<link rel="canonical" href="http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html" />
-<meta property="og:url" content="http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html" />
-<meta property="og:site_name" content="Linlin" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2017-10-24T00:00:00+00:00" />
-<script type="application/ld+json">
-{"description":"Update July 2018: This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest.","url":"http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html","@type":"BlogPosting","headline":"Setting Jekyll on Ubuntu 16.04 with Latex support","dateModified":"2017-10-24T00:00:00+00:00","datePublished":"2017-10-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html"},"author":{"@type":"Person","name":"Linlin Zhao | 恒道恒名 上下求索"},"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
+<!-- end custom main top snippet -->
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Setting Jekyll on Ubuntu 16.04 with Latex support</h1></header><span class="split-space">&nbsp;</span>
+          <a class="edit-on-github"
+            title="Edit on Github"
+            href="https://github.com/Linlinzhao/linlinzhao.github.io/tree/master/_posts/2017-10-24-Setting-Jekyll-on-Ubuntu-with-LaTex-support.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="Setting Jekyll on Ubuntu 16.04 with Latex support"><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=GitHub-Pages">GitHub-Pages</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Jekyll">Jekyll</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=LaTex">LaTex</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 24, 2017</span>
+            </li></ul></div><meta itemprop="author" content="Linlin Zhao"/><meta itemprop="datePublished" content="2017-10-24T00:00:00+02:00">
+    <meta itemprop="keywords" content="GitHub-Pages,Jekyll,LaTex"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
-                    <div class="m-article-data clearfix">
-	
-        <meta itemprop="author" itemscope itemtype="https://schema.org/Person">
-            
-                <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索"/>
-            
-        </meta>
-	
-
-	
-	
-        <ul class="inline-list tag-wrapper">
-            
-                <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=GitHub-Pages">GitHub-Pages
-                </a></li>
-            
-                <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=Jekyll">Jekyll
-                </a></li>
-            
-                <li><a class="round-rect-button"
-                    href="/blog/all.html?tag=LaTex">LaTex
-                </a></li>
-            
-        </ul>
-	
-    <div class="other-wrapper">
-        
-        <div class="date-wrapper">
-            
-                <time class="article-meta" datetime="2017-10-24T00:00:00+00:00" itemprop="datePublished">
-                    Oct 24, 2017
-                </time>
-            
-        </div>
-    </div>
-</div>
-
-
-                </header>
-                <div class="m-article-content js-article-content" itemprop="articleBody">
-                    <p><em>Update July 2018</em>:</p>
+<!-- end custom article top snippet -->
+<div class="article__content" itemprop="articleBody"><p><em>Update July 2018</em>:</p>
 
 <p>This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest.</p>
 
 <hr />
 <!--more-->
 
-<p>I did encounter a few stones on my way to adopt <a href="https://tianqi.name/blog/">Tian Qi’s TeXt</a>
-for setting up my own GitHub Pages. I had just two basic requirements: 1. support LaTex syntax. 2. simple but functional. I know very few about web design, that is why even a little stone
-could cost me half an hour to move it away.</p>
+<p>When adapting <a href="https://tianqi.name/blog/">TeXt theme</a>, LaTex support is essential.</p>
 
 <ul>
   <li>
     <p>The first thing is about setting up both ruby and node.js environment on my Ubuntu machine.
 Installing Ruby and gem went smoothly, therefore setting up Jekyll is easy. But when I tried
-to install <code class="highlighter-rouge">Node.js</code> and <code class="highlighter-rouge">npm</code>, my Ubuntu constantly complained that it could not install the current
- stable version of Node.js, and it installed <code class="highlighter-rouge">Node 4.2.6</code> instead, which in turn made the latest <code class="highlighter-rouge">npm</code>
-refuse to work with the old <code class="highlighter-rouge">Node 4.2.6</code>. Many people filed this
+to install <code class="language-plaintext highlighter-rouge">Node.js</code> and <code class="language-plaintext highlighter-rouge">npm</code>, my Ubuntu constantly complained that it could not install the current
+ stable version of Node.js, and it installed <code class="language-plaintext highlighter-rouge">Node 4.2.6</code> instead, which in turn made the latest <code class="language-plaintext highlighter-rouge">npm</code>
+refuse to work with the old <code class="language-plaintext highlighter-rouge">Node 4.2.6</code>. Many people filed this
  <a href="https://askubuntu.com/questions/786272/why-does-installing-node-6-x-on-ubuntu-16-04-actually-install-node-4-2-6">problem</a>
   already, but most of them did not work for me.</p>
 
-    <p>The problem is caused by a discontinued ppa application, I need to remove it from <code class="highlighter-rouge">/etc/apt/source.list</code> and
-<code class="highlighter-rouge">/etc/apt/source.list.d</code>. This is the detailed <a href="https://askubuntu.com/questions/65911/how-can-i-fix-a-404-error-when-using-a-ppa-or-updating-my-package-lists">solution</a></p>
+    <p>The problem is caused by a discontinued ppa application, I need to remove it from <code class="language-plaintext highlighter-rouge">/etc/apt/source.list</code> and
+<code class="language-plaintext highlighter-rouge">/etc/apt/source.list.d</code>. This is the detailed <a href="https://askubuntu.com/questions/65911/how-can-i-fix-a-404-error-when-using-a-ppa-or-updating-my-package-lists">solution</a></p>
   </li>
   <li>
     <p>The second thing is to make LaTex work in Markdown. <a href="http://docs.mathjax.org/en/latest/tex.html">MathJax</a> is
@@ -208,231 +341,671 @@ quick solution. Eventually I made it work with these settings:</p>
     <ol>
       <li>Using <a href="https://kramdown.gettalong.org/syntax.html#math-blocks">kramdown</a> engine for markdown.</li>
       <li>Putting
-<code class="highlighter-rouge">&lt;script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
+<code class="language-plaintext highlighter-rouge">&lt;script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
 &lt;/script&gt;</code>
-in TeXt theme’s <code class="highlighter-rouge">_layouts/page.html</code>. Be sure to use <code class="highlighter-rouge">https</code>, otherwise the rendering online could fail.</li>
-      <li>Then I could write equations in LaTex! For inline equations, the expressions need to be embraced with double dollar sign like this: <code class="highlighter-rouge">$$x$$</code>.
-For independent lines, the expressions should start from a new line after <code class="highlighter-rouge">$$</code>, and the ending <code class="highlighter-rouge">$$</code> should also stay in a new line.</li>
+in TeXt theme’s <code class="language-plaintext highlighter-rouge">_layouts/page.html</code>. Be sure to use <code class="language-plaintext highlighter-rouge">https</code>, otherwise the rendering online could fail.</li>
+      <li>Then I could write equations in LaTex! For inline equations, the expressions need to be embraced with double dollar sign like this: <code class="language-plaintext highlighter-rouge">$$x$$</code>.
+For independent lines, the expressions should start from a new line after <code class="language-plaintext highlighter-rouge">$$</code>, and the ending <code class="language-plaintext highlighter-rouge">$$</code> should also stay in a new line.</li>
     </ol>
   </li>
 </ul>
 
 <p>Okay, that is it. I hope someone could find this post useful.</p>
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2017-10-24T00:00:00+02:00"><!-- start custom article footer snippet -->
 
-                </div>
-                <footer>
-                    
-                        <meta itemprop="dateModified" content="2017-10-24T00:00:00+00:00">
-                    
-                    <div class="article-license">
-                        <div class="m-license">
-    <div class="clearfix">
-        
-        <a class="octocat" href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2017-10-24-Setting-Jekyll-on-Ubuntu-with-LaTex-support.md">
-            <img alt="View on Github" src="/statics/images/octocat.jpg" />
-        </a>
-        <p><a href="https://github.com/linlinzhao/linlinzhao.github.io/tree/master/_posts/2017-10-24-Setting-Jekyll-on-Ubuntu-with-LaTex-support.md">View this POST on Github</a>.</P>
-        
-        <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-SA-4.0</a> license.</p>
-        <a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
-            <img alt="Creative Commons License" src="/statics/images/license-cc4.png" />
-        </a>
-        <p>欢迎转载，转载需注明出处：<a class="url" href="http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html">
-            http://localhost:4000/tech/2017/10/24/Setting-Jekyll-on-Ubuntu-with-LaTex-support.html
-        </a></p>
-    </div>
+<!-- end custom article footer snippet -->
+<div class="article__license"><div class="license">
+    <p>This work is licensed under a <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> license.
+      <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
+        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+      </a>
+    </p>
+  </div></div></footer>
+<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/tech/2017/10/24/understanding-backward()-in-PyTorch.html">Understanding backward() in PyTorch (Updated for V0.4)</a></div><div class="next"><span>NEXT</span><a href="/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">PyTorch 中的基本操作</a></div></div></div>
+
 </div>
 
-                    </div>
-                </footer>
-                <section></section><div class="article__previous-next clearfix"><div class="previous"><span></span><a href="/tech/2017/11/10/Pytorch-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">PyTorch 中的基本操作</a></div><div class="next"><span></span><a href="/tech/2017/10/24/understanding-backward()-in-PyTorch.html">Understanding backward() in PyTorch (Updated for V0.4)</a></div></div></article>
-        </div>
-        <div class="col-2">
-            <aside class="js-article-aside">
-                <div class="m-toc js-toc"></div>
-            </aside>
-        </div>
-    </div>
-</div>
-
-
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<script src="//cdn.bootcss.com/toc/0.3.2/toc.min.js"></script>
-<script type="text/javascript">
-    window.throttle = function(func, wait) {
-        var args,
-            result,
-            thisArg,
-            timeoutId,
-            lastCalled = 0;
-
-        function trailingCall() {
-            lastCalled = new Date;
-            timeoutId = null;
-            result = func.apply(thisArg, args);
-        }
-        return function() {
-            var now = new Date,
-                remaining = wait - (now - lastCalled);
-
-            args = arguments;
-            thisArg = this;
-
-            if (remaining <= 0) {
-                clearTimeout(timeoutId);
-                timeoutId = null;
-                lastCalled = now;
-                result = func.apply(thisArg, args);
-            }
-            else if (!timeoutId) {
-                timeoutId = setTimeout(trailingCall, remaining);
-            }
-            return result;
-        };
-    }
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
     $(function() {
-        var $window = $(window);
-        var $pageStage = $('.js-page-stage');
-        var $pageMain = $('.js-main');
-        var $pageFooter = $('.js-page-footer');
-        var $articleContent = $('.js-article-content');
-        var $articleAside = $('.js-article-aside');
-        var $toc = $('.js-toc');
-        var hasTitle = $articleContent.find('h1, h2, h3').length > 0;
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
 
-        function asideSticky() {
-            return $window.outerWidth() > 1150 && $pageStage.hasClass('has-toc');
-        }
-        function setTocClass() {
-            if (hasTitle) {
-                !$pageStage.hasClass('has-toc') && $pageStage.addClass('has-toc');
-            }
-        }
-
-        setTocClass();
-
-        function setAsideTOC() {
-            var asideTop,
-                asideLeft,
-                scrollBottom,
-                asideBottomTop,
-                lastScrollTop;
-
-            function init() {
-                var asideOffset = $articleAside.offset();
-                var footerOffset = $pageFooter.offset();
-                var mainOffset = $pageMain.offset();
-                asideTop = mainOffset.top;
-                asideHeight = $toc.outerHeight() + parseInt($articleAside.css('padding-top'), 10) + parseInt($articleAside.css('padding-bottom'), 10);
-                asideLeft = mainOffset.left + $pageMain.outerWidth() - $articleAside.outerWidth() - parseInt($pageMain.css('padding-right'), 10);
-                scrollBottom = footerOffset.top - asideHeight;
-                asideBottomTop = scrollBottom - mainOffset.top;
-            }
-            function setAside(force) {
-                force !== true && (force = false);
-                var scrollTop = $window.scrollTop();
-                if (scrollTop >= asideTop && scrollTop <= scrollBottom) {
-                    (!force && lastScrollTop >= asideTop && lastScrollTop <= scrollBottom) ||
-                        $articleAside.addClass('fixed').css({
-                            left: asideLeft + 'px',
-                            top: 0
-                        });
-                } else if (scrollTop < asideTop) {
-                    (!force && lastScrollTop < asideTop) ||
-                        $articleAside.removeClass('fixed').css({
-                            left: 0,
-                            top: 0
-                        });
-                } else {
-                    (!force && lastScrollTop > scrollBottom) ||
-                        $articleAside.removeClass('fixed').css({
-                            left: 0,
-                            top: asideBottomTop + 'px'
-                        });
-                }
-                lastScrollTop = scrollTop;
-            }
-            asideSticky() && (init(), setAside());
-            $window.on('scroll', function() {
-                asideSticky() && setAside();
-            });
-            $window.on('resize', throttle(function() {
-                setTocClass();
-                asideSticky() && (init(), setAside(true));
-            }, 100));
-            setTimeout(init, 4000);
-        }
-        setTimeout(setAsideTOC, 1000);
-
-        $toc.toc({
-            'selectors': 'h1,h2,h3',
-            'container': '.js-article-content',
-        });
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
     });
+  });
+})();
 </script>
+</div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
-
-
-
-
-    </div>
+<!-- end custom main bottom snippet -->
 </div>
+            </div></div></div><div class="page__footer d-print-none">
+<footer class="footer py-4 js-page-footer">
+  <div class="main"><div itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Linlin Zhao"><meta itemprop="url" content="/"><meta itemprop="description" content="I am a data scientist, an eager learner and a happy father"><div class="footer__author-links"><div class="author-links">
+  <ul class="menu menu--nowrap menu--inline"></ul>
+</div>
+</div>
+    </div><div class="site-info mt-2">
+      <div>© Linlin's blog 2021,
+        Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
+        title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
+      </div>
+    </div>
+  </div>
+</footer>
+</div></div>
+    </div><script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $body = $('body'), $window = $(window);
+    var $pageRoot = $('.js-page-root'), $pageMain = $('.js-page-main');
+    var activeCount = 0;
+    function modal(options) {
+      var $root = this, visible, onChange, hideWhenWindowScroll = false;
+      var scrollTop;
+      function setOptions(options) {
+        var _options = options || {};
+        visible = _options.initialVisible === undefined ? false : show;
+        onChange = _options.onChange;
+        hideWhenWindowScroll = _options.hideWhenWindowScroll;
+      }
+      function init() {
+        setState(visible);
+      }
+      function setState(isShow) {
+        if (isShow === visible) {
+          return;
+        }
+        visible = isShow;
+        if (visible) {
+          activeCount++;
+          scrollTop = $(window).scrollTop() || $pageMain.scrollTop();
+          $root.addClass('modal--show');
+          $pageMain.scrollTop(scrollTop);
+          activeCount === 1 && ($pageRoot.addClass('show-modal'), $body.addClass('of-hidden'));
+          hideWhenWindowScroll && window.hasEvent('touchstart') && $window.on('scroll', hide);
+          $window.on('keyup', handleKeyup);
+        } else {
+          activeCount > 0 && activeCount--;
+          $root.removeClass('modal--show');
+          $window.scrollTop(scrollTop);
+          activeCount === 0 && ($pageRoot.removeClass('show-modal'), $body.removeClass('of-hidden'));
+          hideWhenWindowScroll && window.hasEvent('touchstart') && $window.off('scroll', hide);
+          $window.off('keyup', handleKeyup);
+        }
+        onChange && onChange(visible);
+      }
+      function show() {
+        setState(true);
+      }
+      function hide() {
+        setState(false);
+      }
+      function handleKeyup(e) {
+        // Char Code: 27  ESC
+        if (e.which ===  27) {
+          hide();
+        }
+      }
+      setOptions(options);
+      init();
+      return {
+        show: show,
+        hide: hide,
+        $el: $root
+      };
+    }
+    $.fn.modal = modal;
+  });
+})();
+</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal"><script>
+(function () {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    // search panel
+    var search = (window.search || (window.search = {}));
+    var useDefaultSearchBox = window.useDefaultSearchBox === undefined ?
+      true : window.useDefaultSearchBox ;
 
+    var $searchModal = $('.js-page-search-modal');
+    var $searchToggle = $('.js-search-toggle');
+    var searchModal = $searchModal.modal({ onChange: handleModalChange, hideWhenWindowScroll: true });
+    var modalVisible = false;
+    search.searchModal = searchModal;
+
+    var $searchBox = null;
+    var $searchInput = null;
+    var $searchClear = null;
+
+    function getModalVisible() {
+      return modalVisible;
+    }
+    search.getModalVisible = getModalVisible;
+
+    function handleModalChange(visible) {
+      modalVisible = visible;
+      if (visible) {
+        search.onShow && search.onShow();
+        useDefaultSearchBox && $searchInput[0] && $searchInput[0].focus();
+      } else {
+        search.onShow && search.onHide();
+        useDefaultSearchBox && $searchInput[0] && $searchInput[0].blur();
+        setTimeout(function() {
+          useDefaultSearchBox && ($searchInput.val(''), $searchBox.removeClass('not-empty'));
+          search.clear && search.clear();
+          window.pageAsideAffix && window.pageAsideAffix.refresh();
+        }, 400);
+      }
+    }
+
+    $searchToggle.on('click', function() {
+      modalVisible ? searchModal.hide() : searchModal.show();
+    });
+    // Char Code: 83  S, 191 /
+    $(window).on('keyup', function(e) {
+      if (!modalVisible && !window.isFormElement(e.target || e.srcElement) && (e.which === 83 || e.which === 191)) {
+        modalVisible || searchModal.show();
+      }
+    });
+
+    if (useDefaultSearchBox) {
+      $searchBox = $('.js-search-box');
+      $searchInput = $searchBox.children('input');
+      $searchClear = $searchBox.children('.js-icon-clear');
+      search.getSearchInput = function() {
+        return $searchInput.get(0);
+      };
+      search.getVal = function() {
+        return $searchInput.val();
+      };
+      search.setVal = function(val) {
+        $searchInput.val(val);
+      };
+
+      $searchInput.on('focus', function() {
+        $(this).addClass('focus');
+      });
+      $searchInput.on('blur', function() {
+        $(this).removeClass('focus');
+      });
+      $searchInput.on('input', window.throttle(function() {
+        var val = $(this).val();
+        if (val === '' || typeof val !== 'string') {
+          search.clear && search.clear();
+        } else {
+          $searchBox.addClass('not-empty');
+          search.onInputNotEmpty && search.onInputNotEmpty(val);
+        }
+      }, 400));
+      $searchClear.on('click', function() {
+        $searchInput.val(''); $searchBox.removeClass('not-empty');
+        search.clear && search.clear();
+      });
+    }
+  });
+})();
+</script><div class="search search--dark">
+  <div class="main">
+    <div class="search__header">Search</div>
+    <div class="search-bar">
+      <div class="search-box js-search-box">
+        <div class="search-box__icon-search"><i class="fas fa-search"></i></div>
+        <input type="text" />
+        <div class="search-box__icon-clear js-icon-clear">
+          <a><i class="fas fa-times"></i></a>
         </div>
-        <div class="m-page-footer js-page-footer">
-    <div class="main">
-        <aside>
-            <div class="follow-me">
-    <ul class="inline-list" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Linlin Zhao | 恒道恒名 上下求索">
-        <link itemprop="url" href="http://localhost:4000/">
-        
-        
-        
-        
-        
-            <li title="Follow me on Github.">
-                <div class="round-button github">
-                    <a itemprop="sameAs" href="https://github.com/linlinzhao" target="_blank">
-                        <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path class="svgpath" data-index="path_0" fill="#272636" d="M0 525.2c0 223.6 143.3 413.7 343 483.5 26.9 6.8 22.8-12.4 22.8-25.4l0-88.7c-155.3 18.2-161.5-84.6-172-101.7-21.1-36-70.8-45.2-56-62.3 35.4-18.2 71.4 4.6 113.1 66.3 30.2 44.7 89.1 37.2 119 29.7 6.5-26.9 20.5-50.9 39.7-69.6C248.8 728.2 181.7 630 181.7 513.2c0-56.6 18.7-108.7 55.3-150.7-23.3-69.3 2.2-128.5 5.6-137.3 66.5-6 135.5 47.6 140.9 51.8 37.8-10.2 80.9-15.6 129.1-15.6 48.5 0 91.8 5.6 129.8 15.9 12.9-9.8 77-55.8 138.8-50.2 3.3 8.8 28.2 66.7 6.3 135 37.1 42.1 56 94.6 56 151.4 0 117-67.5 215.3-228.8 243.7 26.9 26.6 43.6 63.4 43.6 104.2l0 128.8c0.9 10.3 0 20.5 17.2 20.5C878.1 942.4 1024 750.9 1024 525.3c0-282.9-229.3-512-512-512C229.1 13.2 0 242.3 0 525.2L0 525.2z" />
-</svg>
-</div>
-                    </a>
-                </div>
-            </li>
-        
-        
-        
-    </ul>
-    
-        <p class="email">
-            <a title="Send me Email." href="mailto:linlinzhao.c@gmail.com" target="_self"> linlinzhao.c@gmail.com </a>
-        </p>
-    
-</div>
-
-        </aside>
-        <footer class="site-info">
-            <p>© Linlin 2015 - 2020</p>
-            <p>Powered by <a
-                title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
-                title="TeXt is a succinct theme for blogging." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
-            </p>
-        </footer>
+      </div>
+      <button class="button button--theme-dark button--pill search__cancel js-search-toggle">
+        Cancel</button>
     </div>
+    <div class="search-result js-search-result"></div>
+  </div>
 </div>
+<script>var SOURCES = window.TEXT_VARIABLES.sources;
+var PAHTS = window.TEXT_VARIABLES.paths;
+window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
+  var search = (window.search || (window.search = {}));
+  var searchData = window.TEXT_SEARCH_DATA || {};
 
-        <script>
-            $(function() {
-                // display coding language //
-                $(".highlight").each(function() {
-                    $(this).attr("data-lang", $(this).find("code").attr("data-lang"));
-                });
+  function memorize(f) {
+    var cache = {};
+    return function () {
+      var key = Array.prototype.join.call(arguments, ',');
+      if (key in cache) return cache[key];
+      else return cache[key] = f.apply(this, arguments);
+    };
+  }
+
+  /// search
+  function searchByQuery(query) {
+    var i, j, key, keys, cur, _title, result = {};
+    keys = Object.keys(searchData);
+    for (i = 0; i < keys.length; i++) {
+      key = keys[i];
+      for (j = 0; j < searchData[key].length; j++) {
+        cur = searchData[key][j], _title = cur.title;
+        if ((result[key] === undefined || result[key] && result[key].length < 4 )
+          && _title.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+          if (result[key] === undefined) {
+            result[key] = [];
+          }
+          result[key].push(cur);
+        }
+      }
+    }
+    return result;
+  }
+
+  var renderHeader = memorize(function(header) {
+    return $('<p class="search-result__header">' + header + '</p>');
+  });
+
+  var renderItem = function(index, title, url) {
+    return $('<li class="search-result__item" data-index="' + index + '"><a class="button" href="' + url + '">' + title + '</a></li>');
+  };
+
+  function render(data) {
+    if (!data) { return null; }
+    var $root = $('<ul></ul>'), i, j, key, keys, cur, itemIndex = 0;
+    keys = Object.keys(data);
+    for (i = 0; i < keys.length; i++) {
+      key = keys[i];
+      $root.append(renderHeader(key));
+      for (j = 0; j < data[key].length; j++) {
+        cur = data[key][j];
+        $root.append(renderItem(itemIndex++, cur.title, cur.url));
+      }
+    }
+    return $root;
+  }
+
+  // search box
+  var $result = $('.js-search-result'), $resultItems;
+  var lastActiveIndex, activeIndex;
+
+  function clear() {
+    $result.html(null);
+    $resultItems = $('.search-result__item'); activeIndex = 0;
+  }
+  function onInputNotEmpty(val) {
+    $result.html(render(searchByQuery(val)));
+    $resultItems = $('.search-result__item'); activeIndex = 0;
+    $resultItems.eq(0).addClass('active');
+  }
+
+  search.clear = clear;
+  search.onInputNotEmpty = onInputNotEmpty;
+
+  function updateResultItems() {
+    lastActiveIndex >= 0 && $resultItems.eq(lastActiveIndex).removeClass('active');
+    activeIndex >= 0 && $resultItems.eq(activeIndex).addClass('active');
+  }
+
+  function moveActiveIndex(direction) {
+    var itemsCount = $resultItems ? $resultItems.length : 0;
+    if (itemsCount > 1) {
+      lastActiveIndex = activeIndex;
+      if (direction === 'up') {
+        activeIndex = (activeIndex - 1 + itemsCount) % itemsCount;
+      } else if (direction === 'down') {
+        activeIndex = (activeIndex + 1 + itemsCount) % itemsCount;
+      }
+      updateResultItems();
+    }
+  }
+
+  // Char Code: 13  Enter, 37  ⬅, 38  ⬆, 39  ➡, 40  ⬇
+  $(window).on('keyup', function(e) {
+    var modalVisible = search.getModalVisible && search.getModalVisible();
+    if (modalVisible) {
+      if (e.which === 38) {
+        modalVisible && moveActiveIndex('up');
+      } else if (e.which === 40) {
+        modalVisible && moveActiveIndex('down');
+      } else if (e.which === 13) {
+        modalVisible && $resultItems && activeIndex >= 0 && $resultItems.eq(activeIndex).children('a')[0].click();
+      }
+    }
+  });
+
+  $result.on('mouseover', '.search-result__item > a', function() {
+    var itemIndex = $(this).parent().data('index');
+    itemIndex >= 0 && (lastActiveIndex = activeIndex, activeIndex = itemIndex, updateResultItems());
+  });
+});
+</script>
+</div></div>
+
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function scrollToAnchor(anchor, duration, callback) {
+      var $root = this;
+      $root.animate({ scrollTop: $(anchor).position().top }, duration, function() {
+        window.history.replaceState(null, '', window.location.href.split('#')[0] + anchor);
+        callback && callback();
+      });
+    }
+    $.fn.scrollToAnchor = scrollToAnchor;
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function affix(options) {
+      var $root = this, $window = $(window), $scrollTarget, $scroll,
+        offsetBottom = 0, scrollTarget = window, scroll = window.document, disabled = false, isOverallScroller = true,
+        rootTop, rootLeft, rootHeight, scrollBottom, rootBottomTop,
+        hasInit = false, curState;
+
+      function setOptions(options) {
+        var _options = options || {};
+        _options.offsetBottom && (offsetBottom = _options.offsetBottom);
+        _options.scrollTarget && (scrollTarget = _options.scrollTarget);
+        _options.scroll && (scroll = _options.scroll);
+        _options.disabled !== undefined && (disabled = _options.disabled);
+        $scrollTarget = $(scrollTarget);
+        isOverallScroller = window.isOverallScroller($scrollTarget[0]);
+        $scroll = $(scroll);
+      }
+      function preCalc() {
+        top();
+        rootHeight = $root.outerHeight();
+        rootTop = $root.offset().top + (isOverallScroller ? 0 :  $scrollTarget.scrollTop());
+        rootLeft = $root.offset().left;
+      }
+      function calc(needPreCalc) {
+        needPreCalc && preCalc();
+        scrollBottom = $scroll.outerHeight() - offsetBottom - rootHeight;
+        rootBottomTop = scrollBottom - rootTop;
+      }
+      function top() {
+        if (curState !== 'top') {
+          $root.removeClass('fixed').css({
+            left: 0,
+            top: 0
+          });
+          curState = 'top';
+        }
+      }
+      function fixed() {
+        if (curState !== 'fixed') {
+          $root.addClass('fixed').css({
+            left: rootLeft + 'px',
+            top: 0
+          });
+          curState = 'fixed';
+        }
+      }
+      function bottom() {
+        if (curState !== 'bottom') {
+          $root.removeClass('fixed').css({
+            left: 0,
+            top: rootBottomTop + 'px'
+          });
+          curState = 'bottom';
+        }
+      }
+      function setState() {
+        var scrollTop = $scrollTarget.scrollTop();
+        if (scrollTop >= rootTop && scrollTop <= scrollBottom) {
+          fixed();
+        } else if (scrollTop < rootTop) {
+          top();
+        } else {
+          bottom();
+        }
+      }
+      function init() {
+        if(!hasInit) {
+          var interval, timeout;
+          calc(true); setState();
+          // run calc every 100 millisecond
+          interval = setInterval(function() {
+            calc();
+          }, 100);
+          timeout = setTimeout(function() {
+            clearInterval(interval);
+          }, 45000);
+          window.pageLoad.then(function() {
+            setTimeout(function() {
+              clearInterval(interval);
+              clearTimeout(timeout);
+            }, 3000);
+          });
+          $scrollTarget.on('scroll', function() {
+            disabled || setState();
+          });
+          $window.on('resize', function() {
+            disabled || (calc(true), setState());
+          });
+          hasInit = true;
+        }
+      }
+
+      setOptions(options);
+      if (!disabled) {
+        init();
+      }
+      $window.on('resize', window.throttle(function() {
+        init();
+      }, 200));
+      return {
+        setOptions: setOptions,
+        refresh: function() {
+          calc(true, { animation: false }); setState();
+        }
+      };
+    }
+    $.fn.affix = affix;
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function toc(options) {
+      var $root = this, $window = $(window), $scrollTarget, $scroller, $tocUl = $('<ul class="toc toc--ellipsis"></ul>'), $tocLi, $headings, $activeLast, $activeCur,
+        selectors = 'h1,h2,h3', container = 'body', scrollTarget = window, scroller = 'html, body', disabled = false,
+        headingsPos, scrolling = false, hasRendered = false, hasInit = false;
+
+      function setOptions(options) {
+        var _options = options || {};
+        _options.selectors && (selectors = _options.selectors);
+        _options.container && (container = _options.container);
+        _options.scrollTarget && (scrollTarget = _options.scrollTarget);
+        _options.scroller && (scroller = _options.scroller);
+        _options.disabled !== undefined && (disabled = _options.disabled);
+        $headings = $(container).find(selectors).filter('[id]');
+        $scrollTarget = $(scrollTarget);
+        $scroller = $(scroller);
+      }
+      function calc() {
+        headingsPos = [];
+        $headings.each(function() {
+          headingsPos.push(Math.floor($(this).position().top));
+        });
+      }
+      function setState(element, disabled) {
+        var scrollTop = $scrollTarget.scrollTop(), i;
+        if (disabled || !headingsPos || headingsPos.length < 1) { return; }
+        if (element) {
+          $activeCur = element;
+        } else {
+          for (i = 0; i < headingsPos.length; i++) {
+            if (scrollTop >= headingsPos[i]) {
+              $activeCur = $tocLi.eq(i);
+            } else {
+              $activeCur || ($activeCur = $tocLi.eq(i));
+              break;
+            }
+          }
+        }
+        $activeLast && $activeLast.removeClass('active');
+        ($activeLast = $activeCur).addClass('active');
+      }
+      function render() {
+        if(!hasRendered) {
+          $root.append($tocUl);
+          $headings.each(function() {
+            var $this = $(this);
+            $tocUl.append($('<li></li>').addClass('toc-' + $this.prop('tagName').toLowerCase())
+              .append($('<a></a>').text($this.text()).attr('href', '#' + $this.prop('id'))));
+          });
+          $tocLi = $tocUl.children('li');
+          $tocUl.on('click', 'a', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            scrolling = true;
+            setState($this.parent());
+            $scroller.scrollToAnchor($this.attr('href'), 400, function() {
+              scrolling = false;
             });
-        </script>
-        
-    </body>
+          });
+        }
+        hasRendered = true;
+      }
+      function init() {
+        var interval, timeout;
+        if(!hasInit) {
+          render(); calc(); setState(null, scrolling);
+          // run calc every 100 millisecond
+          interval = setInterval(function() {
+            calc();
+          }, 100);
+          timeout = setTimeout(function() {
+            clearInterval(interval);
+          }, 45000);
+          window.pageLoad.then(function() {
+            setTimeout(function() {
+              clearInterval(interval);
+              clearTimeout(timeout);
+            }, 3000);
+          });
+          $scrollTarget.on('scroll', function() {
+            disabled || setState(null, scrolling);
+          });
+          $window.on('resize', window.throttle(function() {
+            if (!disabled) {
+              render(); calc(); setState(null, scrolling);
+            }
+          }, 100));
+        }
+        hasInit = true;
+      }
+
+      setOptions(options);
+      if (!disabled) {
+        init();
+      }
+      $window.on('resize', window.throttle(function() {
+        init();
+      }, 200));
+      return {
+        setOptions: setOptions
+      };
+    }
+    $.fn.toc = toc;
+  });
+})();
+/*(function () {
+
+})();*/
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
+</script><!--script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> 
+</script --><script type="text/x-mathjax-config">
+	var _config = { tex2jax: {
+		inlineMath: [['$','$'], ['\\(','\\)']]
+	}};MathJax.Hub.Config(_config);
+</script>
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+    </div>
+    <script>(function () {
+  var $root = document.getElementsByClassName('root')[0];
+  if (window.hasEvent('touchstart')) {
+    $root.dataset.isTouch = true;
+    document.addEventListener('touchstart', function(){}, false);
+  }
+})();
+</script>
+  </body>
 </html>
+

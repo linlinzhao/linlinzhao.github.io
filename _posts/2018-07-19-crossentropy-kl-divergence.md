@@ -1,6 +1,4 @@
 ---
-layout: post
-comment: true
 title: Why can cross entropy be loss function?
 key: A10006
 tags: probability KL-divergence entropy

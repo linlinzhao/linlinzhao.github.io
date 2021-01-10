@@ -1,0 +1,7 @@
+I"–<p>Update for PyTorch 0.4:</p>
+
+<p>Earlier versions used <code class="language-plaintext highlighter-rouge">Variable</code> to wrap tensors with different properties. Since version 0.4, <code class="language-plaintext highlighter-rouge">Variable</code> is merged with <code class="language-plaintext highlighter-rouge">tensor</code>, in other words, <code class="language-plaintext highlighter-rouge">Variable</code> is NOT needed anymore. The flag <code class="language-plaintext highlighter-rouge">require_grad</code> can be directly set in <code class="language-plaintext highlighter-rouge">tensor</code>. Accordingly, this post is also updated.</p>
+
+<hr />
+
+:ET

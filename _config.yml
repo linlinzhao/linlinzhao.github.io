@@ -20,7 +20,7 @@ text_skin: ocean # "default" (default), "dark", "forest", "ocean", "chocolate", 
 highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url     : # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : # does not include hostname
-title   : Linlin's blog
+title   : lin<sup>2</sup> #Linlin's blog
 description:  # this means to ignore newlines until "Language & timezone"
 
 ## => Language and Timezone
@@ -33,7 +33,7 @@ timezone: # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for
 ##############################
 author:
   type      : # "person" (default), "organization"
-  name      : Linlin Zhao
+  name      : Linlin Zhao, PhD
   url       :
   avatar    : # path or url of avatar image (square)
   bio       : I am a data scientist, an eager learner and a happy father

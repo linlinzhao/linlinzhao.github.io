@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Understanding backward() in PyTorch (Updated for V0.4) - Linlin's blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Understanding backward() in PyTorch (Updated for V0.4) - lin<sup>2</sup></title>
 
 <meta name="description" content="Update for PyTorch 0.4:Earlier versions used Variable to wrap tensors with different properties. Since version 0.4, Variable is merged with tensor, in other ...">
-<link rel="canonical" href="/tech/2017/10/24/understanding-backward()-in-PyTorch.html"><link rel="alternate" type="application/rss+xml" title="Linlin's blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<link rel="canonical" href="/tech/2017/10/24/understanding-backward()-in-PyTorch.html"><link rel="alternate" type="application/rss+xml" title="lin<sup>2</sup>" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -275,7 +275,7 @@
 <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 23.300781 49.742188 C 12.609375 49.1875 2.980469 40.855469 0.789062 30.402344 C -1.230469 21.671875 1.929688 12.011719 8.773438 6.214844 C 13.628906 1.992188 20.15625 -0.234375 26.582031 0.25 C 36.761719 0.664062 46.082031 8.207031 48.824219 17.992188 C 49.949219 21.589844 49.945312 25.449219 49.492188 29.152344 C 47.945312 38.582031 40.527344 46.730469 31.226562 49.007812 C 28.65625 49.640625 25.945312 49.96875 23.300781 49.742188 Z M 19.492188 48.222656 C 14.957031 45.996094 12.152344 40.835938 12.796875 35.820312 C 13.308594 29.902344 18.691406 25.015625 24.605469 24.910156 C 29.558594 25.0625 34.441406 21.984375 36.242188 17.335938 C 38.398438 12.253906 36.535156 5.875 31.957031 2.773438 C 28.207031 0.0078125 23.183594 0.59375 18.914062 1.554688 C 9.042969 3.972656 1.410156 13.21875 0.859375 23.359375 C 0.140625 32.511719 5.179688 41.75 13.242188 46.128906 C 15.261719 47.21875 18.128906 48.496094 20.015625 48.519531 L 19.808594 48.394531 Z M 24.320312 15.75 C 21.820312 15.269531 21.066406 11.597656 23.21875 10.207031 C 25.429688 8.488281 28.898438 10.828125 28.027344 13.554688 C 27.628906 15.125 25.890625 16.113281 24.320312 15.75 Z M 25.574219 40.082031 C 28.640625 39.699219 28.71875 34.789062 25.660156 34.324219 C 23.238281 33.691406 21.132812 36.71875 22.5625 38.78125 C 23.167969 39.699219 24.460938 40.425781 25.574219 40.082031 Z M 25.574219 40.082031 "/>
 </g>
 </svg>
-<a title="" href="/">Linlin's blog</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
+<a title="" href="/">lin<sup>2</sup></a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
         <ul><li class="navigation__item"><a href="/archive.html">Archive</a></li><li class="navigation__item"><a href="/about.html">About</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
       </nav></div>
   </header>
@@ -298,7 +298,7 @@
               <a class="button button--secondary button--pill button--sm"
                 href="/archive.html?tag=machine-learning">machine-learning</a>
             </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 24, 2017</span>
-            </li></ul></div><meta itemprop="author" content="Linlin Zhao"/><meta itemprop="datePublished" content="2017-10-24T00:00:00+02:00">
+            </li></ul></div><meta itemprop="author" content="Linlin Zhao, PhD"/><meta itemprop="datePublished" content="2017-10-24T00:00:00+02:00">
     <meta itemprop="keywords" content="PyTorch,machine-learning"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
@@ -693,12 +693,12 @@ RuntimeError: Trying to backward through the graph a second time, but the buffer
             </div></div></div><div class="page__footer d-print-none">
 <footer class="footer py-4 js-page-footer">
   <div class="main"><div itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Linlin Zhao"><meta itemprop="url" content="/"><meta itemprop="description" content="I am a data scientist, an eager learner and a happy father"><div class="footer__author-links"><div class="author-links">
+      <meta itemprop="name" content="Linlin Zhao, PhD"><meta itemprop="url" content="/"><meta itemprop="description" content="I am a data scientist, an eager learner and a happy father"><div class="footer__author-links"><div class="author-links">
   <ul class="menu menu--nowrap menu--inline"></ul>
 </div>
 </div>
     </div><div class="site-info mt-2">
-      <div>© Linlin's blog 2021,
+      <div>© lin<sup>2</sup> 2021,
         Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
         title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
       </div>

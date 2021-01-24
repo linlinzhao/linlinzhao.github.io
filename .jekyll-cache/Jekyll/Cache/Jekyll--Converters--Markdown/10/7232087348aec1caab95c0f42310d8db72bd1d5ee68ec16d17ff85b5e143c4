@@ -1,0 +1,102 @@
+I"q*<p><em>Here we mean scientific models, not fashion models;)</em></p>
+<h2 id="what-is-a-model">What is a model?</h2>
+<p>Supposing we want to know how fast the enzymes in our stomach catalyze the digestion of the proteins in our food, we first need to understand in general how enzymatic reactions work.
+As early as 1903, Victor Henri discovered that the enzymatic reactions were initiated by a binding interaction between enzymes and substrates.
+Later in 1913, <a href="https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_kinetics">Michaelis and Menten</a> extended Henri’s discovery and mathematically described the kinetics of the enzymatic reactions. 
+According to their findings, the enzymes (E) in the stomach bind to the proteins (S) to form the complexes (ES) which in turn produce peptides as the products (P). 
+In reaction form, it can be represented as 
+\(\begin{equation}
+	E+S\underset{k_r}{\stackrel{k_f}{\rightleftharpoons}}ES\xrightarrow{k_{cat}}E+P,
+\end{equation}\)
+where $k_f$, $k_r$ and $k_{cat}$ denote the forward rate, reverse rate and catalytic rate respectively.</p>
+
+<p>According to <em>the law of mass action</em>, which says that the reaction rate is proportional to the product of the concentrations of the reactants, the reaction can be described in mathematical equations as</p>
+
+<p>\(\begin{align}
+\nonumber	\frac{d[E]}{dt}&amp;=-k_f[E][S]+k_r[ES]+k_{cat}[ES]\\
+\nonumber	\frac{d[S]}{dt}&amp;=-k_f[E][S]+k_r[ES]\\
+	\frac{d[ES]}{dt} &amp;= -(k_r+k_{cat})[ES]+k_f[E][S]\label{mmeqs}\\
+	\nonumber \frac{d[P]}{dt}&amp;=k_{cat}[ES], 
+\end{align}\)
+where $[\cdot]$ denotes the concentration of the corresponding chemical substance, and the derivative $d[\cdot]/dt$ represents the change rate of the substance with respect to time. 
+The positive terms on the right-hand side of the equations increase the change rates while the negative terms decrease them.</p>
+
+<p>Up to now, the digestion process of proteins in our stomach has been <em>modeled</em> in reaction form and mathematical equations.</p>
+
+<p><strong>Essentially, modeling is to abstract the essentials from “real world” objects or phenomena to build their representations.
+Models enable us to investigate ideas for generating scientific hypotheses.</strong>
+The models in form of chemical reaction or mathematical equations have captured the key steps in enzymatic catalysis, without considering other non-essential facts such as how the enzymes have been produced, what proteins are present and so on. 
+More specifically, the model of systems of equations is a mathematical model which uses mathematics to describe the system of digesting proteins in the stomach, which involves proteins as the system input and peptides as the output. 
+It worths noting that models can also be diagrammatic or verbal, that is, the protein digestion process can be drawn as diagrams or be described in words.</p>
+
+<p>In order to obtain the production rate $d[P]/dt$ in the equations, further mathematical analyses require assumptions related to the system details. 
+This is because the system of equations is nonlinear due to the product terms $[E][S]$ and a direct solution is difficult to obtain. 
+The key assumption is the <em>steady state approximation</em> which states that the concentration of the complex $ES$ will rapidly reach its steady state. 
+Thus, $[ES]$ is regarded as a constant. 
+And note that the total enzyme concentration is $[E]_{T}=[ES]+[E]$.
+Consequently, the production rate can be derived as</p>
+
+\[\begin{equation}
+	\frac{d[P]}{dt}=\frac{V_{max}[S]}{K_M+[S]},
+\end{equation}\]
+
+<p>where \(V_{max}=k_{cat}[E]_{T}\) is the maximum reaction rate and \(K_M=(k_r+k_{cat})/k_f\) is the Michaelis constant. 
+This equation is the well-known <em>Michaelis-Menten Equation</em>, which states that the production rate $d[P]/dt$ depends only on the concentration of the input substrates $[S]$.
+$[P]$ and $[S]$ are system variables and $K_M$ and $V_{max}$ are system parameters.
+To determine the real value of production rate, not only the independent variable $[S]$ need to be measured, but also the values of the parameters $V_{max}$ and $K_M$ should be determined. <br />
+To determine the parameters of a system of equations is often termed <em>parameterization</em> or <em>parameter fitting</em>, which is a key step in mathematical modeling methods.</p>
+
+<p>The Michaelis-Menten equation was reported in 1913. Earlier than that, the use of mathematics to model biological systems can arguably date back to 1879 when Fritz Müller used mathematics for his discovery of <a href=""><em>Müllerian mimicry</em></a> which describes phenomena such as the bees have evolved similar looking and stings as the wasps to avoid predators.
+Last decades have seen rapid growth of application of modeling in biological systems. 
+Especially with the massive data produced by high-throughput genomics and proteomics studies, systems can be investigated on much larger scales, for instance, systems with a large number of interconnected components. 
+Systems biology and computational biology are fields that extensively use mathematical models to study complex biological systems. 
+For example, a series of enzymatic reactions can form a metabolic pathway and then all the pathways will constitute the metabolic network which involves numerous reactants, enzymes and products. 
+Modeling the metabolic network systematically can help understanding, for example, the causes of human diseases like obesity and diabetes, and the regulation of sugar utilization in yeast.</p>
+
+<h2 id="mechanistic-modeling-and-machine-learning-modeling">Mechanistic modeling and machine learning modeling</h2>
+
+<p>Suppose the following question is investigated: <em>Does chocolate reduce blood pressure?</em>
+In terms of modeling, its answer can be approached in two ways.</p>
+
+<p>The first is the mechanistic modeling. 
+Like modeling the enzymatic reactions, all components involved in the system which facilitates the reduction by chocolates and their mechanistic interconnections need to be understood. 
+Based on that, the causal relations between chocolates and the reduction of blood pressure can be mathematically formulated. 
+Then with existing relevant data or dedicated experimental data, the model can be used to make deductions and draw conclusions. 
+However, such a mechanistic model is hard to obtain due to many unknown details. 
+For example, the high blood pressure can be resulted from disorders of different organs, of which the mechanisms are probably different. 
+Then detailed steps of chocolates to reduce blood pressures become hard to determine.</p>
+
+<p>The second is the statistical modeling which counts uncertainties in system variables and aims at capturing the relationships between the variables without involving details of system components. 
+By <em>meta analysis</em>, a statistical analysis by combining data from multiple studies, researchers found that different dosages of dark chocolates were indeed correlated with the reduction of blood pressures. 
+Essentially, statistical models are models of data, of which the objective is to mathematically approximate the truth of the data generating process so as to make predictions.
+For example, if the regression model in approximated the truth well, for a given dosage of dark chocolate, the model should be able to predict to what extent the blood pressure can be reduced. 
+However, due to the quality and quantity of data and the complexity of the problem, such models are usually far from accurate to make reliable predictions.</p>
+
+<p><em>Machine learning</em> is a discipline closely related to statistical modeling, with focus on building computer systems to make predictions. 
+Tom Mitchell provided a widely accepted definition by describing machine learning as a computer program which learns from <em>experience</em> with respect to some <em>tasks</em> and <em>performance</em> measures.<br />
+For example, to build learning models to recognize cats (task) from images, a huge number of images (experience) are needed for the models to capture the general patterns of cats such that the learned models are able to recognize cats in unseen images (performance). 
+Machine learning has been widely used for decades, and is becoming more and more popular due to the success of its subfield, deep learning, in a wide range of applications.
+Deep learning are the machine learning algorithms for learning multiple levels of representations from the data. 
+For example, for recognizing cats in images, deep learning models do not require human-engineered characteristics of cats, but learn first the basic representations like the curves of ears and eyes and then assemble them to next levels of higher representations.</p>
+
+<p><strong>Statistical modeling and machine learning are largely overlapped but have slight distinction in emphasis and terminology.
+They are both concerned with the same question: how do we learn from data?</strong>
+For example, given measured expression levels of a set of genes, the primary concern is what regulatory factors underlying the gene sequences are related to the expression levels.<br />
+Statistics emphasizes formal inferences about which the regulatory factors are associated with a specific probability model, while machine learning emphasizes predicting the expression levels of unseen gene sequences using general purpose algorithms to find patterns from the measured sequences. 
+Though the emphases are different, they are both concerned with trying to find out how the gene expressions work and what will happen next. 
+One notable distinction is that specific statistical models usually rely on problem-specific assumptions whereas machine learning makes minimal assumptions about data generating systems.</p>
+
+<h3 id="references">References</h3>
+
+<ol>
+  <li>https://www.open.edu/openlearn/science-maths-technology/computing-and-ict/models-and-modelling/content-section-2.1</li>
+  <li>https://normaldeviate.wordpress.com/2012/06/12/statistics-versus-machine-learning-5-2/</li>
+  <li>Danilo Bzdok, Naomi Altman, and Martin Krzywinski. „Points of significance: statistics versus machine learning“. In: Nature Methods (2018), pp. 1–7</li>
+  <li>https://en.wikipedia.org/wiki/M%C3%BCllerian_mimicry</li>
+  <li>Karin Ried, Thomas Sullivan, Peter Fakler, Oliver R Frank, and Nigel P Stocks. „Does chocolate reduce blood pressure? A meta-analysis“. In: BMC medicine 8.1 (2010)</li>
+  <li>Kevin P Murphy. „Machine learning: a probabilistic perspective“. In: (2012)</li>
+  <li>Hiroaki Kitano. „Computational systems biology“. In: Nature 420.6912 (2002)</li>
+  <li>Florian Markowetz. „All biology is computational biology“. In: PLoS biology 15.3 (2017)</li>
+  <li>https://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning</li>
+</ol>
+:ET

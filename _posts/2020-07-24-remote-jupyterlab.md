@@ -1,7 +1,7 @@
 ---
 title: Remote jupyterlab without SSH and sudo
 key: A10010
-tags: Jupyterlab Linux
+tags: python Jupyterlab Linux
 category: Tech
 date: 2020-07-24
 ---

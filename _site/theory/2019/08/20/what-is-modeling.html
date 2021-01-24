@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Create PDF reports with Python and Jinja2 - lin<sup>2</sup></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>What is modeling? A not so gentle explanation - lin<sup>2</sup></title>
 
-<meta name="description" content="This post is a summary of the code I wrote in Python for my then-desperate wife to automatically generate hundreds of invoices.Suppose you have an excel shee...">
-<link rel="canonical" href="/tech/2021/01/20/jinja-report.html"><link rel="alternate" type="application/rss+xml" title="lin<sup>2</sup>" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="Here we mean scientific models, not fashion models;)What is a model?Supposing we want to know how fast the enzymes in our stomach catalyze the digestion of t...">
+<link rel="canonical" href="/theory/2019/08/20/what-is-modeling.html"><link rel="alternate" type="application/rss+xml" title="lin<sup>2</sup>" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -287,257 +287,123 @@
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Create PDF reports with Python and Jinja2</h1></header><span class="split-space">&nbsp;</span>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>What is modeling? A not so gentle explanation</h1></header><span class="split-space">&nbsp;</span>
           <a class="edit-on-github"
             title="Edit on Github"
-            href="https://github.com/Linlinzhao/linlinzhao.github.io/tree/master/_posts/2021-01-20-jinja-report.md">
-            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="Create PDF reports with Python and Jinja2"><div class="article__info clearfix"><ul class="left-col menu"><li>
+            href="https://github.com/Linlinzhao/linlinzhao.github.io/tree/master/_posts/2019-08-20-what-is-modeling.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="What is modeling? A not so gentle explanation"><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=python">python</a>
+                href="/archive.html?tag=modeling">modeling</a>
             </li><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=jinja">jinja</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 20, 2021</span>
-            </li></ul></div><meta itemprop="author" content="Linlin Zhao, PhD"/><meta itemprop="datePublished" content="2021-01-20T00:00:00+01:00">
-    <meta itemprop="keywords" content="python,jinja"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+                href="/archive.html?tag=foundations">foundations</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 20, 2019</span>
+            </li></ul></div><meta itemprop="author" content="Linlin Zhao, PhD"/><meta itemprop="datePublished" content="2019-08-20T00:00:00+02:00">
+    <meta itemprop="keywords" content="modeling,foundations"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
-<div class="article__content" itemprop="articleBody"><p><em>This post is a summary of the code I wrote in Python for my then-desperate wife to automatically generate hundreds of invoices.</em></p>
+<div class="article__content" itemprop="articleBody"><p><em>Here we mean scientific models, not fashion models;)</em></p>
+<h2 id="what-is-a-model">What is a model?</h2>
+<p>Supposing we want to know how fast the enzymes in our stomach catalyze the digestion of the proteins in our food, we first need to understand in general how enzymatic reactions work.
+As early as 1903, Victor Henri discovered that the enzymatic reactions were initiated by a binding interaction between enzymes and substrates.
+Later in 1913, <a href="https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_kinetics">Michaelis and Menten</a> extended Henri’s discovery and mathematically described the kinetics of the enzymatic reactions. 
+According to their findings, the enzymes (E) in the stomach bind to the proteins (S) to form the complexes (ES) which in turn produce peptides as the products (P). 
+In reaction form, it can be represented as 
+\(\begin{equation}
+	E+S\underset{k_r}{\stackrel{k_f}{\rightleftharpoons}}ES\xrightarrow{k_{cat}}E+P,
+\end{equation}\)
+where $k_f$, $k_r$ and $k_{cat}$ denote the forward rate, reverse rate and catalytic rate respectively.</p>
 
-<p>Suppose you have an excel sheet with hundreds of rows and a couple of columns (a sample is shown below), and would like to generate pdf reports for individual rows according to column values. 
-With MS office, the sheet can be imported into a word template and the column names of interest can be placed accordingly in the template. 
-Then you can print pdf files for every row. However the task can easily become tedious when you have additional requirements. 
-For instance, grouping customers by attributes like regions to different folders and naming the printed files with column values would need manual and repetitive efforts. 
-To automate the process with Python, there are many <a href="https://www.xlwings.org/blog/reporting-with-python">options</a> to choose from.
-The major tool we’ll make use of is <a href="https://jinja2docs.readthedocs.io/en/stable/">Jinja2</a>. 
-In addition, we use pandas to handle tables and test a couple of html-to-pdf tools.</p>
+<p>According to <em>the law of mass action</em>, which says that the reaction rate is proportional to the product of the concentrations of the reactants, the reaction can be described in mathematical equations as</p>
 
-<h2 id="what-is-jinja2">What is Jinja2?</h2>
+<p>\(\begin{align}
+\nonumber	\frac{d[E]}{dt}&amp;=-k_f[E][S]+k_r[ES]+k_{cat}[ES]\\
+\nonumber	\frac{d[S]}{dt}&amp;=-k_f[E][S]+k_r[ES]\\
+	\frac{d[ES]}{dt} &amp;= -(k_r+k_{cat})[ES]+k_f[E][S]\label{mmeqs}\\
+	\nonumber \frac{d[P]}{dt}&amp;=k_{cat}[ES], 
+\end{align}\)
+where $[\cdot]$ denotes the concentration of the corresponding chemical substance, and the derivative $d[\cdot]/dt$ represents the change rate of the substance with respect to time. 
+The positive terms on the right-hand side of the equations increase the change rates while the negative terms decrease them.</p>
 
-<p>This is excerpted from Jinja2’s documentation:</p>
-<blockquote>
-  <p>Jinja2 is a modern and designer-friendly templating language for Python, modelled after Django’s templates. It is fast, widely used and secure with the optional sandboxed template execution environment.</p>
-</blockquote>
+<p>Up to now, the digestion process of proteins in our stomach has been <em>modeled</em> in reaction form and mathematical equations.</p>
 
-<blockquote>
-  <p>The name Jinja was chosen because it’s the name of a Japanese temple and temple and template share a similar pronunciation. It is not named after the city in Uganda.</p>
-</blockquote>
+<p><strong>Essentially, modeling is to abstract the essentials from “real world” objects or phenomena to build their representations.
+Models enable us to investigate ideas for generating scientific hypotheses.</strong>
+The models in form of chemical reaction or mathematical equations have captured the key steps in enzymatic catalysis, without considering other non-essential facts such as how the enzymes have been produced, what proteins are present and so on. 
+More specifically, the model of systems of equations is a mathematical model which uses mathematics to describe the system of digesting proteins in the stomach, which involves proteins as the system input and peptides as the output. 
+It worths noting that models can also be diagrammatic or verbal, that is, the protein digestion process can be drawn as diagrams or be described in words.</p>
 
-<p>In a nutshell, Jinja bridges our Python code and html files which will be shown to end users. 
-By placing placeholders `` in a html template, in Python, Jinja can pass actual values to the placeholders when rendering html files. 
-If this sounds too abstract, the concept will become clear when we see the code later.</p>
+<p>In order to obtain the production rate $d[P]/dt$ in the equations, further mathematical analyses require assumptions related to the system details. 
+This is because the system of equations is nonlinear due to the product terms $[E][S]$ and a direct solution is difficult to obtain. 
+The key assumption is the <em>steady state approximation</em> which states that the concentration of the complex $ES$ will rapidly reach its steady state. 
+Thus, $[ES]$ is regarded as a constant. 
+And note that the total enzyme concentration is $[E]_{T}=[ES]+[E]$.
+Consequently, the production rate can be derived as</p>
 
-<h2 id="a-concrete-but-simple-example">A concrete but simple example</h2>
+\[\begin{equation}
+	\frac{d[P]}{dt}=\frac{V_{max}[S]}{K_M+[S]},
+\end{equation}\]
 
-<p>Let’s generate invoices according to the following sales table:</p>
+<p>where \(V_{max}=k_{cat}[E]_{T}\) is the maximum reaction rate and \(K_M=(k_r+k_{cat})/k_f\) is the Michaelis constant. 
+This equation is the well-known <em>Michaelis-Menten Equation</em>, which states that the production rate $d[P]/dt$ depends only on the concentration of the input substrates $[S]$.
+$[P]$ and $[S]$ are system variables and $K_M$ and $V_{max}$ are system parameters.
+To determine the real value of production rate, not only the independent variable $[S]$ need to be measured, but also the values of the parameters $V_{max}$ and $K_M$ should be determined. <br />
+To determine the parameters of a system of equations is often termed <em>parameterization</em> or <em>parameter fitting</em>, which is a key step in mathematical modeling methods.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Invoice</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Item</th>
-      <th>Cost</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>A0001</td>
-      <td>Alix</td>
-      <td>Volkstr. 1</td>
-      <td>book</td>
-      <td>12Euro</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>A0002</td>
-      <td>Juli</td>
-      <td>Volkstr. 2</td>
-      <td>laptop</td>
-      <td>500Euro</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>A0628</td>
-      <td>Ruo</td>
-      <td>Volkstr. 3</td>
-      <td>laptop</td>
-      <td>1245Euro</td>
-    </tr>
-  </tbody>
-</table>
+<p>The Michaelis-Menten equation was reported in 1913. Earlier than that, the use of mathematics to model biological systems can arguably date back to 1879 when Fritz Müller used mathematics for his discovery of <a href=""><em>Müllerian mimicry</em></a> which describes phenomena such as the bees have evolved similar looking and stings as the wasps to avoid predators.
+Last decades have seen rapid growth of application of modeling in biological systems. 
+Especially with the massive data produced by high-throughput genomics and proteomics studies, systems can be investigated on much larger scales, for instance, systems with a large number of interconnected components. 
+Systems biology and computational biology are fields that extensively use mathematical models to study complex biological systems. 
+For example, a series of enzymatic reactions can form a metabolic pathway and then all the pathways will constitute the metabolic network which involves numerous reactants, enzymes and products. 
+Modeling the metabolic network systematically can help understanding, for example, the causes of human diseases like obesity and diabetes, and the regulation of sugar utilization in yeast.</p>
 
-<p>Each customer needs an invoice pdf file which is named by the customer’s name. 
-Our basic idea is to first generate html files and then convert them to pdf files.</p>
+<h2 id="mechanistic-modeling-and-machine-learning-modeling">Mechanistic modeling and machine learning modeling</h2>
 
-<p>To start with, I have already composed a <a href="https://github.com/Linlinzhao/jinja-report/blob/main/layout.html">template html</a> file based on this <a href="https://github.com/mjhea0/thinkful-mentor/tree/master/python/jinja">repo</a>. 
-This is how the template looks like:</p>
+<p>Suppose the following question is investigated: <em>Does chocolate reduce blood pressure?</em>
+In terms of modeling, its answer can be approached in two ways.</p>
 
-<p><img src="/assets/images/jinja_template.png" alt="template" /></p>
+<p>The first is the mechanistic modeling. 
+Like modeling the enzymatic reactions, all components involved in the system which facilitates the reduction by chocolates and their mechanistic interconnections need to be understood. 
+Based on that, the causal relations between chocolates and the reduction of blood pressure can be mathematically formulated. 
+Then with existing relevant data or dedicated experimental data, the model can be used to make deductions and draw conclusions. 
+However, such a mechanistic model is hard to obtain due to many unknown details. 
+For example, the high blood pressure can be resulted from disorders of different organs, of which the mechanisms are probably different. 
+Then detailed steps of chocolates to reduce blood pressures become hard to determine.</p>
 
-<p>As you may see from the template, the column names in our table have corresponding placeholders.</p>
+<p>The second is the statistical modeling which counts uncertainties in system variables and aims at capturing the relationships between the variables without involving details of system components. 
+By <em>meta analysis</em>, a statistical analysis by combining data from multiple studies, researchers found that different dosages of dark chocolates were indeed correlated with the reduction of blood pressures. 
+Essentially, statistical models are models of data, of which the objective is to mathematically approximate the truth of the data generating process so as to make predictions.
+For example, if the regression model in approximated the truth well, for a given dosage of dark chocolate, the model should be able to predict to what extent the blood pressure can be reduced. 
+However, due to the quality and quantity of data and the complexity of the problem, such models are usually far from accurate to make reliable predictions.</p>
 
-<h2 id="use-jinja-to-render-html-files">Use Jinja to render html files</h2>
+<p><strong>Machine learning is a discipline closely related to statistical modeling, with focus on building computer systems to make predictions. 
+Tom Mitchell provided a widely accepted definition by describing machine learning as a computer program which learns from <em>experience</em> with respect to some <em>tasks</em> and <em>performance</em> measures.</strong> 
+For example, to build learning models to recognize cats (task) from images, a huge number of images (experience) are needed for the models to capture the general patterns of cats such that the learned models are able to recognize cats in unseen images (performance). 
+Machine learning has been widely used for decades, and is becoming more and more popular due to the success of its subfield, deep learning, in a wide range of applications.
+Deep learning are the machine learning algorithms for learning multiple levels of representations from the data. 
+For example, for recognizing cats in images, deep learning models do not require human-engineered characteristics of cats, but learn first the basic representations like the curves of ears and eyes and then assemble them to next levels of higher representations.</p>
 
-<p>Now we can write Python code to pass the values in the table to html files. The following function can render one html file for a given row.</p>
+<p><strong>Statistical modeling and machine learning are largely overlapped but have slight distinction in emphasis and terminology.
+They are both concerned with the same question: how do we learn from data?</strong>
+For example, given measured expression levels of a set of genes, the primary concern is what regulatory factors underlying the gene sequences are related to the expression levels.<br />
+Statistics emphasizes formal inferences about which the regulatory factors are associated with a specific probability model, while machine learning emphasizes predicting the expression levels of unseen gene sequences using general purpose algorithms to find patterns from the measured sequences. 
+Though the emphases are different, they are both concerned with trying to find out how the gene expressions work and what will happen next. 
+One notable distinction is that specific statistical models usually rely on problem-specific assumptions whereas machine learning makes minimal assumptions about data generating systems.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jinja2</span>
+<h2 id="references">References</h2>
 
-<span class="k">def</span> <span class="nf">render_html</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
-    <span class="s">"""
-    Render html page using jinja
-    """</span>
-    <span class="n">template_loader</span> <span class="o">=</span> <span class="n">jinja2</span><span class="p">.</span><span class="n">FileSystemLoader</span><span class="p">(</span><span class="n">searchpath</span><span class="o">=</span><span class="s">"./"</span><span class="p">)</span>
-    <span class="n">template_env</span> <span class="o">=</span> <span class="n">jinja2</span><span class="p">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">loader</span><span class="o">=</span><span class="n">template_loader</span><span class="p">)</span>
-    <span class="n">template_file</span> <span class="o">=</span> <span class="s">"layout.html"</span>
-    <span class="n">template</span> <span class="o">=</span> <span class="n">template_env</span><span class="p">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">template_file</span><span class="p">)</span>
-    <span class="n">output_text</span> <span class="o">=</span> <span class="n">template</span><span class="p">.</span><span class="n">render</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span>
-        <span class="n">address</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Address</span><span class="p">,</span>
-        <span class="n">date</span><span class="o">=</span><span class="n">get_date</span><span class="p">(),</span>
-        <span class="n">invoice</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Invoice</span><span class="p">,</span>
-        <span class="n">item</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
-        <span class="n">amount</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Cost</span>
-        <span class="p">)</span>
-
-    <span class="n">html_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">row</span><span class="p">.</span><span class="n">Name</span><span class="si">}</span><span class="s">.html'</span>
-    <span class="n">html_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">html_path</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
-    <span class="n">html_file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span>
-    <span class="n">html_file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div></div>
-
-<p>What this code does:</p>
 <ol>
-  <li>tell Jinja where the template is;</li>
-  <li>pass values to the placeholder in the template when rendering;</li>
-  <li>write the rendered output to a html file.</li>
+  <li>https://www.open.edu/openlearn/science-maths-technology/computing-and-ict/models-and-modelling/content-section-2.1</li>
+  <li>https://normaldeviate.wordpress.com/2012/06/12/statistics-versus-machine-learning-5-2/</li>
+  <li>Danilo Bzdok, Naomi Altman, and Martin Krzywinski. „Points of significance: statistics versus machine learning“. In: Nature Methods (2018), pp. 1–7</li>
+  <li>https://en.wikipedia.org/wiki/M%C3%BCllerian_mimicry</li>
+  <li>Karin Ried, Thomas Sullivan, Peter Fakler, Oliver R Frank, and Nigel P Stocks. „Does chocolate reduce blood pressure? A meta-analysis“. In: BMC medicine 8.1 (2010)</li>
+  <li>Kevin P Murphy. „Machine learning: a probabilistic perspective“. In: (2012)</li>
+  <li>Hiroaki Kitano. „Computational systems biology“. In: Nature 420.6912 (2002)</li>
+  <li>Florian Markowetz. „All biology is computational biology“. In: PLoS biology 15.3 (2017)</li>
+  <li>https://stats.stackexchange.com/questions/6/the-two-cultures-statistics-vs-machine-learning</li>
 </ol>
-
-<h2 id="read-the-table-using-pandas">Read the table using Pandas</h2>
-
-<p>The table is stored as <code class="language-plaintext highlighter-rouge">sample.csv</code>, we can use pandas to iterate through every row to have named tuples which can then be passed to <code class="language-plaintext highlighter-rouge">render_html</code>:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'sample.csv'</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">itertuples</span><span class="p">():</span>
-    <span class="n">render_html</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-</code></pre></div></div>
-<p>and three html files will be generated.</p>
-
-<p><img src="/assets/images/jiaja_out_html.png" alt="htmls" />.</p>
-
-<p>To check if the values are passed correctly, let’s view the <code class="language-plaintext highlighter-rouge">ruo.html</code>:</p>
-
-<p><img src="/assets/images/jiaja_ruo.png" alt="ruo" /></p>
-
-<p>The output actually looks all right, which is great.</p>
-
-<h2 id="convert-html-to-pdf">Convert html to pdf</h2>
-
-<p>In python, there are also several options for converting html to pdf, <a href="https://github.com/JazzCore/python-pdfkit">pdfkit</a>, <a href="https://weasyprint.org/">weasyprint</a>, <a href="https://xhtml2pdf.readthedocs.io/en/latest/">xhtml2pdf</a>, to name but a few.</p>
-
-<p>Several factors like the template css style and the browser for viewing the html files can make the pdfs  look quite differently from what you see from the browser. 
-For instance, since the template html above has English, German and Chinese, we may need to specify encoding schemes for rendering all characters correctly. 
-After playing different tools for a while, I have chosen <a href="https://github.com/JazzCore/python-pdfkit"><code class="language-plaintext highlighter-rouge">pdfkit</code></a>, which is a python wrapper for <code class="language-plaintext highlighter-rouge">wkhtmltopdf</code>. 
-An exhaustive list of configurations can be found <a href="https://wkhtmltopdf.org/usage/wkhtmltopdf.txt">here</a>.</p>
-
-<p>Again I have written a function for converting:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">html2pdf</span><span class="p">(</span><span class="n">html_path</span><span class="p">,</span> <span class="n">pdf_path</span><span class="p">):</span>
-    <span class="s">"""
-    Convert html to pdf using pdfkit which is a wrapper of wkhtmltopdf
-    """</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'page-size'</span><span class="p">:</span> <span class="s">'Letter'</span><span class="p">,</span>
-        <span class="s">'margin-top'</span><span class="p">:</span> <span class="s">'0.35in'</span><span class="p">,</span>
-        <span class="s">'margin-right'</span><span class="p">:</span> <span class="s">'0.75in'</span><span class="p">,</span>
-        <span class="s">'margin-bottom'</span><span class="p">:</span> <span class="s">'0.75in'</span><span class="p">,</span>
-        <span class="s">'margin-left'</span><span class="p">:</span> <span class="s">'0.75in'</span><span class="p">,</span>
-        <span class="s">'encoding'</span><span class="p">:</span> <span class="s">"UTF-8"</span><span class="p">,</span>
-        <span class="s">'no-outline'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
-        <span class="s">'enable-local-file-access'</span><span class="p">:</span> <span class="bp">None</span>
-    <span class="p">}</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">html_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">pdfkit</span><span class="p">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">pdf_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span>
-</code></pre></div></div>
-<p>Note that the specified options are from the <code class="language-plaintext highlighter-rouge">wkhtmltopdf</code> configuration list. For entries without values, simply specify them to be <code class="language-plaintext highlighter-rouge">None</code>.</p>
-
-<h2 id="put-them-all-together">Put them all together</h2>
-
-<p>To have clean working folder, directories <code class="language-plaintext highlighter-rouge">res</code> and <code class="language-plaintext highlighter-rouge">tables</code> are created for saving generated files and the original table respectively.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">jinja2</span>
-<span class="kn">import</span> <span class="nn">pdfkit</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
-
-<span class="k">def</span> <span class="nf">render_html</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
-    <span class="s">"""
-    Render html page using jinja based on layout.html
-    """</span>
-    <span class="n">template_loader</span> <span class="o">=</span> <span class="n">jinja2</span><span class="p">.</span><span class="n">FileSystemLoader</span><span class="p">(</span><span class="n">searchpath</span><span class="o">=</span><span class="s">"./"</span><span class="p">)</span>
-    <span class="n">template_env</span> <span class="o">=</span> <span class="n">jinja2</span><span class="p">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">loader</span><span class="o">=</span><span class="n">template_loader</span><span class="p">)</span>
-    <span class="n">template_file</span> <span class="o">=</span> <span class="s">"layout.html"</span>
-    <span class="n">template</span> <span class="o">=</span> <span class="n">template_env</span><span class="p">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">template_file</span><span class="p">)</span>
-    <span class="n">output_text</span> <span class="o">=</span> <span class="n">template</span><span class="p">.</span><span class="n">render</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span>
-        <span class="n">address</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Address</span><span class="p">,</span>
-        <span class="n">date</span><span class="o">=</span><span class="n">get_date</span><span class="p">(),</span>
-        <span class="n">invoice</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Invoice</span><span class="p">,</span>
-        <span class="n">item</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
-        <span class="n">amount</span><span class="o">=</span><span class="n">row</span><span class="p">.</span><span class="n">Cost</span>
-        <span class="p">)</span>
-
-    <span class="n">html_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s">'./res/</span><span class="si">{</span><span class="n">row</span><span class="p">.</span><span class="n">Name</span><span class="si">}</span><span class="s">.html'</span>
-    <span class="n">html_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">html_path</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
-    <span class="n">html_file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span>
-    <span class="n">html_file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Now converting </span><span class="si">{</span><span class="n">row</span><span class="p">.</span><span class="n">Name</span><span class="si">}</span><span class="s"> ... "</span><span class="p">)</span>
-    <span class="n">pdf_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s">'./res/</span><span class="si">{</span><span class="n">row</span><span class="p">.</span><span class="n">Name</span><span class="si">}</span><span class="s">.pdf'</span>    
-    <span class="n">html2pdf</span><span class="p">(</span><span class="n">html_path</span><span class="p">,</span> <span class="n">pdf_path</span><span class="p">)</span>   
-
-<span class="k">def</span> <span class="nf">html2pdf</span><span class="p">(</span><span class="n">html_path</span><span class="p">,</span> <span class="n">pdf_path</span><span class="p">):</span>
-    <span class="s">"""
-    Convert html to pdf using pdfkit which is a wrapper of wkhtmltopdf
-    """</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'page-size'</span><span class="p">:</span> <span class="s">'Letter'</span><span class="p">,</span>
-        <span class="s">'margin-top'</span><span class="p">:</span> <span class="s">'0.35in'</span><span class="p">,</span>
-        <span class="s">'margin-right'</span><span class="p">:</span> <span class="s">'0.75in'</span><span class="p">,</span>
-        <span class="s">'margin-bottom'</span><span class="p">:</span> <span class="s">'0.75in'</span><span class="p">,</span>
-        <span class="s">'margin-left'</span><span class="p">:</span> <span class="s">'0.75in'</span><span class="p">,</span>
-        <span class="s">'encoding'</span><span class="p">:</span> <span class="s">"UTF-8"</span><span class="p">,</span>
-        <span class="s">'no-outline'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
-        <span class="s">'enable-local-file-access'</span><span class="p">:</span> <span class="bp">None</span>
-    <span class="p">}</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">html_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">pdfkit</span><span class="p">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">pdf_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">get_date</span><span class="p">():</span>
-    <span class="s">"Get today's date in German format"</span>
-    <span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="p">.</span><span class="n">today</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">today</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"%d.%m.%Y"</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'tables/sample.csv'</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">itertuples</span><span class="p">():</span>
-        <span class="n">render_html</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-</code></pre></div></div>
-<p>Running the script would generate both html files and pdf files for all rows. The code is also available on <a href="https://github.com/Linlinzhao/jinja-report">github</a>.</p>
-
-<h3 id="code-dependencies">Code dependencies</h3>
-
-<p>System wide: <code class="language-plaintext highlighter-rouge">wkhtmltopdf</code>, installers for different OS can be found <a href="https://wkhtmltopdf.org/downloads.html">here</a>.</p>
-
-<p>Python3:</p>
-<ul>
-  <li>pdfkit</li>
-  <li>jinja2</li>
-  <li>pandas</li>
-</ul>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2021-01-20T00:00:00+01:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2019-08-20T00:00:00+02:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__license"><div class="license">
@@ -547,7 +413,7 @@ An exhaustive list of configurations can be found <a href="https://wkhtmltopdf.o
       </a>
     </p>
   </div></div></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/tech/2020/07/24/remote-jupyterlab.html">Remote jupyterlab without SSH and sudo</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/stats/2018/08/25/bayesian2-univariant-gaussian.html">Bayesian basics II - Inference for univariate Gaussian, Maximum a Posteriori vs Maximum likelihood</a></div><div class="next"><span>NEXT</span><a href="/tech/2020/07/24/remote-jupyterlab.html">Remote jupyterlab without SSH and sudo</a></div></div></div>
 
 </div>
 

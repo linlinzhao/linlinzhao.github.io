@@ -25,6 +25,7 @@ titles:
   # @end locale config
 key: page-about
 ---
+*Linlin Zhao, PhD, Data scientist*
 
 I blog randomly about random things, of which the random process is hard to model :)
 

@@ -24,7 +24,7 @@ This is excerpted from Jinja2's documentation:
 > The name Jinja was chosen because it’s the name of a Japanese temple and temple and template share a similar pronunciation. It is not named after the city in Uganda.
 
 In a nutshell, Jinja bridges our Python code and html files which will be shown to end users. 
-By placing placeholders `{{ ... }}` in a html template, in Python, Jinja can pass actual values to the placeholders when rendering html files. 
+By placing placeholders `{{ variable }}` in a html template, in Python, Jinja can pass actual values to the placeholders when rendering html files. 
 If this sounds too abstract, the concept will become clear when we see the code later.
 
 ## A concrete but simple example
@@ -40,86 +40,8 @@ Let's generate invoices according to the following sales table:
 Each customer needs an invoice pdf file which is named by the customer's name. 
 Our basic idea is to first generate html files and then convert them to pdf files. 
 
-To start with, I have already composed a template html file based on this [repo](https://github.com/mjhea0/thinkful-mentor/tree/master/python/jinja):
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Rechnung</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <style type="text/css">
-    .container {
-      max-width: 800px;
-      padding-top: 100px;
-    }
-    p {font-size: medium; text-align: left; display:flex; flex-direction: column}
-    h4 {text-align: center;}
-    h3 {text-align:center; color: rgb(19, 17, 17);}
-  </style>
-</head>
-<body>
-  <div class="container">
-    <img src="file:///home/linlin/projects/auto_report/jinja_report/yinyang1.png" style="float: left; WIDTH:80px; HEIGHT:80px"/>
-    <h3> <b>很酷的报告</b></h3>
-    <h4><b>A cool report by Jinja2</b></h4>
-    
-    <p style="text-align:center; font-size: small;">Volkstr. 001, 000000 Peaceland
-    <br>
-    Tel: 88-88888888,   Fax: 00-00000000
-    <br>
-    Email: abc@xxx.xx,   web: linlinzhao.com
-    </p>
-    <br>
-   <p>Name: {{name}}</p>
-   <p>Address: {{address}}</p>
-   <!--ul>
-     {% for n in my_list %}
-     <li>{{n}}</li>
-     {% endfor %}
-   </ul !-->
-   <br>
-   <br>
-   <h5 style="font-size: large;"><b>Rechnung</b></h5>
-   <p>Invoice No.: {{invoice}}</p>
-   <p>Date: {{date}}</p>
-   <p>Item: {{item}}</p>
-   <p>Cost: {{amount}}</p>
-
-    <br>
-    <p>
-    Beautiful is better than ugly.<br>
-    Explicit is better than implicit.<br>
-    Simple is better than complex.<br>
-    Complex is better than complicated.<br>
-    Flat is better than nested.<br>
-    Sparse is better than dense.<br>
-    Readability counts.<br>
-    Special cases aren't special enough to break the rules.</p>
-    <br>
-    <br>
-    <h5 style="font-size: large;"><b>Bitte in einer Woche überweisen, vielen Dank!</b></h5>
-    <br>
-    <div class="footer">
-      <p>Mit freundlichen Grüßen</p>
-      <br>
-      <p>一家很赚钱的公司</p>
-      <p>A very profitable company</p>
-        <br>
-        <br>
-
-        <p style="font-size: x-small;">Kontoinhaber: NN<br>
-        Eingutbank<br>
-        Bankleitzahl: 000 000 00   Kontonummer:  000000000<br>
-        IBAN: XX00 0000 0000 0000 0000 00  BIC: XXXXXXXX  </p>
-    </div>
-  </div>
-  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-</body>
-</html>
-```
-This is how the template looks like: 
+To start with, I have already composed a [template html](https://github.com/Linlinzhao/jinja-report/blob/main/layout.html) file based on this [repo](https://github.com/mjhea0/thinkful-mentor/tree/master/python/jinja). 
+This is how the template looks like:
 
 ![template](/assets/images/jinja_template.png)
 

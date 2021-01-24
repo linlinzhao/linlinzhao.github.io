@@ -1,0 +1,42 @@
+I"Œ<p><em>Update July 2018</em>:</p>
+
+<p>This post is outdated as the issues stated at the time of writing are not issues anymore. It is still kept for potential interest.</p>
+
+<hr />
+<!--more-->
+
+<p>When adapting <a href="https://tianqi.name/blog/">TeXt theme</a>, LaTex support is essential.</p>
+
+<ul>
+  <li>
+    <p>The first thing is about setting up both ruby and node.js environment on my Ubuntu machine.
+Installing Ruby and gem went smoothly, therefore setting up Jekyll is easy. But when I tried
+to install <code class="language-plaintext highlighter-rouge">Node.js</code> and <code class="language-plaintext highlighter-rouge">npm</code>, my Ubuntu constantly complained that it could not install the current
+ stable version of Node.js, and it installed <code class="language-plaintext highlighter-rouge">Node 4.2.6</code> instead, which in turn made the latest <code class="language-plaintext highlighter-rouge">npm</code>
+refuse to work with the old <code class="language-plaintext highlighter-rouge">Node 4.2.6</code>. Many people filed this
+ <a href="https://askubuntu.com/questions/786272/why-does-installing-node-6-x-on-ubuntu-16-04-actually-install-node-4-2-6">problem</a>
+  already, but most of them did not work for me.</p>
+
+    <p>The problem is caused by a discontinued ppa application, I need to remove it from <code class="language-plaintext highlighter-rouge">/etc/apt/source.list</code> and
+<code class="language-plaintext highlighter-rouge">/etc/apt/source.list.d</code>. This is the detailed <a href="https://askubuntu.com/questions/65911/how-can-i-fix-a-404-error-when-using-a-ppa-or-updating-my-package-lists">solution</a></p>
+  </li>
+  <li>
+    <p>The second thing is to make LaTex work in Markdown. <a href="http://docs.mathjax.org/en/latest/tex.html">MathJax</a> is
+the choice but there exists several ways to set up MathJax in <a href="https://jekyllrb.com/docs/extras/">Jekyll</a>, and
+some of them just did not work for me. I did not have the time to dig out the reason but just wanted to find a
+quick solution. Eventually I made it work with these settings:</p>
+
+    <ol>
+      <li>Using <a href="https://kramdown.gettalong.org/syntax.html#math-blocks">kramdown</a> engine for markdown.</li>
+      <li>Putting
+<code class="language-plaintext highlighter-rouge">&lt;script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;
+&lt;/script&gt;</code>
+in TeXt themeâ€™s <code class="language-plaintext highlighter-rouge">_layouts/page.html</code>. Be sure to use <code class="language-plaintext highlighter-rouge">https</code>, otherwise the rendering online could fail.</li>
+      <li>Then I could write equations in LaTex! For inline equations, the expressions need to be embraced with double dollar sign like this: <code class="language-plaintext highlighter-rouge">$$x$$</code>.
+For independent lines, the expressions should start from a new line after <code class="language-plaintext highlighter-rouge">$$</code>, and the ending <code class="language-plaintext highlighter-rouge">$$</code> should also stay in a new line.</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Okay, that is it. I hope someone could find this post useful.</p>
+:ET

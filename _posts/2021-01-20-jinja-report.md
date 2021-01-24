@@ -30,6 +30,7 @@ If this sounds too abstract, the concept will become clear when we see the code 
 ## A concrete but simple example
 
 Let's generate invoices according to the following sales table:
+
 | ID | Invoice | Name | Address    | Item         | Cost    |
 |----|---------|------|------------|--------------|---------|
 | 1  | A0001   | Alix | Volkstr. 1 | book         | 12Euro  |
@@ -100,7 +101,6 @@ To start with, I have already composed a template html file based on this [repo]
     <h5 style="font-size: large;"><b>Bitte in einer Woche überweisen, vielen Dank!</b></h5>
     <br>
     <div class="footer">
-      {% block footer %}
       <p>Mit freundlichen Grüßen</p>
       <br>
       <p>一家很赚钱的公司</p>
@@ -112,7 +112,6 @@ To start with, I have already composed a template html file based on this [repo]
         Eingutbank<br>
         Bankleitzahl: 000 000 00   Kontonummer:  000000000<br>
         IBAN: XX00 0000 0000 0000 0000 00  BIC: XXXXXXXX  </p>
-      {% endblock %}
     </div>
   </div>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -120,12 +119,16 @@ To start with, I have already composed a template html file based on this [repo]
 </body>
 </html>
 ```
-This is how the template looks like: ![template](/assets/images/jiaja_out_html.png)
+This is how the template looks like: 
+
+![template](/assets/images/jinja_template.png)
+
 As you may see from the template, the column names in our table have corresponding placeholders.
 
 ## Use Jinja to render html files
 
 Now we can write Python code to pass the values in the table to html files. The following function can render one html file for a given row. 
+
 ```python
 import jinja2
 
@@ -151,6 +154,7 @@ def render_html(row):
     html_file.write(output_text)
     html_file.close()
 ```
+
 What this code does:
 1. tell Jinja where the template is;
 2. pass values to the placeholder in the template when rendering;
@@ -164,10 +168,14 @@ df = pd.read_csv('sample.csv')
 for row in df.itertuples():
     render_html(row)
 ```
-and three html files will be generated. ![htmls](/assets/images/jiaja_out_html.png).
+and three html files will be generated. 
+
+![htmls](/assets/images/jiaja_out_html.png).
 
 To check if the values are passed correctly, let's view the `ruo.html`:
+
 ![ruo](/assets/images/jiaja_ruo.png)
+
 The output actually looks all right, which is great.
 
 

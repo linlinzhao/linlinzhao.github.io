@@ -1,0 +1,113 @@
+I"�1<p><em>Disclaimer: this guideline is only suggested for servers within secure local connections, e.g. within an institution or corporation’s network</em>.</p>
+
+<p><a href="https://www.ssh.com/ssh/tunneling/example">SSH port forwarding</a> is a common way of connecting to remote jupyter notebooks. This typically takes three steps: run jupyter on the server, ssh tunneling to the jupyter instance, and then type the localhost link to your browser. That actually doesn’t sound satisfying, and it could be simpler. In this post, I’ll guide you through setting up a remote jupyterlab workspace for Python3 from scratch. Since you want to set remote notebooks, I’ll assume you feel comfortable with command lines and remote editing.</p>
+
+<h2 id="check-your-python-version-on-server">Check your python version on server</h2>
+<p>As of 2020, Python3 is strongly recommended.</p>
+
+<p>If you are using RedHat Enterprise 7, the system-wide default version is Python2.7, but your system administrator usually should have installed python3. Suppose python3.6 is installed, you can enable python3 by <code class="language-plaintext highlighter-rouge">scl enable rh-python36 bash</code>.</p>
+
+<p>If you are using Debian or Ubuntu, python3 comes with the system. In case you want to make python3 as default, add the following line to your <code class="language-plaintext highlighter-rouge">.bashrc</code> file:
+<code class="language-plaintext highlighter-rouge">alias python=python3</code></p>
+
+<h2 id="manage-python-environments">Manage python environments</h2>
+<p>Working with python <a href="https://realpython.com/python-virtual-environments-a-primer/">virtual environments</a> is good practice. 
+Here <code class="language-plaintext highlighter-rouge">venv</code> module and <code class="language-plaintext highlighter-rouge">conda</code> are briefly introduced, which use <code class="language-plaintext highlighter-rouge">pip</code> and <code class="language-plaintext highlighter-rouge">conda</code> as package manager respectively. 
+This <a href="https://www.anaconda.com/blog/understanding-conda-and-pip#:~:text=Pip%20installs%20Python%20packages%20whereas,software%20written%20in%20any%20language.&amp;text=Another%20key%20difference%20between%20the,the%20packages%20installed%20in%20them.">post</a> from Anaconda summarizes the differences between pip and conda nicely.
+Note that <code class="language-plaintext highlighter-rouge">pip</code> and <code class="language-plaintext highlighter-rouge">conda</code> are direct competitors in terms of managing packages. Within a venv environment, doing <code class="language-plaintext highlighter-rouge">pip install conda</code> wouldn’t give you a standalone <code class="language-plaintext highlighter-rouge">conda</code> command for your venv environment.</p>
+
+<h3 id="the-venv-way">The venv way</h3>
+<ul>
+  <li>cd to your project directory, e.g. “myProject”</li>
+  <li>Create virtual environments: <code class="language-plaintext highlighter-rouge">python -m venv project-venv</code></li>
+  <li>Activate the environments: <code class="language-plaintext highlighter-rouge">source ./project-venv/bin/activate</code></li>
+  <li>Install packages to the venv with pip, e.g. <code class="language-plaintext highlighter-rouge">pip install jupyterlab</code></li>
+  <li>To quit the venv: <code class="language-plaintext highlighter-rouge">deactivate</code></li>
+</ul>
+
+<h3 id="the-conda-way">The conda way</h3>
+<ul>
+  <li>Go to home folder: <code class="language-plaintext highlighter-rouge">cd $HOME</code></li>
+  <li>Create a temporary folder to keep home folder clean: <code class="language-plaintext highlighter-rouge">mkdir temp &amp;&amp; cd temp</code></li>
+  <li>Get the <a href="https://repo.anaconda.com/archive/">anaconda</a> or miniconda linux installer, e.g. for Anaconda3: <code class="language-plaintext highlighter-rouge">wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh</code></li>
+  <li>Install the downloaded: <code class="language-plaintext highlighter-rouge">TMPDIR=./ bash ./Anaconda3-2020.07-Linux-x86_64.sh</code>. Note that <code class="language-plaintext highlighter-rouge">TMPDIR</code> is specified to avoid permission issue caused by limited space of the default TMPDIR.</li>
+  <li>Hit enter until you are asked to type “yes”.</li>
+  <li>The default path is usually <code class="language-plaintext highlighter-rouge">$HOME/anaconda3/</code></li>
+  <li>At the end of installation, say “yes” to have conda initializer. But that would set Anaconda python3 as your default python</li>
+  <li>Logout and login again, you’ll enter the conda base environment.</li>
+  <li>If you hate anaconda to change your default python and automatically activate base environment like me, run this command to remedy: <code class="language-plaintext highlighter-rouge">conda config --set auto_activate_base false</code></li>
+  <li>Create conda virtual environment: <code class="language-plaintext highlighter-rouge">conda create -n myCondaEnv python=3.7 anaconda</code></li>
+  <li>Activate environment <code class="language-plaintext highlighter-rouge">conda activate myCondaEnv</code></li>
+  <li>Intall packages to <code class="language-plaintext highlighter-rouge">myCondaEnv</code>, including <code class="language-plaintext highlighter-rouge">conda install jupyterlab</code></li>
+</ul>
+
+<h2 id="configure-jupyter">Configure Jupyter</h2>
+<p>Up to this point, you are set to use ssh tunneling for remote connecting, but we can get around that by a few configurations for jupyter notebooks.</p>
+
+<h3 id="generate-jupyter-notebook-configuration-file">Generate jupyter notebook configuration file</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter notebook --generate-config
+</code></pre></div></div>
+<p>This command creates a configuration file at <code class="language-plaintext highlighter-rouge">$HOME/.jupyter/jupyter_notebook_config.py</code> with all defaults commented out.</p>
+<h3 id="customize-the-config-file">Customize the config file</h3>
+<p>Put the following lines to <code class="language-plaintext highlighter-rouge">jupyter_notebook_config.py</code>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+<span class="n">c</span><span class="p">.</span><span class="n">NotebookApp</span><span class="p">.</span><span class="n">ip</span> <span class="o">=</span> <span class="s">'*'</span> <span class="c1">#use the system IP address for accessing 
+</span><span class="n">c</span><span class="p">.</span><span class="n">NotebookApp</span><span class="p">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">8890</span> <span class="c1">#if the specified port is occupied,incrementally get next one
+</span><span class="n">c</span><span class="p">.</span><span class="n">NotebookApp</span><span class="p">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="bp">False</span> <span class="c1">#no browser
+</span><span class="kn">from</span> <span class="nn">IPython.lib</span> <span class="kn">import</span> <span class="n">passwd</span>
+<span class="n">password</span> <span class="o">=</span> <span class="n">passwd</span><span class="p">(</span><span class="s">"yourpassword"</span><span class="p">)</span>
+<span class="n">c</span><span class="p">.</span><span class="n">NotebookApp</span><span class="p">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span> <span class="c1">#use password instead of access token.  
+</span></code></pre></div></div>
+
+<p>To avoid hard-coding your password to a file, comment last three lines to disable password. Then Juypyter will generate a one-time token for accessing the jupyterlab instance.</p>
+
+<h2 id="run-jupyterlab-in-the-background">Run jupyterlab in the background</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nohup jupyter lab &amp;
+</code></pre></div></div>
+<p>This command will run jupyterlab in the background, and the printouts will be forwarded to a generated file “nohup.out” in which you will see something like this</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[I 16:45:57.163 LabApp] http://yourIPorDomainName:8890/
+</code></pre></div></div>
+<p>This is your accesible link to the jupyter instance. Now you can safely logout the server.</p>
+
+<p>If you choose to use token for accessing, you’ll need to copy the full link with token to your browser. And the token will be used to set a <a href="https://jupyter-notebook.readthedocs.io/en/stable/security.html#:~:text=If%20a%20generated%20token%20doesn,notebook%20password%20command%20is%20added.">cookie</a> for your browser.</p>
+
+<h2 id="connect-to-remote-jupyterlab">Connect to remote jupyterlab</h2>
+<p>Type <code class="language-plaintext highlighter-rouge">http://yourIPorDomainName:8890/</code> or <code class="language-plaintext highlighter-rouge">link with token</code> in your browser.</p>
+
+<p>You’ll be asked to enter the password you have put into the jupyter config file on the server.</p>
+
+<p>Now enjoy working with the remote jupyterlab. As long as the server is running, you only need the link to access.</p>
+
+<h2 id="kill-the-process-of-jupyterlab-if-needed">Kill the process of jupyterlab if needed</h2>
+<p>You might want to kill the process at some point.
+With this command you can find the <code class="language-plaintext highlighter-rouge">pid</code> of process for jupyterlab:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat -tulpn | grep '8890'
+</code></pre></div></div>
+<p>Then use <code class="language-plaintext highlighter-rouge">top</code> or <code class="language-plaintext highlighter-rouge">kill</code> command to end the process.</p>
+
+<h2 id="manage-multiple-environments-in-one-jupyter-instance">Manage multiple environments in one Jupyter instance</h2>
+<p>You’ll probably notice that starting a Jupyter instance for every environment is actually annoying, because we often times need to work on several projects with different settings. 
+It is better that one can link conda environments to ipython kernels such that the environments can show up in one jupyter instance. For instance, I use miniconda3, and <code class="language-plaintext highlighter-rouge">conda env list</code> tells me following:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>base                  *  /path/to/miniconda3
+rdkit                    /path/to/miniconda3/envs/rdkit
+yolo                     /path/to/miniconda3/envs/yolo
+</code></pre></div></div>
+<p>The idea is that when I start a jupyterlab instance in the base environment, I can also access <code class="language-plaintext highlighter-rouge">rdkit</code> and <code class="language-plaintext highlighter-rouge">yolo</code> envs.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda activate base
+conda <span class="nb">install </span>ipykernel
+ipython kernel <span class="nb">install</span> <span class="nt">--user</span> <span class="nt">--name</span><span class="o">=</span>yolo
+ipython kernel <span class="nb">install</span> <span class="nt">--user</span> <span class="nt">--name</span><span class="o">=</span>rdkit
+</code></pre></div></div>
+<p>Next step is to make sure the ipython kernels are linked to the right envs, for example, in the json file <code class="language-plaintext highlighter-rouge">.local/share/jupyter/kernels/rdkit/kernel.json</code>, the first entry for <code class="language-plaintext highlighter-rouge">argv</code> should point to <code class="language-plaintext highlighter-rouge">/path/to/miniconda3/envs/rdkit</code>. If not, change that accordingly.</p>
+
+<p>Now <code class="language-plaintext highlighter-rouge">rdkit</code> and <code class="language-plaintext highlighter-rouge">yolo</code> will show up in jupyterlab.</p>
+
+<h2 id="the-end">The end</h2>
+<ul>
+  <li>The method has been tested on RHEL7 and Debian servers.</li>
+  <li>It also works for Windows Subsystems for Linux (WSL) Ubuntu 18.04.</li>
+  <li>For downloading files from remote, besides <code class="language-plaintext highlighter-rouge">scp</code>, you can right click the file to create a downloadable link in jupyterlab.</li>
+</ul>
+
+<p>Hope you’ll find this guide helpful.</p>
+:ET

@@ -12,11 +12,13 @@ As early as 1903, Victor Henri discovered that the enzymatic reactions were init
 Later in 1913, [Michaelis and Menten](https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_kinetics) extended Henri's discovery and mathematically described the kinetics of the enzymatic reactions. 
 According to their findings, the enzymes (E) in the stomach bind to the proteins (S) to form the complexes (ES) which in turn produce peptides as the products (P). 
 In reaction form, it can be represented as 
+
 $$
 \begin{equation}
 	E+S\underset{k_r}{\stackrel{k_f}{\rightleftharpoons}}ES\xrightarrow{k_{cat}}E+P,
 \end{equation}
 $$
+
 where $k_f$, $k_r$ and $k_{cat}$ denote the forward rate, reverse rate and catalytic rate respectively. 
 
 According to *the law of mass action*, which says that the reaction rate is proportional to the product of the concentrations of the reactants, the reaction can be described in mathematical equations as
@@ -29,6 +31,7 @@ $$
 	\nonumber \frac{d[P]}{dt}&=k_{cat}[ES], 
 \end{align}
 $$
+
 where $[\cdot]$ denotes the concentration of the corresponding chemical substance, and the derivative $d[\cdot]/dt$ represents the change rate of the substance with respect to time. 
 The positive terms on the right-hand side of the equations increase the change rates while the negative terms decrease them.  
 
@@ -37,7 +40,7 @@ Up to now, the digestion process of proteins in our stomach has been *modeled* i
 **Essentially, modeling is to abstract the essentials from "real world" objects or phenomena to build their representations.
 Models enable us to investigate ideas for generating scientific hypotheses.**
 The models in form of chemical reaction or mathematical equations have captured the key steps in enzymatic catalysis, without considering other non-essential facts such as how the enzymes have been produced, what proteins are present and so on. 
-More specifically, the model of systems of equations is a mathematical model which uses mathematics to describe the system of digesting proteins in the stomach, which involves proteins as the system input and peptides as the output. 
+More specifically, the model in the form of equations is a mathematical model which uses mathematics to describe the system of digesting proteins in the stomach, which involves proteins as the system input and peptides as the output. 
 It worths noting that models can also be diagrammatic or verbal, that is, the protein digestion process can be drawn as diagrams or be described in words. 
 
 In order to obtain the production rate $d[P]/dt$ in the equations, further mathematical analyses require assumptions related to the system details. 
